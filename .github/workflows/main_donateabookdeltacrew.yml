@@ -35,6 +35,7 @@ jobs:
         with:
           name: node-app
           path: ./backend # <--- THAY ĐỔI 3: Chỉ định chỉ tải lên thư mục backend
+          !./backend/node_modules
 
   deploy:
     runs-on: ubuntu-latest
