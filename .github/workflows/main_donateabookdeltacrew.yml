@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'backend/**'          # <-- Chỉ chạy nếu có thay đổi trong thư mục backend
+      - '.github/workflows/**'  # <-- Chạy nếu chính file workflow này thay đổi
   workflow_dispatch:
 
 jobs:
