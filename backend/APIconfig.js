@@ -17,7 +17,7 @@ const dbConfig = {
   database: 'BookWebsite',
   options: {
     encrypt: true,
-    trustServerCertificate: true
+    trustServerCertificate: false
     // Bo di trustedConnection: true
   }
 };
