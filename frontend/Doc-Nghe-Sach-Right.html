@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>ĐỌC NGHE SÁCH - BÊN PHẢI</title>
     <!-- Link Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -35,21 +35,24 @@
             margin: 0 auto;
             padding: 20px;
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .pdf-container {
             background: rgba(255,255,255,0.05);
             border-radius: 15px;
             padding: 20px;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
             box-shadow: var(--shadow);
             border: 1px solid var(--border-color);
+            flex: 1;
         }
 
         .pdf-embed {
             width: 100%;
-            height: 70vh;
-            min-height: 300px;
+            height: 100%;
             border-radius: 10px;
             border: 2px solid var(--border-color);
             background: #ffffff;
@@ -61,8 +64,8 @@
             padding: 25px;
             box-shadow: var(--shadow);
             border: 1px solid var(--border-color);
-            position: relative;
-            margin-bottom: 20px; /* Ensure space below audio */
+            margin-bottom: 20px;
+            flex-shrink: 0;
         }
 
         .audio-container::before {
@@ -148,14 +151,22 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
+        
+        /* PC Styles (không áp dụng cho mobile) */
+        @media (min-width: 994px) {
+            .pdf-embed {
+                height: 80vh; /* Tăng chiều cao lên 80vh trên PC */
+                min-height: 800px; /* Đảm bảo chiều cao tối thiểu lớn hơn */
+            }
+        }
         /* Tablet Styles */
         @media (max-width: 991px) and (min-width: 769px) {
             .content-wrapper {
                 padding: 25px 15px;
             }
             .pdf-embed {
-                height: 60vh;
+                height: 65vh; /* Tăng lên một chút */
+                min-height: 500px;
             }
             .pdf-container {
                 padding: 20px;
@@ -173,11 +184,12 @@
             }
             .pdf-container {
                 padding: 10px;
-                margin-bottom: 15px;
+                margin-bottom: 10px;
             }
             .pdf-embed {
-                height: 50vh;
-                min-height: 250px;
+                height: 100vh;
+                min-height: 600px;
+                overflow: auto;
             }
             .audio-container {
                 padding: 15px 10px;
@@ -200,16 +212,9 @@
 
         /* Small Mobile Styles */
         @media (max-width: 576px) {
-            .content-wrapper {
-                padding: 8px 5px;
-            }
-            .pdf-container {
-                padding: 8px;
-                margin-bottom: 12px;
-            }
             .pdf-embed {
-                height: 45vh;
-                min-height: 200px;
+                height: 65vh;
+                min-height: 350px;
             }
             .audio-container {
                 padding: 12px 8px;
@@ -232,16 +237,9 @@
 
         /* Extra Small Mobile */
         @media (max-width: 400px) {
-            .content-wrapper {
-                padding: 5px;
-            }
-            .pdf-container {
-                padding: 6px;
-                margin-bottom: 10px;
-            }
             .pdf-embed {
-                height: 40vh;
-                min-height: 180px;
+                height: 60vh;
+                min-height: 300px;
             }
             .audio-container {
                 padding: 10px 6px;
@@ -262,7 +260,8 @@
         /* Landscape Mobile */
         @media (max-width: 768px) and (orientation: landscape) {
             .pdf-embed {
-                height: 40vh;
+                height: 60vh;
+                min-height: 300px;
             }
         }
 
@@ -284,11 +283,11 @@
         </div>
     </div>
 
-    <div class="container-fluid">
+    <div class="container-fluid" style="height: 100%;">
         <div class="content-wrapper">
             <!-- PDF Container -->
             <div class="pdf-container">
-                <embed type="application/pdf" class="pdf-embed" id="noidung"/>
+                <iframe class="pdf-embed" id="noidung" frameborder="0"></iframe>
             </div>
             
             <!-- Audio Container -->
@@ -342,7 +341,7 @@
                     let mp3Url = data1[0].DUONGDANMP3;
 
                     // Handle PDF
-                    if (!pdfUrl || !pdfUrl.toLowerCase().endsWith('.pdf')) {
+                     if (!pdfUrl || !pdfUrl.toLowerCase().endsWith('.pdf')) {
                         document.getElementById("noidung").src = "https://bookwebsitedata.blob.core.windows.net/media/data/PDF/THONG_BAO.pdf";
                     } else {
                         const pdfExists = await checkFileExists(pdfUrl);
@@ -367,7 +366,7 @@
                 alert('Lỗi khi gọi API: ' + error.message);
             } finally {
                 hideLoading();
-                sendHeight(); // Send height after content loads
+                sendHeight();
             }
         }
 
@@ -376,13 +375,20 @@
         });
 
         function sendHeight() {
-            const height = document.body.scrollHeight;
-            window.parent.postMessage({ height: 1000 }, "*");
+            const height = document.querySelector('.content-wrapper').scrollHeight;
+            if (window.innerWidth > 993) {
+                window.parent.postMessage({ height: 1000 }, "*");
+            } else {
+                window.parent.postMessage({ height: height + 100 }, "*");
+            }
         }
 
-        // Send height on load and resize
         window.addEventListener("load", sendHeight);
         window.addEventListener("resize", sendHeight);
+
+        document.getElementById("noidung").onload = function() {
+            setTimeout(sendHeight, 200);
+        };
     </script>
 </body>
 
