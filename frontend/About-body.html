@@ -17,8 +17,6 @@
            padding: 0 0 50px;
         }
 
-
-
         nav {
             position: sticky;
             top: 0;
@@ -27,8 +25,6 @@
             /* background: linear-gradient(135deg, #2c3e50, #4b4b6b, #5a3e89); */
             background: rgba(0, 0, 0, 0.92);
         }
-
-
 
         .hr_DanhMuc {
             width: 90%;
@@ -75,7 +71,103 @@
         footer {
             margin-top: 0 !important;
             padding-top: 0 !important;
+        }
 
+        /* Responsive styles */
+        .member-card {
+            height: 400px; 
+            background: linear-gradient(135deg, #2c3e50, #4b4b6b, #5a3e89); 
+            color: white;
+        }
+
+        .member-card:nth-child(2) .card-content {
+            background: linear-gradient(135deg, #482c50, #4b4b6b, #5a3e89);
+        }
+
+        .member-card img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .member-card {
+                height: auto;
+                min-height: 350px;
+                margin-bottom: 20px;
+            }
+
+            .member-card img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .member-card h5 {
+                font-size: 1.1rem !important;
+                margin-top: 1rem !important;
+            }
+
+            .member-card p {
+                font-size: 0.9rem !important;
+            }
+
+            .team-title {
+                font-size: 1.8rem !important;
+                margin-bottom: 2rem !important;
+            }
+
+            .company-title {
+                font-size: 1.5rem !important;
+                padding-top: 2rem !important;
+            }
+
+            .company-description {
+                font-size: 0.9rem !important;
+                padding: 1.5rem !important;
+                text-align: justify !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .member-card {
+                height: auto;
+                min-height: 320px;
+            }
+
+            .member-card img {
+                width: 100px;
+                height: 100px;
+            }
+
+            .member-card h5 {
+                font-size: 1rem !important;
+                margin-top: 0.8rem !important;
+                line-height: 1.2;
+            }
+
+            .member-card p {
+                font-size: 0.8rem !important;
+            }
+
+            .team-title {
+                font-size: 1.5rem !important;
+                margin-bottom: 1.5rem !important;
+            }
+
+            .company-title {
+                font-size: 1.3rem !important;
+            }
+
+            .company-description {
+                font-size: 0.85rem !important;
+                padding: 1rem !important;
+                line-height: 1.4;
+            }
+
+            body {
+                padding: 0 0 30px;
+            }
         }
     </style>
 </head>
@@ -85,46 +177,44 @@
 
         <!--Phần BODY-->
 
-        <!-- ĐỘi NHÓM -->
-        <section class="py-5" >
+        <!-- ĐỘI NHÓM -->
+        <section class="py-5">
             <div class="container text-center">
-                <h3 class="fw-bold mb-5 fs-1">ĐỘI NGŨ THÀNH VIÊN</h3>
+                <h3 class="fw-bold mb-5 fs-1 team-title">ĐỘI NGŨ THÀNH VIÊN</h3>
                 <div class="row justify-content-center">
                     <!-- Người 1 -->
-                    <div class="col-3 ">
-                        <div class=" p-4 rounded shadow"
-                            style=" height: 400px; background: linear-gradient(135deg, #2c3e50, #4b4b6b, #5a3e89); color: white;">
-                            <img src="https://bookwebsitedata.blob.core.windows.net/media/data/Hinh/DinhLoc.png" class="rounded-circle mb-3" width="150" height="150" style="object-fit: cover;" >
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="member-card p-4 rounded shadow">
+                            <img src="https://bookwebsitedata.blob.core.windows.net/media/data/Hinh/DinhLoc.png" class="rounded-circle mb-3">
                             <h5 class="fw-bold fs-3 mt-5">Nguyễn Đình Lộc</h5> 
                             <br>
-                            <p class="fw-bold fs-5">Project Manager/QA</p>        
+                            <p class="fw-bold fs-5">Project Manager/Tech Lead</p>        
                         </div>
                     </div>
-                    <!-- Người 1 -->
-                    <div class="col-3 ">
-                        <div class=" p-4 rounded shadow"
-                            style="height: 400px; background: linear-gradient(135deg, #482c50, #4b4b6b, #5a3e89); color: white;">
-                            <img src="https://bookwebsitedata.blob.core.windows.net/media/data/Hinh/TungAnh.png" class="rounded-circle mb-3" width="150" height="150" style="object-fit: cover;" >
-                            <h5 class="fw-bold fs-3 mt-5">Nguyễn Tùng Anh</h5> 
-                            <br>
-                            <p class="fw-bold fs-5">Content & Database</p>        
+                    <!-- Người 2 -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="member-card p-4 rounded shadow">
+                            <div class="card-content">
+                                <img src="https://bookwebsitedata.blob.core.windows.net/media/data/Hinh/TungAnh.png" class="rounded-circle mb-3">
+                                <h5 class="fw-bold fs-3 mt-5">Nguyễn Tùng Anh</h5> 
+                                <br>
+                                <p class="fw-bold fs-5">Content & Database</p>
+                            </div>       
                         </div>
                     </div>
-                    <!-- Người 1 -->
-                    <div class="col-3 ">
-                        <div class=" p-4 rounded shadow"
-                            style="height: 400px; background: linear-gradient(135deg, #2c3e50, #4b4b6b, #5a3e89); color: white;">
-                            <img src="https://bookwebsitedata.blob.core.windows.net/media/data/Hinh/HoangAnh.png" class="rounded-circle mb-3" width="150" height="150" style="object-fit: cover;" >
-                            <h5 class="fw-bold fs-5 mt-5 mb-3" >Nguyễn Viết Hoàng Anh</h5> 
+                    <!-- Người 3 -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="member-card p-4 rounded shadow">
+                            <img src="https://bookwebsitedata.blob.core.windows.net/media/data/Hinh/HoangAnh.png" class="rounded-circle mb-3">
+                            <h5 class="fw-bold fs-5 mt-5 mb-3">Nguyễn Viết Hoàng Anh</h5> 
                             <br>
                             <p class="fw-bold fs-5">Backend Developer</p>        
                         </div>
                     </div>
-                    <!-- Người 1 -->
-                    <div class="col-3 ">
-                        <div class=" p-4 rounded shadow"
-                            style="height: 400px; background: linear-gradient(135deg, #2c3e50, #4b4b6b, #5a3e89); color: white;">
-                            <img src="https://bookwebsitedata.blob.core.windows.net/media/data/Hinh/7511.JPG" class="rounded-circle mb-3" width="150" height="150" style="object-fit: cover;" >
+                    <!-- Người 4 -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="member-card p-4 rounded shadow">
+                            <img src="https://bookwebsitedata.blob.core.windows.net/media/data/Hinh/7511.JPG" class="rounded-circle mb-3">
                             <h5 class="fw-bold fs-3 mt-5">Nguyễn Đức Đại</h5> 
                             <br>
                             <p class="fw-bold fs-5">Frontend Developer</p>        
@@ -134,28 +224,25 @@
             </div>
         </section>
 
-
         <!-- Phần Tầm nhìn -->
         <div class="text-center container" style="background: linear-gradient(135deg, #a4cef8, #c0c0c0, #8144e9);">
-            <div class="container-flui text-white" style="background-color: #000000ce;">
-                <h2 class="fw-bold text-uppercase pt-4 "> Delta Crew</h2>
-                <p class="mt-2 fs-6 text-white  p-4" style="text-align: center;">
+            <div class="container-fluid text-white" style="background-color: #000000ce;">
+                <h2 class="fw-bold text-uppercase pt-4 company-title">Delta Crew</h2>
+                <p class="mt-2 fs-6 text-white p-4 company-description" style="text-align: center;">
                     Chúng tôi, Delta Crew là nhóm gồm 4 thành viên đam mê lập trình. 
                     Với Đình Lộc là leader, thuyền trưởng của Delta Crew, người dẫn dắt, 
                     kết nối và đảm bảo con tàu luôn đi đúng hướng, Hoàng Anh: Kiến trúc sư hệ thống, 
                     người xây dựng nền tảng backend vững chắc cho toàn bộ thư viện, Đức Đại: Nghệ sĩ giao diện,
                     người thổi hồn vào từng pixel để tạo ra một trải nghiệm trực quan và thân thiện, Tùng Anh: 
                     Phân tích dữ liệu, người tạo hình cho database, kết nối kiến trúc & giao diện.
+                </p>
             </div>
         </div>
         <!-- Phần FOOTER-->
 
-
     </div>
 
-
     <script>
-
         document.addEventListener("DOMContentLoaded", function () {
             const loginModalEl = document.getElementById('loginModal');
             const registerModalEl = document.getElementById('registerModal');
@@ -198,7 +285,6 @@
                 // window.location.href = "yeuthich.html";
             }
         });
-
 
         document.addEventListener("DOMContentLoaded", function () {
             document.querySelector("#loginModal form").addEventListener("submit", function (e) {
