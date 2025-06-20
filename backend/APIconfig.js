@@ -873,5 +873,11 @@ app.get('/api/giongdoc', async (req, res) => {
   }
 });
 
-app.listen(3000, () => console.log('Server chạy tại http://localhost:3000'));
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  // Sửa lại dòng log để nó hiển thị đúng cổng đang chạy
+  console.log(`Server is running on port ${PORT}`); 
+  console.log('Kết nối thành công!');
+});
 
