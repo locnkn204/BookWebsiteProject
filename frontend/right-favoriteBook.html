@@ -87,7 +87,7 @@
                 const data2 = tkyeuthich[i].TENTAIKHOAN;
                 const idSach = parseInt(data1);
                 try{
-                const response = await fetch(`http://localhost:3000/api/timkiemmasach?query=${encodeURIComponent(idSach)}&tentaikhoan=${encodeURIComponent(data2)}`,{
+                const response = await fetch(`https://donateabookdeltacrew.azurewebsites.net/api/timkiemmasach?query=${encodeURIComponent(idSach)}&tentaikhoan=${encodeURIComponent(data2)}`,{
                     method: 'GET'
                 });
                 if(!response.ok){
@@ -132,13 +132,13 @@
 
         async function laydulieuchitietsach(tensach,sach) {
             try{
-                const response = await fetch('http://localhost:3000/api/chitietsach',{
+                const response = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/chitietsach',{
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json'},
                     body: JSON.stringify({tensach})
                 }); 
 
-                const response1 = await fetch('http://localhost:3000/api/binhluan',{
+                const response1 = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/binhluan',{
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json'},
                     body: JSON.stringify({tensach})

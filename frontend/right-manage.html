@@ -107,7 +107,7 @@
             // hàm load dnah sách tài khoản
             async function laydanhsachtaikhoan() {
             try {
-                const response = await fetch('http://localhost:3000/api/listtaikhoan',{
+                const response = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/listtaikhoan',{
                 method: 'GET'
             });
             let cnt =0, trangthai;
@@ -174,7 +174,7 @@
             }
 
             try {
-                const response = await fetch('http://localhost:3000/api/listtaikhoan', {
+                const response = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/listtaikhoan', {
                     method: 'DELETE',
                     headers: {'Content-Type': 'application/json',},
                     body: JSON.stringify({ tentaikhoan: taikhoan }),
@@ -247,7 +247,7 @@
             }
 
             try {
-                const response = await fetch('http://localhost:3000/api/doimatkhau', {
+                const response = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/doimatkhau', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json',},
                     body: JSON.stringify({ tentaikhoan, matkhau }),

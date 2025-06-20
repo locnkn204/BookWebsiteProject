@@ -250,7 +250,7 @@
        /// Hàm lấy danh sách thể loại từ database qua api '/api/theloai'
         async function laydanhsachtheloai() {
             try {
-                const response = await fetch('http://localhost:3000/api/theloai',{
+                const response = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/theloai',{
                 method: 'GET'
             });
             const theloais = await response.json();
@@ -275,7 +275,7 @@
             }
 
             try{
-                const response = await fetch(`http://localhost:3000/api/timkiem?query=${encodeURIComponent(data1)}`,{
+                const response = await fetch(`https://donateabookdeltacrew.azurewebsites.net/api/timkiem?query=${encodeURIComponent(data1)}`,{
                      method: 'GET'
             });
                 if(!response.ok){
@@ -318,7 +318,7 @@
             }
 
             try{
-                const response = await fetch(`http://localhost:3000/api/timkiemtheloai?query=${encodeURIComponent(data)}`,{
+                const response = await fetch(`https://donateabookdeltacrew.azurewebsites.net/api/timkiemtheloai?query=${encodeURIComponent(data)}`,{
                      method: 'GET'
             });
                 if(!response.ok){
@@ -350,7 +350,7 @@
 
         async function dangxuat(taikhoan) {
         try{
-            const response  = await fetch ('http://localhost:3000/api/dangxuat',{
+            const response  = await fetch ('https://donateabookdeltacrew.azurewebsites.net/api/dangxuat',{
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify({ taikhoan })

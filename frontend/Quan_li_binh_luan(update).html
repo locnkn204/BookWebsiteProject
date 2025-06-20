@@ -178,7 +178,7 @@
 
             try {
                 // Gọi API để lấy danh sách sách
-                const booksResponse = await fetch('http://localhost:3000/api/hienthibinhluan');
+                const booksResponse = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/hienthibinhluan');
                 if (!booksResponse.ok) {
                     throw new Error('Lỗi khi lấy danh sách sách');
                 }
@@ -431,7 +431,7 @@
         })
 
         async function deleteBook(madanhgia) {
-            const deleteResponse = await fetch('http://localhost:3000/api/binhluan', {
+            const deleteResponse = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/binhluan', {
             method: 'DELETE',
             headers: {
               'Content-Type': 'application/json',

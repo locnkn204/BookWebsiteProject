@@ -349,14 +349,14 @@
 
             try {
                 // Gọi API để lấy danh sách sách
-                const booksResponse = await fetch('http://localhost:3000/api/listsach');
+                const booksResponse = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/listsach');
                 if (!booksResponse.ok) {
                     throw new Error('Lỗi khi lấy danh sách sách');
                 }
                 const allBooks = await booksResponse.json();
 
                 // Gọi API để lấy nội dung sách
-                const contentsResponse = await fetch('http://localhost:3000/api/listsachnoidung');
+                const contentsResponse = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/listsachnoidung');
                 if (!contentsResponse.ok) {
                     throw new Error('Lỗi khi lấy nội dung sách');
                 }
@@ -515,7 +515,7 @@
                         trangthaihoatdong: trangThaiHoatDong || 'active'
                     };
 
-                    const bookResponse = await fetch('http://localhost:3000/api/themsach', {
+                    const bookResponse = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/themsach', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(bookData)
@@ -539,7 +539,7 @@
                             duongdanpdf: pdf || null,
                             duongdanmp3: audio || null
                         };
-                        const contentResponse = await fetch('http://localhost:3000/api/themnoidung', {
+                        const contentResponse = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/themnoidung', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify(contentData)
@@ -635,7 +635,7 @@
 
             try {
                 // Gọi API để cập nhật sách
-                const response = await fetch('http://localhost:3000/api/capnhatsach', {
+                const response = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/capnhatsach', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(updateData)
@@ -694,7 +694,7 @@
         async function deleteBook(maSach) {
             if (confirm('Bạn có chắc muốn xóa sách này?')) {
             try {
-                const response = await fetch('http://localhost:3000/api/xoasach', {
+                const response = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/xoasach', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ masach: maSach })
@@ -726,7 +726,7 @@
             }
 
             try {
-                const response = await fetch('http://localhost:3000/api/xoasach', {
+                const response = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/xoasach', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ masach: idSach }) // Cập nhật từ masach: maSach sang masach: idSach
@@ -774,7 +774,7 @@
         async function activateBook(idSach) {
             console.log('Activating book with idSach:', idSach);
             try {
-                const response = await fetch('http://localhost:3000/api/kichhoat', {
+                const response = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/kichhoat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ masach: idSach }) // Gửi idSach làm masach

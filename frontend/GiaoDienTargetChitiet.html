@@ -315,7 +315,7 @@
         async function docsach() {
 
             try {
-                const response = await fetch('http://localhost:3000/api/trangthai', {
+                const response = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/trangthai', {
                     method: 'GET'
                 });
                 if (response.ok) {
@@ -373,7 +373,7 @@
         // xây dựng hàm cho bình luận
         async function binhluan() {
             try {
-                const response = await fetch('http://localhost:3000/api/trangthai', {
+                const response = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/trangthai', {
                     method: 'GET'
                 });
                 if (response.ok) {
@@ -416,7 +416,7 @@
             const day = String(ngaydanhgia.getDate()).padStart(2, '0'); // Ngày từ 1-31
             const formattedDate = `${year}-${month}-${day}`; // Định dạng năm-tháng-ngày
             try {
-                const response = await fetch('http://localhost:3000/api/danhgia', {
+                const response = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/danhgia', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ tentaikhoan, masach, saodanhgia, nhanxet, ngaydanhgia: formattedDate })
@@ -437,7 +437,7 @@
         async function yeuthich() {
 
             try {
-                const response = await fetch('http://localhost:3000/api/trangthai', {
+                const response = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/trangthai', {
                     method: 'GET'
                 });
                 if (response.ok) {
@@ -461,7 +461,7 @@
             const day = String(ngaythem.getDate()).padStart(2, '0'); // Ngày từ 1-31
             const formattedDate = `${year}-${month}-${day}`; // Định dạng năm-tháng-ngày
             try {
-                const response = await fetch('http://localhost:3000/api/yeuthich', {
+                const response = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/yeuthich', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ tentaikhoan, masach, ngaythem })
@@ -492,7 +492,7 @@
             const masach = book[0].IDSACH; // Cập nhật từ MASACH sang IDSACH
             const tentaikhoan = taikhoan[0].tentaikhoan;
             try {
-                const response = await fetch('http://localhost:3000/api/yeuthich', {
+                const response = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/yeuthich', {
                     method: 'DELETE',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ tentaikhoan, masach })
@@ -574,7 +574,7 @@
 
             // Kiểm tra quyền admin
             try {
-                const adminResponse = await fetch(`http://localhost:3000/api/tkadmin?tentaikhoan=${tentaikhoan}`);
+                const adminResponse = await fetch(`https://donateabookdeltacrew.azurewebsites.net/api/tkadmin?tentaikhoan=${tentaikhoan}`);
                 const adminData = await adminResponse.json();
 
                 if (adminResponse.status === 201) {
@@ -583,7 +583,7 @@
                 }
 
                 const madanhgia = commentDiv.querySelector('p[style="display: none"]').textContent;
-                const deleteResponse = await fetch('http://localhost:3000/api/binhluan', {
+                const deleteResponse = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/binhluan', {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',

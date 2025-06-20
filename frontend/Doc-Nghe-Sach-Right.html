@@ -55,7 +55,7 @@
         async function fetchFileContent() {
             try {
                 const data = book[0].IDSACH;
-                const response1 = await fetch(`http://localhost:3000/api/timkiemmasachnoidung?masach=${encodeURIComponent(data)}`, {
+                const response1 = await fetch(`https://donateabookdeltacrew.azurewebsites.net/api/timkiemmasachnoidung?masach=${encodeURIComponent(data)}`, {
                     method: 'GET',
                     headers: { 'Content-Type': 'application/json' }
                 });
@@ -67,20 +67,20 @@
 
                     // Handle PDF
                     if (!pdfUrl || !pdfUrl.toLowerCase().endsWith('.pdf')) {
-                        document.getElementById("noidung").src = "http://localhost:3000/data/PDF/THONG_BAO.pdf";
+                        document.getElementById("noidung").src = "https://bookwebsitedata.blob.core.windows.net/media/data/PDF/THONG_BAO.pdf";
                     } else {
                         const pdfExists = await checkFileExists(pdfUrl);
-                        document.getElementById("noidung").src = pdfExists ? pdfUrl : "http://localhost:3000/data/PDF/THONG_BAO.pdf";
+                        document.getElementById("noidung").src = pdfExists ? pdfUrl : "https://bookwebsitedata.blob.core.windows.net/media/data/PDF/THONG_BAO.pdf";
                     }
 
                     // Handle MP3
                     const audioSource = document.getElementById("noidungmp3");
                     if (!mp3Url || !mp3Url.toLowerCase().endsWith('.mp3')) {
-                        audioSource.src = "http://localhost:3000/data/Audio/Default.mp3";
+                        audioSource.src = "https://bookwebsitedata.blob.core.windows.net/media/data/Audio/Default.mp3";
                         audioSource.load();
                     } else {
                         const mp3Exists = await checkFileExists(mp3Url);
-                        audioSource.src = mp3Exists ? mp3Url : "http://localhost:3000/data/Audio/Default.mp3";
+                        audioSource.src = mp3Exists ? mp3Url : "https://bookwebsitedata.blob.core.windows.net/media/data/Audio/Default.mp3";
                         audioSource.load();
                     }
                 } else {

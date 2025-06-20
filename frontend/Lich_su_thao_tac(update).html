@@ -181,7 +181,7 @@
 
             try {
                 // Gọi API để lấy danh sách sách
-                const booksResponse = await fetch('http://localhost:3000/api/listsach');
+                const booksResponse = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/listsach');
                 if (!booksResponse.ok) {
                     throw new Error('Lỗi khi lấy danh sách sách');
                 }
@@ -259,7 +259,7 @@
                 // Gọi API để lấy danh sách sách
                 const ngaythem = ngaythemsach;
 
-                const booksResponse = await fetch(`http://localhost:3000/api/listsachthem?query=${ngaythem}`);
+                const booksResponse = await fetch(`https://donateabookdeltacrew.azurewebsites.net/api/listsachthem?query=${ngaythem}`);
                 if (!booksResponse.ok) {
                     throw new Error('Lỗi khi lấy danh sách sách');
                 }
@@ -309,7 +309,7 @@
                 // Gọi API để lấy danh sách sách
                 const ngaythem = ngay;
 
-                const booksResponse = await fetch(`http://localhost:3000/api/listsachcapnhat?query=${ngay}`);
+                const booksResponse = await fetch(`https://donateabookdeltacrew.azurewebsites.net/api/listsachcapnhat?query=${ngay}`);
                 if (!booksResponse.ok) {
                     throw new Error('Lỗi khi lấy danh sách sách');
                 }
