@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABOUT - LOGIN</title>
+    <link href="bootstrap-5.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            background-color: #F0F0F0;
+        }
+
+
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1020;
+            /* Đảm bảo nằm trên các phần tử khác */
+            /* background: linear-gradient(135deg, #2c3e50, #4b4b6b, #5a3e89); */
+            background: rgba(0, 0, 0, 0.92);
+        }
+
+
+
+        .hr_DanhMuc {
+            width: 90%;
+            margin: 5px;
+        }
+
+        .dropdown-item {
+            margin-left: 2px;
+        }
+
+        .dropdown-item:hover {
+            background: linear-gradient(135deg, #af4949, #55b8a9, #8256ce);
+            color: #fff;
+            font-weight: bolder;
+            font-size: medium;
+        }
+
+        .a_click {
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .a_click:hover {
+            color: black;
+        }
+
+        .dropdown-menu {
+            background: #212529c7;
+            color: #fff;
+        }
+
+        .dropdown-item {
+            color: white;
+        }
+
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+            margin-top: 0;
+        }
+
+        iframe {
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+            display: block;
+            /* Đảm bảo iframe không có khoảng cách inline */
+        }
+
+        footer {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid p-0">
+        <nav class="navbar navbar-expand-lg  navbar-dark sticky-top  "> <!--Hoặc sài sticky -->
+            <div class="container-fluid">
+                <a href="index_dangnhap.html" class="navbar-brand ms-5">
+                    <img src="https://bookwebsitedata.blob.core.windows.net/media/data/Hinh/image-Photoroom.png" width="300" alt="">
+                </a>
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-content">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbar-content">
+                    <ul class="navbar-nav ms-2 gap-2 me-5">
+                        <li class="nav-item"><a class="nav-link active" href="index_dangnhap.html">Trang chủ</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i
+                                    class="fa-solid fa-list-ul"></i> Danh Mục</a>
+                            <ul class="dropdown-menu p-3 " style="min-width: 700px;">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <li><a class="dropdown-item " href="#">Mới cập nhật</a>
+                                            <hr class="mx-auto hr_DanhMuc">
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">Được đề xuất</a>
+                                            <hr class="mx-auto hr_DanhMuc">
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">Sách nổi bật</a>
+                                            <hr class="mx-auto hr_DanhMuc">
+                                        </li>
+                                    </div>
+                                    <div class="col-4">
+                                        <li><a class="dropdown-item " href="#">Sách đã hoàn thành</a>
+                                            <hr class="mx-auto hr_DanhMuc">
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">Bảng Xếp Hạng</a>
+                                            <hr class="mx-auto hr_DanhMuc">
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">Đọc gần đây</a>
+                                            <hr class="mx-auto hr_DanhMuc">
+                                        </li>
+                                    </div>
+                                    <div class="col-4">
+                                        <li><a class="dropdown-item " href="#">Sách Full</a>
+                                            <hr class="mx-auto hr_DanhMuc">
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">Sách Ngẫu Nhiên</a>
+                                            <hr class="mx-auto hr_DanhMuc">
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">Cho bạn hôm nay</a>
+                                            <hr class="mx-auto hr_DanhMuc">
+                                        </li>
+                                    </div>
+
+                                </div>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle " href="#" data-bs-toggle="dropdown"><i
+                                    class="fa-solid fa-layer-group"></i> Thể Loại</a>
+                            <ul class="dropdown-menu" id="listtheloai">
+                                <li><a class="dropdown-item" href="#">Đội nhóm</a></li>
+                                <li><a class="dropdown-item" href="#">Sđt</a></li>
+                                <li><a class="dropdown-item" href="#">Địa chỉ</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="About-dangnhap.html">About</a></li>
+                    </ul>
+
+                    <!-- Bên phải navbar: Search + Yêu thích + Đăng ký + Đăng nhập -->
+                    <div class="d-flex align-items-center gap-2 ms-auto">
+                        <input type="search" placeholder="Search" class="form-control" style="width: 500px;"
+                            id="nhaptimkiem">
+                        <button type="button" class="btn btn-outline-light me-5" onclick="timkiem()">Search</button>
+
+                        <a href="GiaoDienTargetTaiKhoan.html" id="target" role="button">
+                            <button type="button" id="btnFavorites"
+                                class="btn btn-outline-light position-relative ms-5 me-2">
+                                <i class="fa-solid fa-bookmark"></i>
+                                <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                                    id="soluong1">
+                                    0
+                                </span>
+                            </button>
+                        </a>
+                        <!-- Tủ Sách Yêu thích + Account (Tài khoản user) -->
+                        <li class="nav-item dropdown ms-1 me-2" style="list-style: none;">
+                            <a href="#" class="btn btn-outline-light  rounded-circle" data-bs-toggle="dropdown">
+                                <i class="fa-solid fa-user-tie"></i>
+
+                            </a>
+                            <ul class="dropdown-menu ">
+                                <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                                    id="soluong">
+                                    0
+                                </span>
+                                <li><a class="dropdown-item position-relative" href="GiaoDienTargetTaiKhoan.html"> <i
+                                            class="fa-solid fa-user-tie me-0"></i>Tài Khoản cá nhân</a></li>
+                            </ul>
+                        </li>
+
+
+                        <!-- Đăng xuất -->
+                        <button class="btn btn-outline-light me-2" id="dangxuat">
+                            <a class="a_click"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
+                        </button>
+                    </div>
+                </div>
+        </nav>
+
+
+        <!-- Phần BODY -->
+        <iframe name="Chitietsach" id="Chitietsach" src="About-body.html" width="100%"
+            style="height: 100vh; overflow: hidden;" frameborder="0" scrolling="no"></iframe>
+
+        <!-- Phần FOOTER-->
+        <footer class="bg-dark text-white pt-5 pb-4 ">
+            <div class="container text-center text-md-start">
+                <div class="row justify-content-center">
+
+
+                    <div class="col-6">
+                        <h5 class="text-warning fw-bold">BOOK <span class="text-white">WEBSITE</span></h5>
+                        <p class="small fs-6 fw-semibold text-secondary">
+                            Đây là sản phẩm đầu tay của nhóm chúng em, nhằm tạo ra một thư viện sách nói và truyện audio
+                            miễn phí cho mọi người. Ứng dụng công nghệ AI hiện đại giúp tăng trải nghiệm học tập và giải
+                            trí dễ tiếp cận hơn.
+                        </p>
+                        <p class="small fw-semibold fs-6 text-secondary mb-0">
+                            Mọi thắc mắc về Website:
+                            <a href="mailto:dainguyenjkl@gmail.com"
+                                class="text-secondary fw-bold">dainguyenjkl@gmail.com</a>
+                        </p>
+                    </div>
+
+
+                    <div class="col-6">
+                        <h6 class="text-uppercase fw-bold text-warning mb-3 ms-5">Thông tin Liên hệ</h6>
+                        <ul class="list-unstyled fs-6 small ms-5">
+                            <li class="mb-2"><a href="#" class="text-decoration-none text-secondary "><i
+                                        class="fa-solid fa-location-dot me-1"></i> <b>Địa Chỉ: </b>140 - Lê Trọng
+                                    Tấn</a></li>
+                            <li class="mb-2"><a href="#" class="text-decoration-none text-secondary "><i
+                                        class="fa-solid fa-phone-volume me-1"></i> <b>Điện thoại: </b>0359699177</a>
+                            </li>
+                            <li><a href="#" class="text-decoration-none text-secondary "><i
+                                        class="fa-solid fa-envelope me-1"></i> <b>Email: </b>dainguyenjkl@gmail.com</a>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </div>
+
+                <hr class="border-secondary my-4">
+
+                <!-- Copyright -->
+                <div class="text-center text-secondary small">
+                    &copy; 2025 BOOKWEBSITE — Kho sách miễn phí cho cộng đồng.
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <script>
+        // xoá đi thanh scroll bên phải (do html chính nhúng iframe )
+        window.addEventListener("DOMContentLoaded", function () {
+            const iframe = document.getElementById("Chitietsach");
+            iframe.onload = function () {
+                iframe.style.height = iframe.contentWindow.document.body.scrollHeight + "px";
+            };
+        });
+        // Tìm kiếm theo thể loại
+        document.getElementById("listtheloai").addEventListener("click", function (e) {
+            const data = e.target.closest('.dropdown-item');
+            timkiemtheloai(data.textContent);
+        })
+
+        async function timkiemtheloai(theloaitimkiem) {
+            const data = theloaitimkiem;
+            if (!data) {
+                alert("Vui long nhap thong tin tim kiem");
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:3000/api/timkiemtheloai?query=${encodeURIComponent(data)}`, {
+                    method: 'GET'
+                });
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                    return;
+                }
+                const ketqua = await response.json();
+                const ketquatimkiemData = ketqua.ketquatimkiem || [];
+                if (ketquatimkiemData.length > 0) {
+                    localStorage.setItem('ketquatimkiem', JSON.stringify(ketquatimkiemData));
+                    localStorage.setItem('isSearch', 'true');
+                    const iframe = document.getElementById("Chitietsach");
+                    window.location.href = 'index_dangnhap.html';
+                } else {
+                    alert("Không tìm thấy kết quả nào");
+                    return;
+                }
+            } catch (err) {
+                console.error('Lỗi:', err);
+            }
+        }
+        // Hàm lấy danh sách thể loại từ database qua api '/api/theloai'
+        async function laydanhsachtheloai() {
+            try {
+                const response = await fetch('http://localhost:3000/api/theloai', {
+                    method: 'GET'
+                });
+                const theloais = await response.json();
+                const listtheloai = document.getElementById('listtheloai');
+                listtheloai.innerHTML = '';
+                theloais.forEach(theloai => {
+                    const li = document.createElement('li');
+                    li.innerHTML = '<a class="dropdown-item" href="#">' + theloai.TENTHELOAI + '</a>';
+                    listtheloai.appendChild(li);
+                });
+            } catch (err) {
+                console.error('Lỗi:', err);
+            }
+        }
+
+
+        // Hàm tìm kiếm
+        async function timkiem() {
+            const data1 = document.getElementById("nhaptimkiem").value.trim();
+            if (!data1) {
+                alert("Vui long nhap thong tin tim kiem");
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:3000/api/timkiem?query=${encodeURIComponent(data1)}`, {
+                    method: 'GET'
+                });
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                    return;
+                }
+                const ketqua = await response.json();
+
+                if (ketqua.ketquatimkiem.length > 0) {
+                    const ketquatimkiemData = ketqua.ketquatimkiem || [];
+                    localStorage.setItem('ketquatimkiem', JSON.stringify(ketquatimkiemData));
+                    localStorage.setItem('isSearch', 'true');
+                    const iframe = document.getElementById("Chitietsach");
+                    window.location.href = 'index_dangnhap.html';
+                } else {
+                    alert("khong tim thay ket qua nao");
+                    return;
+                }
+            } catch (err) {
+                console.error('Lỗi:', err);
+            }
+        }
+        document.getElementById("nhaptimkiem").addEventListener("keypress", function (e) {
+            if (e.key == 'Enter') {
+                timkiem();
+            }
+        })
+
+        window.addEventListener("DOMContentLoaded", function () {
+            laydanhsachtheloai();
+        })
+
+        document.getElementById('target').addEventListener('click', function () {
+            localStorage.setItem('isClick', 'true');
+        })
+
+        function hienthi() {
+            let data = document.getElementById("soluong1");
+            let data1 = document.getElementById("soluong");
+            
+            let tkyeuthich = JSON.parse(localStorage.getItem('ketquatimkiemyeuthich'));
+            data1.textContent = tkyeuthich.length;
+            data.textContent = tkyeuthich.length;
+        }
+
+        window.addEventListener("DOMContentLoaded",function(){
+            hienthi();
+        })
+                            (function () { if (!window.chatbase || window.chatbase("getState") !== "initialized") { window.chatbase = (...arguments) => { if (!window.chatbase.q) { window.chatbase.q = [] } window.chatbase.q.push(arguments) }; window.chatbase = new Proxy(window.chatbase, { get(target, prop) { if (prop === "q") { return target.q } return (...args) => target(prop, ...args) } }) } const onLoad = function () { const script = document.createElement("script"); script.src = "https://www.chatbase.co/embed.min.js"; script.id = "pZmBRIKTwTgRS_esCfk_p"; script.domain = "www.chatbase.co"; document.body.appendChild(script) }; if (document.readyState === "complete") { onLoad() } else { window.addEventListener("load", onLoad) } })();
+    </script>
+
+    <script src="bootstrap-5.3.5-dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

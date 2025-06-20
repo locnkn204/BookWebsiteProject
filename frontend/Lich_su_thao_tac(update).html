@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Lịch Sử Thao Tác Sách</title>
+    <!-- Link Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <style>
+        body {
+            background: #f8f9fa;
+            color: #212529;
+        }
+
+        .btn {
+            width: 2.5em;
+            height: 2.5em;
+            margin: 0.2em;
+            background: #343a40;
+            color: white;
+            border: none;
+            border-radius: 0.625em;
+            font-size: 16px;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn:hover {
+            color: #212529;
+        }
+
+        .btn-action {
+            background: #0d6efd;
+            width: 8em;
+        }
+
+        .btn-confirm {
+            background: #28a745;
+            width: 8em;
+        }
+
+        .btn:after {
+            content: "";
+            background: white;
+            position: absolute;
+            z-index: -1;
+            left: -20%;
+            right: -20%;
+            top: 0;
+            bottom: 0;
+            transform: skewX(-45deg) scale(0, 1);
+            transition: all 0.5s;
+        }
+
+        .btn:hover:after {
+            transform: skewX(-45deg) scale(1, 1);
+            transition: all 0.5s;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5em;
+            justify-content: center;
+        }
+
+        .table th, .table td {
+            vertical-align: middle;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px;
+        }
+
+        .form-control, .form-select {
+            background: #ffffff;
+            color: #212529;
+        }
+
+        .card {
+            background: #e9ecef;
+            color: #212529;
+        }
+
+        h3 {
+            color: #212529;
+        }
+
+        hr {
+            background: #6c757d;
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 1em;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1em;
+        }
+        .flatpickr-calendar {
+        font-size: 16px; /* Tăng kích thước chữ */
+        width: 300px;    /* Tăng chiều rộng lịch */
+    }
+
+    .flatpickr-day {
+        height: 40px;    /* Tăng chiều cao của mỗi ngày */
+        line-height: 40px; /* Căn giữa chữ trong ô ngày */
+    }
+
+    .flatpickr-months .flatpickr-month {
+        height: 50px;    /* Tăng chiều cao của tiêu đề tháng */
+    }
+
+    .flatpickr-weekdays {
+        height: 40px;    /* Tăng chiều cao của hàng ngày trong tuần */
+    }
+    </style>
+</head>
+<body>
+        <div class="container-fluid">
+        <h3 class="mt-3 ms-3 fs-1 text-center fw-bold mt-5">LỊCH SỬ THAO TÁC SÁCH</h3>
+        <hr class="mt-1">
+
+        <!-- Control Buttons -->
+        <div class="control-buttons">
+            <input type="date" class="form-control fs-5" id="datePicker" style="width: 200px;">
+            <select class="form-select fs-5" id="actionSelect" style="width: 300px;">
+                <option style="text-align: center;">-----HÀNH ĐỘNG-----</option>
+                <option value="Thêm sách">Thêm Sách</option>
+                <option value="Cập nhật">Cập Nhật</option>
+            </select>
+            <button class="btn btn-confirm fw-bold fs-5" onclick="hienthi()">Xác nhận</button>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="row mb-3">
+            <div class="col-12">
+                <input class="form-control fs-4" style="border: 2px solid black;" type="text" id="searchInput" onkeyup="searchBooks()"
+                       placeholder="Tìm kiếm theo mã sách hoặc tên sách" >
+            </div>
+        </div>
+
+
+        <!-- Book List Table -->
+        <table class="table table-bordered table-hover table-striped text-center mt-3" style="border: 1px solid black;" id="bookTable">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>Mã Sách</th>
+                    <th>Tên Sách</th>
+                    <th>Mã Thể Loại</th>
+                    <th>Tác Giả</th>
+                    <th>Ảnh Bìa</th>
+                    <th id="hanhdong2">Ngày Thêm Sách</th>
+                    <th id="hanhdong1">Lần Cập Nhật Gần Nhất</th>
+                </tr>
+            </thead>
+            <tbody id="bookTableBody">
+                <!-- Book data will be populated by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        let books = []; 
+        async function displayBooks() {
+            const tableBody = document.getElementById('bookTableBody');
+            if (!tableBody) {
+                console.error('Table body not found!');
+                return;
+            }
+            tableBody.innerHTML = ''; // Xóa nội dung bảng trước khi hiển thị
+
+            try {
+                // Gọi API để lấy danh sách sách
+                const booksResponse = await fetch('http://localhost:3000/api/listsach');
+                if (!booksResponse.ok) {
+                    throw new Error('Lỗi khi lấy danh sách sách');
+                }
+                const allBooks = await booksResponse.json();
+                books = allBooks;
+                // Hiển thị dữ liệu lên bảng
+                allBooks.forEach(book => {
+                    const row = document.createElement('tr');
+                    const formatDate = (dateStr) => {
+                        if (!dateStr) return '';
+                        const date = new Date(dateStr);
+                        const day = String(date.getDate()).padStart(2, '0');
+                        const month = String(date.getMonth() + 1).padStart(2, '0');
+                        const year = date.getFullYear();
+                        return `${day}/${month}/${year}`;
+                    }
+                    const ngayThemFormatted = formatDate(book.NGAYTHEM);
+                    const ngayCapNhatFormatted = formatDate(book.NGAYCAPNHAT);
+                    row.innerHTML = `
+                        <td>${book.IDSACH}</td>
+                        <td>${book.TENSACH}</td>
+                        <td>${book.MATHELOAI}</td>
+                        <td>${book.TACGIA}</td>
+                        <td>
+                            <img src="${book.ANHBIA}" alt="Ảnh bìa" style="max-width: 100px;"/>
+                        </td>
+                        <td>${ngayThemFormatted}</td> <!-- Thêm trực tiếp DUONGDANPDF -->
+                        <td>${ngayCapNhatFormatted}</td> <!-- Thêm trực tiếp DUONGDANMP3 -->
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } catch (err) {
+                console.error('Lỗi:', err);
+                tableBody.innerHTML = '<tr><td colspan="13">Lỗi khi tải dữ liệu, vui lòng thử lại</td></tr>';
+            }
+        }
+
+        function formatDateYYY(dateStr) {
+            if (!dateStr) return '';
+            const date = new Date(dateStr);
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0'); // Thêm 1 vì tháng bắt đầu từ 0
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+        function hienthi() {
+            const ngay = document.getElementById('datePicker');
+            const hanhdong = document.getElementById('actionSelect'); // Đã sửa 'actionselect' thành 'actionSelect'
+ 
+            // Kiểm tra giá trị của các phần tử
+            if (!ngay.value || !hanhdong.value) {
+                alert("Vui lòng chọn đầy đủ thông tin");
+                return;
+            }
+            const ngayFormatted = formatDateYYY(ngay.value);
+
+            if(hanhdong.value == 'Thêm sách')
+            {
+                displayBooksthemsasch(ngayFormatted);
+            }else{
+                displayBookscapnhatsach(ngayFormatted);
+            }
+
+        }
+
+        async function displayBooksthemsasch(ngaythemsach) {
+            const tableBody = document.getElementById('bookTableBody');
+            if (!tableBody) {
+                console.error('Table body not found!');
+                return;
+            }
+            tableBody.innerHTML = ''; // Xóa nội dung bảng trước khi hiển thị
+
+            try {
+                // Gọi API để lấy danh sách sách
+                const ngaythem = ngaythemsach;
+
+                const booksResponse = await fetch(`http://localhost:3000/api/listsachthem?query=${ngaythem}`);
+                if (!booksResponse.ok) {
+                    throw new Error('Lỗi khi lấy danh sách sách');
+                }
+                const allBooks = await booksResponse.json();
+
+                // Hiển thị dữ liệu lên bảng
+                document.getElementById('hanhdong1').style.display = 'none';
+                document.getElementById('hanhdong2').style.display = 'table-cell';
+                allBooks.forEach(book => {
+                    const row = document.createElement('tr');
+                    const formatDate = (dateStr) => {
+                        if (!dateStr) return '';
+                        const date = new Date(dateStr);
+                        const day = String(date.getDate()).padStart(2, '0');
+                        const month = String(date.getMonth() + 1).padStart(2, '0');
+                        const year = date.getFullYear();
+                        return `${day}/${month}/${year}`;
+                    }
+                    const ngayThemFormatted = formatDate(book.NGAYTHEM);
+                    row.innerHTML = `
+                        <td>${book.IDSACH}</td>
+                        <td>${book.TENSACH}</td>
+                        <td>${book.MATHELOAI}</td>
+                        <td>${book.TACGIA}</td>
+                        <td>
+                            <img src="${book.ANHBIA}" alt="Ảnh bìa" style="max-width: 100px;"/>
+                        </td>
+                        <td>${ngayThemFormatted}</td> <!-- Thêm trực tiếp DUONGDANPDF -->
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } catch (err) {
+                console.error('Lỗi:', err);
+                tableBody.innerHTML = '<tr><td colspan="13">Lỗi khi tải dữ liệu, vui lòng thử lại</td></tr>';
+            }
+        }
+
+                async function displayBookscapnhatsach(ngay) {
+            const tableBody = document.getElementById('bookTableBody');
+            if (!tableBody) {
+                console.error('Table body not found!');
+                return;
+            }
+            tableBody.innerHTML = ''; // Xóa nội dung bảng trước khi hiển thị
+
+            try {
+                // Gọi API để lấy danh sách sách
+                const ngaythem = ngay;
+
+                const booksResponse = await fetch(`http://localhost:3000/api/listsachcapnhat?query=${ngay}`);
+                if (!booksResponse.ok) {
+                    throw new Error('Lỗi khi lấy danh sách sách');
+                }
+                const allBooks = await booksResponse.json();
+
+                // Hiển thị dữ liệu lên bảng
+                document.getElementById('hanhdong2').style.display = 'none';
+                document.getElementById('hanhdong1').style.display = 'table-cell';
+                allBooks.forEach(book => {
+                    const row = document.createElement('tr');
+                    const formatDate = (dateStr) => {
+                        if (!dateStr) return '';
+                        const date = new Date(dateStr);
+                        const day = String(date.getDate()).padStart(2, '0');
+                        const month = String(date.getMonth() + 1).padStart(2, '0');
+                        const year = date.getFullYear();
+                        return `${day}/${month}/${year}`;
+                    }
+                    const ngayCapNhatFormatted = formatDate(book.NGAYCAPNHAT);
+                    row.innerHTML = `
+                        <td>${book.IDSACH}</td>
+                        <td>${book.TENSACH}</td>
+                        <td>${book.MATHELOAI}</td>
+                        <td>${book.TACGIA}</td>
+                        <td>
+                            <img src="${book.ANHBIA}" alt="Ảnh bìa" style="max-width: 100px;"/>
+                        </td>
+                        <td>${ngayCapNhatFormatted}</td> <!-- Thêm trực tiếp DUONGDANPDF -->
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } catch (err) {
+                console.error('Lỗi:', err);
+                tableBody.innerHTML = '<tr><td colspan="13">Lỗi khi tải dữ liệu, vui lòng thử lại</td></tr>';
+            }
+        }
+        // phần thêm
+                function searchBooks() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filteredBooks = books.filter(book => 
+                book.IDSACH.toString().toLowerCase().includes(searchTerm) || // Chuyển IDSACH thành chuỗi để so sánh
+                book.TENSACH.toLowerCase().includes(searchTerm)
+            );
+            displayBook(filteredBooks);
+        }
+
+         function displayBook(filteredBooks) {
+            const tableBody = document.getElementById('bookTableBody');
+            if (!tableBody) {
+                console.error('Table body not found!');
+                return;
+            }
+            tableBody.innerHTML = '';
+
+            if (!filteredBooks || filteredBooks.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="13">Không tìm thấy sách nào</td></tr>';
+                return;
+            }
+            document.getElementById('hanhdong2').style.display = 'table-cell';
+            document.getElementById('hanhdong1').style.display = 'table-cell';
+            filteredBooks.forEach(book => {
+                const row = document.createElement('tr');
+                    const formatDate = (dateStr) => {
+                        if (!dateStr) return '';
+                        const date = new Date(dateStr);
+                        const day = String(date.getDate()).padStart(2, '0');
+                        const month = String(date.getMonth() + 1).padStart(2, '0');
+                        const year = date.getFullYear();
+                        return `${day}/${month}/${year}`;
+                    }
+                    const ngayThemFormatted = formatDate(book.NGAYTHEM);
+                    const ngayCapNhatFormatted = formatDate(book.NGAYCAPNHAT);
+
+                row.innerHTML = `
+                    <td>${book.IDSACH}</td> <!-- Cập nhật từ MASACH sang IDSACH -->
+                    <td>${book.TENSACH}</td>
+                    <td>${book.MATHELOAI}</td>
+                    <td>${book.TACGIA}</td>
+                    <td><img src="${book.ANHBIA}" alt="Ảnh bìa" style="max-width: 100px;"/></td>
+                    <td>${ngayThemFormatted}</td> <!-- Cập nhật từ PDF sang DUONGDANPDF -->
+                    <td>${ngayCapNhatFormatted}</td> <!-- Cập nhật từ Audio sang DUONGDANMP3 -->                `;
+                tableBody.appendChild(row);
+            });
+        }
+        window.addEventListener("DOMContentLoaded",function(){
+            displayBooks();
+        })
+    </script>
+</body>
+</html>

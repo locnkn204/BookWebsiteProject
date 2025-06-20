@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI TARGET DETAIL</title>
+    <!-- Link Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            background: linear-gradient(135deg, #a4cef8, #c0c0c0, #8144e9);
+        }
+
+        #sidebar_left {
+            border: 0;
+
+        }
+
+        ul .nav-link {
+            background-color: #f0f0f0;
+            color: black;
+
+        }
+
+        .nav-pills .nav-link {
+            border-radius: 0;
+        }
+
+        .nav-pills .nav-link.active {
+            background: linear-gradient(135deg, #2c3e50, #4b4b6b, #5a3e89);
+            color: white;
+            border-radius: 5px;
+        }
+
+        .btn-docsach {
+            background: linear-gradient(135deg, #2c3e50, #4b4b6b, #5a3e89);
+            color: white;
+            font-weight: bold;
+            width: 200px;
+            border-radius: 50px;
+            padding: 10px 0px;
+        }
+
+        .btn-danhgia {
+            background: linear-gradient(135deg, #2c3e50, #4b4b6b, #5a3e89);
+            color: white;
+            font-weight: bold;
+        }
+
+        .btn-tim {
+            background: #5e5e5e;
+            color: white;
+            font-weight: bold;
+            width: 50px;
+            border-radius: 50%;
+            padding: 10px 0px;
+        }
+
+        .btn-share {
+            background: #5e5e5e;
+            color: white;
+            font-weight: bold;
+            width: 50px;
+            border-radius: 50%;
+            padding: 10px 0px;
+        }
+
+        .btn:hover {
+            background: #00b686;
+            color: #fff;
+        }
+
+        .text-truncate-custom {
+            max-height: 4.5em;
+            overflow: hidden;
+            line-height: 1.5em;
+            cursor: pointer;
+        }
+
+        #vanbantomtat .btn {
+            color: #00b686;
+        }
+
+        #vanbantomtat .btn:hover {
+            background: none;
+            color: brown
+        }
+
+        #storyText {
+            cursor: pointer;
+        }
+
+        .audio-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #646464;
+        }
+
+        .audio-text {
+            color: black;
+            margin-left: 10px;
+        }
+
+        .audio-title {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .audio-author {
+            font-size: 0.875rem;
+            color: #646464;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid mt-2" id="startbody">
+        <div class="row">
+            <div class="col-3">
+                <div id="sidebar_left" class="card p-2 mt-2 sticky-top">
+                    <img src="" class="rounded-4 " id="anhbia">
+                </div>
+            </div>
+            <div class="col-6">
+                <div id="sidebar_content" class="card mt-3">
+                    <div class="card-body">
+                        <div class="card-title text-capitalize fw-bold fs-1" id="tensach"></div>
+                        <div class="card-text">
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star-half-stroke text-warning"></i>
+                            <i class="fa-regular fa-star text-warning"></i>
+
+                            <span class="mx-4" style="color: orange;" id="danhgia"></span>
+                        </div>
+                        <div class="card-text">
+                            <div class="row text-muted fs-5">
+                                <div class="col-3">Tác giả</div>
+                                <div class="col-3">Thể loại</div>
+                                <div class="col-3">Nhà xuất bản</div>
+                                <div class="col-3">Tình trạng</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3" id="tacgia"></div>
+                                <div class="col-3" id="theloai"></div>
+                                <div class="col-3" id="nxb"></div>
+                                <div class="col-3" id="trangthai"></div>
+
+                            </div>
+                            <div class="row text-muted fs-5 mt-4">
+                                <div class="col-6">Lần cập nhật gần nhất: <span id="capnhat"></span></div>
+                            </div>
+                        </div>
+                        <hr>
+
+
+                        <div class="card-text mt-4">
+                            <a id="docsach" onclick="docsach()">
+                                <button class="btn btn-docsach">
+                                    <i class="fa-solid fa-book-open"></i>
+                                    <label class="mx-2">Đọc sách</label>
+                                </button>
+                            </a>
+                            <button class="btn btn-tim ms-2" onclick="yeuthich()" id="themyeuthich1">
+                                <i class="fa-solid fa-heart"></i>
+                            </button>
+                            <button class="btn btn-share ms-2">
+                                <i class="fa-solid fa-share-nodes"></i>
+                            </button>
+                        </div>
+
+                        <div id="vanbantomtat" class="card-text mt-5">
+                            <p id="storyText" class="text-truncate-custom">
+
+                            </p>
+                            <button id="toggleBtn" class="btn px-0">Xem thêm</button>
+                        </div>
+
+                        <div class="card-text mt-4 mb-2 fw-bold fs-3">
+                            Độc giả nói gì về <span id="tensach1"></span>
+                        </div>
+
+                        <div class="card-text" id="commentSection">
+                            <div class="mb-3 text-success fw-bold">Bình luận (<span id="commentCount"></span>)</div>
+                        </div>
+
+                        <!-- Form thêm bình luận -->
+                        <div class="mt-3">
+                            <textarea id="userComment" class="form-control mb-2" placeholder="Nhập bình luận..."
+                                rows="3"></textarea>
+                            <button id="submitComment" class="btn btn-success" onclick="binhluan()"><i
+                                    class="fa-regular fa-comment"></i> Gửi bình luận</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+
+                <div class="card mt-3 sticky-top">
+                    <div class="card-title fw-bold fs-4 text-center mt-3">TOP SÁCH TUẦN </div>
+                    <img src="https://bookwebsitedata.blob.core.windows.net/media/data/Hinh/Thiết kế chưa có tên.png" width="300px"
+                        class="rounded-pill mx-auto" style="border: 5px solid purple; ">
+                    <div class="card-body">
+                        <div class="card-title fs-5 fw-bold">Nghe nhiều nhất</div>
+                        <div class="card-text">
+                            <div class="audio-item">
+                                <button class="btn btn-danhgia"><i class="fa-solid fa-star text-warning"></i>
+                                    9.2</button>
+                                <div class="audio-text">
+                                    <div class="audio-title">Thiếu Soái, Chào Anh!</div>
+                                    <div class="audio-author">Ngỗng Trời Xù Lông</div>
+                                </div>
+                            </div>
+                            <div class="audio-item">
+                                <button class="btn btn-danhgia"><i class="fa-solid fa-star text-warning"></i>
+                                    9.2</button>
+                                <div class="audio-text">
+                                    <div class="audio-title">Thiếu Soái, Chào Anh!</div>
+                                    <div class="audio-author">Ngỗng Trời Xù Lông</div>
+                                </div>
+                            </div>
+                            <div class="audio-item">
+                                <button class="btn btn-danhgia"><i class="fa-solid fa-star text-warning"></i>
+                                    9.2</button>
+                                <div class="audio-text">
+                                    <div class="audio-title">Thiếu Soái, Chào Anh!</div>
+                                    <div class="audio-author">Ngỗng Trời Xù Lông</div>
+                                </div>
+                            </div>
+                            <div class="audio-item">
+                                <button class="btn btn-danhgia"><i class="fa-solid fa-star text-warning"></i>
+                                    9.2</button>
+                                <div class="audio-text">
+                                    <div class="audio-title">Thiếu Soái, Chào Anh!</div>
+                                    <div class="audio-author">Ngỗng Trời Xù Lông</div>
+                                </div>
+                            </div>
+                            <div class="audio-item">
+                                <button class="btn btn-danhgia"><i class="fa-solid fa-star text-warning"></i>
+                                    9.2</button>
+                                <div class="audio-text">
+                                    <div class="audio-title">Thiếu Soái, Chào Anh!</div>
+                                    <div class="audio-author">Ngỗng Trời Xù Lông</div>
+                                </div>
+                            </div>
+                            <div class="audio-item">
+                                <button class="btn btn-danhgia"><i class="fa-solid fa-star text-warning"></i>
+                                    9.2</button>
+                                <div class="audio-text">
+                                    <div class="audio-title">Thiếu Soái, Chào Anh!</div>
+                                    <div class="audio-author">Ngỗng Trời Xù Lông</div>
+                                </div>
+                            </div>
+                            <div class="audio-item">
+                                <button class="btn btn-danhgia"><i class="fa-solid fa-star text-warning"></i>
+                                    9.2</button>
+                                <div class="audio-text">
+                                    <div class="audio-title">Thiếu Soái, Chào Anh!</div>
+                                    <div class="audio-author">Ngỗng Trời Xù Lông</div>
+                                </div>
+                            </div>
+                            <div class="audio-item">
+                                <button class="btn btn-danhgia"><i class="fa-solid fa-star text-warning"></i>
+                                    9.2</button>
+                                <div class="audio-text">
+                                    <div class="audio-title">Thiếu Soái, Chào Anh!</div>
+                                    <div class="audio-author">Ngỗng Trời Xù Lông</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Thu gọn - phóng to Tóm tắt nội dung -->
+    <script>
+        function safeParseJSON(jsonString, defaultValue = []) {
+            try {
+                const value = jsonString ? JSON.parse(jsonString) : defaultValue;
+                return Array.isArray(value) ? value : defaultValue; // Đảm bảo trả về mảng
+            } catch (err) {
+                console.error('Lỗi parse JSON:', err);
+                return defaultValue; // Trả về giá trị mặc định nếu lỗi
+            }
+        }
+        const book = JSON.parse(localStorage.getItem('book') || []);
+        const danhgias = JSON.parse(localStorage.getItem('danhgia') || []);
+        let tkyeuthich = safeParseJSON(localStorage.getItem('ketquatimkiemyeuthich'));
+        const taikhoan = safeParseJSON(localStorage.getItem('dangnhap'));
+        const storyText = document.getElementById("storyText");
+        const toggleBtn = document.getElementById("toggleBtn");
+        let isExpanded = false;
+
+        toggleBtn.addEventListener("click", () => {
+            isExpanded = !isExpanded;
+            if (isExpanded) {
+                storyText.classList.remove("text-truncate-custom");
+                toggleBtn.textContent = "Thu gọn";
+            } else {
+                storyText.classList.add("text-truncate-custom");
+                toggleBtn.textContent = "Xem thêm";
+            }
+        });
+        // đọc sáchs
+        async function docsach() {
+
+            try {
+                const response = await fetch('http://localhost:3000/api/trangthai', {
+                    method: 'GET'
+                });
+                if (response.ok) {
+                    window.location.href = "Doc-Nghe-Sach.html";
+
+                } else {
+                    alert("Vui lòng đăng nhập để thực hiện");
+                }
+            } catch (err) {
+                console.error('Lỗi:', err);
+            }
+        }
+
+        
+
+        // Phần nhập Bình Luận
+        const commentSection = document.getElementById("commentSection");
+        const commentCount = document.getElementById("commentCount");
+        const submitBtn = document.getElementById("submitComment");
+
+        const userCommentInput = document.getElementById("userComment");
+
+        function renderComments() {
+            // Xóa comment cũ trừ tiêu đề
+            commentSection.innerHTML = `<div class="mb-3 text-success fw-bold">Bình luận (<span id="commentCount"></span>)</div>`;
+            try {
+                if (danhgias.length === 0) {
+                    return;
+                }
+                commentSection.innerHTML = '';
+                for (let i = 0; i < danhgias.length; i++) {
+                    const commentDiv = document.createElement("div");
+                    commentDiv.className = "bg-dark text-white rounded-3 p-3 mb-2 d-flex justify-content-between align-items-center";
+
+                    commentDiv.innerHTML = `    
+                    <div>
+                        <div class="fw-semibold">${danhgias[i].TENTAIKHOAN}</div>
+                        <div>${danhgias[i].NHANXET}</div>   
+                        <p style="display: none">${danhgias[i].MADANHGIA}</p>
+                    </div>
+                    <button class="btn btn-outline-light btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;"><i class="fas fa-ellipsis-v"></i></button>  `;
+                    const deleteButton = commentDiv.querySelector('button');
+                    if (deleteButton) {
+                        deleteButton.addEventListener('click', () => handleDeleteComment(commentDiv, taikhoan[0].tentaikhoan));
+                    } else {
+                        console.error('Không tìm thấy nút xóa trong commentDiv!');
+                    }
+                    commentSection.appendChild(commentDiv);
+                }
+            } catch (err) {
+                console.error('Lỗi:', err);
+            }
+        }
+
+        // xây dựng hàm cho bình luận
+        async function binhluan() {
+            try {
+                const response = await fetch('http://localhost:3000/api/trangthai', {
+                    method: 'GET'
+                });
+                if (response.ok) {
+                    dangbinhluan();
+                } else {
+                    alert("Vui lòng đăng nhập để thực hiện");
+                }
+            } catch (err) {
+                console.error('Lỗi:', err);
+            }
+        }
+
+        function dangbinhluan() {
+            const text = userCommentInput.value.trim();
+
+            if (text) {
+                const newComment = {
+                    TENTAIKHOAN: taikhoan[0].tentaikhoan,
+                    NHANXET: text,
+                };
+                danhgias.unshift(newComment);
+
+                renderComments();
+                // Reset input
+                const tentaikhoan = taikhoan[0].tentaikhoan;
+                luubinhluan(tentaikhoan, text);
+                userCommentInput.value = "";
+            } else {
+                alert("Vui lòng nhập tên và bình luận.");
+            }
+        };
+
+        async function luubinhluan(tentaikhoan, nhanxet) {
+            const masach = book[0].IDSACH; // Cập nhật từ MASACH sang IDSACH
+            const saodanhgia = 4;
+            // ngày đánh giá
+            const ngaydanhgia = new Date();
+            const year = ngaydanhgia.getFullYear();
+            const month = String(ngaydanhgia.getMonth() + 1).padStart(2, '0'); // Tháng từ 0-11, cần +1
+            const day = String(ngaydanhgia.getDate()).padStart(2, '0'); // Ngày từ 1-31
+            const formattedDate = `${year}-${month}-${day}`; // Định dạng năm-tháng-ngày
+            try {
+                const response = await fetch('http://localhost:3000/api/danhgia', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tentaikhoan, masach, saodanhgia, nhanxet, ngaydanhgia: formattedDate })
+                });
+                if (response.ok) {
+                    alert('đăng bình luận thành công');
+                } else {
+                    alert('lỗi khi đăng bình luận');
+                }
+            } catch (err) {
+                console.error('Lỗi:', err);
+            }
+        }
+
+
+
+        // xây dựng hàm cho yêu thích
+        async function yeuthich() {
+
+            try {
+                const response = await fetch('http://localhost:3000/api/trangthai', {
+                    method: 'GET'
+                });
+                if (response.ok) {
+                    themyeuthich();
+                } else {
+                    alert("Vui lòng đăng nhập để thực hiện");
+                }
+            } catch (err) {
+                console.error('Lỗi:', err);
+            }
+        }
+
+        // xây dựng hàm thêm yêu thích
+        async function themyeuthich() {
+            const masach = book[0].IDSACH;
+            const tentaikhoan = taikhoan[0].tentaikhoan;
+            // ngày thêm
+            const ngaythem = new Date();
+            const year = ngaythem.getFullYear();
+            const month = String(ngaythem.getMonth() + 1).padStart(2, '0'); // Tháng từ 0-11, cần +1
+            const day = String(ngaythem.getDate()).padStart(2, '0'); // Ngày từ 1-31
+            const formattedDate = `${year}-${month}-${day}`; // Định dạng năm-tháng-ngày
+            try {
+                const response = await fetch('http://localhost:3000/api/yeuthich', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tentaikhoan, masach, ngaythem })
+                });
+                if (response.ok) {
+                    const yeuthich = document.getElementById("themyeuthich1");
+                    yeuthich.style = "background-color: red";
+                    const lovely = {
+                        TENTAIKHOAN: tentaikhoan,
+                        IDSACH: masach, // Cập nhật từ MASACH sang IDSACH
+                        NGAYTHEM: formattedDate,
+                    };
+                    tkyeuthich.push(lovely);
+                    localStorage.setItem('ketquatimkiemyeuthich', JSON.stringify(tkyeuthich));
+                } else {
+                    tkyeuthich = tkyeuthich.filter(item => item.IDSACH !== masach) // Cập nhật từ MASACH sang IDSACH
+                    localStorage.setItem('ketquatimkiemyeuthich', JSON.stringify(tkyeuthich));
+                    xoathemyeuthich();
+                    return;
+                }
+            } catch (err) {
+                console.error('Lỗi:', err);
+            }
+        }
+
+        // xây dựng hàm xóa yêu thích
+        async function xoathemyeuthich() {
+            const masach = book[0].IDSACH; // Cập nhật từ MASACH sang IDSACH
+            const tentaikhoan = taikhoan[0].tentaikhoan;
+            try {
+                const response = await fetch('http://localhost:3000/api/yeuthich', {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tentaikhoan, masach })
+                });
+                if (response.ok) {
+                    const yeuthich = document.getElementById("themyeuthich1");
+                    yeuthich.style = "background-color: #4A4A4A";
+                } else {
+                    alert('xảy ra lỗi');
+                }
+            } catch (err) {
+                console.error('Lỗi:', err);
+            }
+        }
+
+        // xây dựng hàm hiển thị yêu thích
+        function hienthiyeuthich() {
+            for (let i = 0; i < tkyeuthich.length; i++) {
+                if (book[0].IDSACH === tkyeuthich[i].IDSACH[0]) // Cập nhật từ MASACH sang IDSACH ở cả hai bên
+                {
+                    const yeuthich = document.getElementById("themyeuthich1");
+                    yeuthich.style = "background-color: red";
+                }
+            }
+        }
+
+        document.getElementById("startbody").scrollIntoView({ behavior: 'smooth' });
+
+        // hàm đọc dữ liệu từ local storage và đưa lên html
+        let img1 = document.getElementById("anhbia");
+        let tensach = document.getElementById("tensach");
+        let tacgia = document.getElementById("tacgia");
+        let theloai = document.getElementById("theloai");
+        let nxb = document.getElementById("nxb");
+        let trangthai = document.getElementById("trangthai");
+        let tomtat = document.getElementById("storyText");
+        let tensach1 = document.getElementById("tensach1");
+        let capnhat = document.getElementById('capnhat')
+        function chitiet() {
+            try {
+                const formatDate = (dateStr) => {
+                    if (!dateStr) return '';
+                    const date = new Date(dateStr);
+                    const day = String(date.getDate()).padStart(2, '0');
+                    const month = String(date.getMonth() + 1).padStart(2, '0');
+                    const year = date.getFullYear();
+                    return `${day}/${month}/${year}`;
+                }
+                var data = book[0];
+                if (data.TENSACH && data) {
+                    const ngay = formatDate(data.NGAYCAPNHAT)
+                    img1.src = data.ANHBIA.trim();
+                    tensach.textContent = data.TENSACH.trim();
+                    tacgia.textContent = data.TACGIA.trim();
+                    theloai.textContent = data.TENTHELOAI.trim();
+                    nxb.textContent = data.NHAXUATBAN.trim();
+                    trangthai.textContent = data.TRANGTHAIHOANTHANH.trim(); // Cập nhật từ TRANGTHAI sang TRANGTHAIHOANTHANH
+                    tomtat.textContent = data.TOMTAT.trim();
+                    tensach1.textContent = data.TENSACH.trim();
+                    capnhat.textContent = ngay;
+                } else {
+                    alert("không tìm thấy sách");
+                }
+            } catch (err) {
+                console.error('Lỗi:', err);
+            }
+        }
+        window.addEventListener("DOMContentLoaded", function () {
+            chitiet();
+            renderComments();
+            hienthiyeuthich();
+        })
+
+        // xây dựng hàm xóa bình luận
+        async function handleDeleteComment(commentDiv, tentaikhoan) {
+            if (!confirm('Bạn có chắc muốn xóa bình luận này?')) {
+                return;
+            }
+
+            // Kiểm tra quyền admin
+            try {
+                const adminResponse = await fetch(`http://localhost:3000/api/tkadmin?tentaikhoan=${tentaikhoan}`);
+                const adminData = await adminResponse.json();
+
+                if (adminResponse.status === 201) {
+                    alert('Bạn không có quyền admin để xóa bình luận!');
+                    return;
+                }
+
+                const madanhgia = commentDiv.querySelector('p[style="display: none"]').textContent;
+                const deleteResponse = await fetch('http://localhost:3000/api/binhluan', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ madanhgia }),
+                });
+
+                const deleteData = await deleteResponse.json();
+                alert(deleteData.message || 'Xóa bình luận thành công!');
+
+                if (deleteResponse.ok) {
+                    commentDiv.remove();
+                }
+            } catch (error) {
+                console.error('Lỗi:', error);
+                alert('Lỗi khi xóa bình luận: ' + (error.message || 'Không thể kết nối đến server'));
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Link Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            background: #1b1e21;
+        }
+
+        .input-width {
+            width: 450px;
+        }
+
+        .a_click {
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .img-sachbody {
+            width: 250px;
+            height: 370px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .card-body:hover img {
+
+            transform: scale(1.1);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+        }
+
+        .card-body:hover div {
+            color: darkgoldenrod;
+            transform: scale(1.1);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-weight: lighter;
+        }
+
+        .card {
+            width: 300px;
+            background-color: #f0f0f0;
+            color: dark;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid text-white ">
+        <div style="max-width: 1400px; width: 100%;">
+             <h3 class="mt-3 ms-3">SÁCH YÊU THÍCH CỦA TÔI</h3>
+        <hr>
+        <div class="row justify-content-start row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" id="listsachyeuthich"> 
+
+            
+            
+            
+        </div>
+    </div>
+    <script>
+
+        function safeParseJSON(jsonString, defaultValue = []) {
+            try {
+                const value = jsonString ? JSON.parse(jsonString) : defaultValue;
+                return Array.isArray(value) ? value : defaultValue; // Đảm bảo trả về mảng
+            } catch (err) {
+                console.error('Lỗi parse JSON:', err);
+                return defaultValue; // Trả về giá trị mặc định nếu lỗi
+            }
+        }
+        // hàm hiển thị tài khoản yêu thíhc
+        let tkyeuthich = safeParseJSON(localStorage.getItem('ketquatimkiemyeuthich'));
+        let listsachyeuthich = [];
+        async function sachtheoyeuthich() {
+            for(let i=0;i<tkyeuthich.length;i++)
+            {
+                const data1 = tkyeuthich[i].IDSACH; // Cập nhật từ MASACH sang IDSACH
+                const data2 = tkyeuthich[i].TENTAIKHOAN;
+                const idSach = parseInt(data1);
+                try{
+                const response = await fetch(`http://localhost:3000/api/timkiemmasach?query=${encodeURIComponent(idSach)}&tentaikhoan=${encodeURIComponent(data2)}`,{
+                    method: 'GET'
+                });
+                if(!response.ok){
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                    return;
+                }
+                const ketqua = await response.json(); 
+                listsachyeuthich.push(ketqua[0]);
+                }catch(err){
+                    console.error('Lỗi:', err);
+                }
+            }
+            localStorage.setItem('listsachyeuthich', JSON.stringify(listsachyeuthich));
+        }
+
+        function hienthilistsach(listsachyeuthich1){
+            const listsach = document.getElementById('listsachyeuthich');
+            listsach.innerHTML = ''; 
+            for(let i=0;i<listsachyeuthich1.length;i++)
+            {
+                if(listsachyeuthich1[i] && listsachyeuthich1[i].TRANGTHAISACH && listsachyeuthich1[i].TRANGTHAISACH.toLowerCase() === 'active'){ // Cập nhật từ TRANGTHAIHOATDONG sang TRANGTHAISACH và điều chỉnh giá trị
+                    const div = document.createElement('div');
+                    div.classList.add("col");
+                    div.innerHTML = '<a role="button" class="a_click"><div class="card h-100"><div class="card-body d-flex flex-column align-items-center"><img class="mx-auto img-sachbody rounded-2" src="' + listsachyeuthich1[i].ANHBIA + '"><p class="card-title text-capitalize fw-semibold fs-5 mt-3 text-center">'+ listsachyeuthich1[i].TENSACH +'</p></div></div><span style="display: none">'+ listsachyeuthich1[i].IDSACH +'</a>';
+                    listsach.appendChild(div);
+                }
+            }
+        }
+        window.addEventListener("DOMContentLoaded",async function(){
+            await sachtheoyeuthich();
+            let listsachyeuthich1 = JSON.parse(localStorage.getItem('listsachyeuthich'));
+            hienthilistsach(listsachyeuthich1);
+        })
+    
+        // Hàm hiển thị chi tiết sách
+                const listach = document.getElementById("listsachyeuthich");
+        listach.addEventListener("click",function(e){
+            const sach = e.target.closest('.a_click');
+            const tensach = parseInt(sach.querySelector('span').textContent);
+            laydulieuchitietsach(tensach,sach);
+        })  
+
+        async function laydulieuchitietsach(tensach,sach) {
+            try{
+                const response = await fetch('http://localhost:3000/api/chitietsach',{
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json'},
+                    body: JSON.stringify({tensach})
+                }); 
+
+                const response1 = await fetch('http://localhost:3000/api/binhluan',{
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json'},
+                    body: JSON.stringify({tensach})
+                }); 
+                const data = await response.json();
+                const data1 = await response1.json();
+                const binhluan = data1.danhgia || [];
+                if (!data.book) { // Cập nhật từ Array.isArray(data) && data.length === 0 sang !data.book
+                    alert('Không tìm thấy sách nào!');
+                    return;
+                }
+                if (data.book) {
+                    localStorage.setItem('book', JSON.stringify([data.book])); 
+                    localStorage.setItem('danhgia', JSON.stringify(binhluan));
+                    localStorage.setItem('isDoc', 'true');
+                }else{
+                    alert("Có lỗi xảy ra");
+                }
+            }catch(err){
+                    console.error('Lỗi:', err);
+            }
+        }
+    </script>
+</body>
+
+</html>
