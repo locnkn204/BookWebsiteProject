@@ -12,47 +12,323 @@
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        body {
-            background: #1b1e21;
-            color: white;
+        :root {
+            --primary-bg: #1b1e21;
+            --secondary-bg: #2c3e50;
+            --accent-color: #3498db;
+            --text-color: #ffffff;
+            --border-color: #34495e;
+            --shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
-        .input-width {
-            width: 450px;
+        body {
+            background: linear-gradient(135deg, var(--primary-bg) 0%, #2c3340 100%);
+            color: var(--text-color);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
         }
-        .img-main{
-            width: 450px;
+
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            width: 100%;
         }
-        
+
+        .pdf-container {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .pdf-embed {
+            width: 100%;
+            height: 70vh;
+            min-height: 300px;
+            border-radius: 10px;
+            border: 2px solid var(--border-color);
+            background: #ffffff;
+        }
+
+        .audio-container {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            position: relative;
+            margin-bottom: 20px; /* Ensure space below audio */
+        }
+
+        .audio-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), #2980b9);
+            border-radius: 15px 15px 0 0;
+        }
+
+        .audio-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .audio-icon {
+            background: var(--accent-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.4);
+        }
+
+        .audio-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .custom-audio {
+            width: 100%;
+            height: 50px;
+            border-radius: 25px;
+            border: 1px solid var(--border-color);
+            outline: none;
+            background: #ffffff;
+        }
+
+        .custom-audio::-webkit-media-controls-panel {
+            background-color: white;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(27, 30, 33, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .loading-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(52, 152, 219, 0.3);
+            border-top: 4px solid var(--accent-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Tablet Styles */
+        @media (max-width: 991px) and (min-width: 769px) {
+            .content-wrapper {
+                padding: 25px 15px;
+            }
+            .pdf-embed {
+                height: 60vh;
+            }
+            .pdf-container {
+                padding: 20px;
+                margin-bottom: 25px;
+            }
+            .audio-container {
+                padding: 20px;
+            }
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .content-wrapper {
+                padding: 10px 5px;
+            }
+            .pdf-container {
+                padding: 10px;
+                margin-bottom: 15px;
+            }
+            .pdf-embed {
+                height: 50vh;
+                min-height: 250px;
+            }
+            .audio-container {
+                padding: 15px 10px;
+            }
+            .audio-header {
+                margin-bottom: 10px;
+            }
+            .audio-icon {
+                width: 35px;
+                height: 35px;
+                margin-right: 10px;
+            }
+            .audio-title {
+                font-size: 1rem;
+            }
+            .custom-audio {
+                height: 45px;
+            }
+        }
+
+        /* Small Mobile Styles */
+        @media (max-width: 576px) {
+            .content-wrapper {
+                padding: 8px 5px;
+            }
+            .pdf-container {
+                padding: 8px;
+                margin-bottom: 12px;
+            }
+            .pdf-embed {
+                height: 45vh;
+                min-height: 200px;
+            }
+            .audio-container {
+                padding: 12px 8px;
+            }
+            .audio-header {
+                margin-bottom: 8px;
+            }
+            .audio-icon {
+                width: 30px;
+                height: 30px;
+                margin-right: 8px;
+            }
+            .audio-title {
+                font-size: 0.9rem;
+            }
+            .custom-audio {
+                height: 40px;
+            }
+        }
+
+        /* Extra Small Mobile */
+        @media (max-width: 400px) {
+            .content-wrapper {
+                padding: 5px;
+            }
+            .pdf-container {
+                padding: 6px;
+                margin-bottom: 10px;
+            }
+            .pdf-embed {
+                height: 40vh;
+                min-height: 180px;
+            }
+            .audio-container {
+                padding: 10px 6px;
+            }
+            .audio-icon {
+                width: 28px;
+                height: 28px;
+                margin-right: 6px;
+            }
+            .audio-title {
+                font-size: 0.85rem;
+            }
+            .custom-audio {
+                height: 38px;
+            }
+        }
+
+        /* Landscape Mobile */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .pdf-embed {
+                height: 40vh;
+            }
+        }
+
+        /* iOS Safari specific fixes */
+        @supports (-webkit-touch-callout: none) {
+            .custom-audio {
+                -webkit-appearance: none;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="text-center">
+            <div class="loading-spinner"></div>
+            <p class="mt-3">Đang tải nội dung...</p>
+        </div>
+    </div>
+
     <div class="container-fluid">
-        <span class="d-flex justify-content-center mt-5">
-            <embed type="application/pdf" width="1000px" height="800px" id="noidung"/>
-        </span>
-        <!-- Audio bên dưới ảnh -->
-        <span class="d-flex justify-content-center mt-5">
-            <audio controls class="w-100" style="max-width: 1000px;" id="noidungmp3">
-                <source type="audio/mpeg">
-                Trình duyệt của bạn không hỗ trợ phát audio.
-            </audio>
-        </span>
+        <div class="content-wrapper">
+            <!-- PDF Container -->
+            <div class="pdf-container">
+                <embed type="application/pdf" class="pdf-embed" id="noidung"/>
+            </div>
+            
+            <!-- Audio Container -->
+            <div class="audio-container">
+                <div class="audio-header">
+                    <div class="audio-icon">
+                        <i class="fas fa-headphones"></i>
+                    </div>
+                    <h5 class="audio-title">Nghe sách audio</h5>
+                </div>
+                <audio controls class="custom-audio" id="noidungmp3">
+                    <source type="audio/mpeg">
+                    Trình duyệt của bạn không hỗ trợ phát audio.
+                </audio>
+            </div>
+        </div>
     </div>
 
     <script>
         const book = JSON.parse(localStorage.getItem('book') || []);
+
+        function showLoading() {
+            document.getElementById('loadingOverlay').classList.add('show');
+        }
+        
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.remove('show');
+        }
+        
         async function checkFileExists(url) {
             try {
                 const response = await fetch(url, { method: 'HEAD', mode: 'cors' });
-                return response.ok; // Returns true if status is 200-299
+                return response.ok;
             } catch (error) {
-                return false; // File not found or other error
+                return false;
             }
         }
 
         async function fetchFileContent() {
+            showLoading();
             try {
                 const data = book[0].IDSACH;
                 const response1 = await fetch(`https://donateabookdeltacrew.azurewebsites.net/api/timkiemmasachnoidung?masach=${encodeURIComponent(data)}`, {
@@ -70,25 +346,28 @@
                         document.getElementById("noidung").src = "https://bookwebsitedata.blob.core.windows.net/media/data/PDF/THONG_BAO.pdf";
                     } else {
                         const pdfExists = await checkFileExists(pdfUrl);
-                        document.getElementById("noidung").src = pdfExists ? pdfUrl : "https://bookwebsitedata.blob.core.windows.net/media/data/PDF/THONG_BAO.pdf";
+                        document.getElementById("noidung").src = pdfUrl ? pdfUrl : "https://bookwebsitedata.blob.core.windows.net/media/data/PDF/THONG_BAO.pdf";
                     }
 
                     // Handle MP3
                     const audioSource = document.getElementById("noidungmp3");
-                    if (!mp3Url || !mp3Url.toLowerCase().endsWith('.mp3')) {
-                        audioSource.src = "https://bookwebsitedata.blob.core.windows.net/media/data/Audio/Default.mp3";
+                    //if (!mp3Url || !mp3Url.toLowerCase().endsWith('.m4a')) {
+                        //audioSource.src = "https://bookwebsitedata.blob.core.windows.net/media/data/Audio/Default.mp3";
+                       // audioSource.load();
+                   // } else {
+                        //const mp3Exists = await checkFileExists(mp3Url);
+                        audioSource.src = mp3Url //? mp3Url : "https://bookwebsitedata.blob.core.windows.net/media/data/Audio/Default.mp3";
                         audioSource.load();
-                    } else {
-                        const mp3Exists = await checkFileExists(mp3Url);
-                        audioSource.src = mp3Exists ? mp3Url : "https://bookwebsitedata.blob.core.windows.net/media/data/Audio/Default.mp3";
-                        audioSource.load();
-                    }
+                    //}
                 } else {
                     alert("Nội dung sách chưa được thêm vào");
                 }
             } catch (error) {
                 console.error(error);
                 alert('Lỗi khi gọi API: ' + error.message);
+            } finally {
+                hideLoading();
+                sendHeight(); // Send height after content loads
             }
         }
 
@@ -96,15 +375,14 @@
             fetchFileContent();
         });
 
-        // Xóa thanh scroll bên phải (do HTML chính nhúng iframe)
-        window.addEventListener("DOMContentLoaded", function () {
-            const iframe = document.getElementById("contentFrame");
-            if (iframe) {
-                iframe.onload = function () {
-                    iframe.style.height = iframe.contentWindow.document.body.scrollHeight + "px";
-                };
-            }
-        });
+        function sendHeight() {
+            const height = document.body.scrollHeight;
+            window.parent.postMessage({ height: 1000 }, "*");
+        }
+
+        // Send height on load and resize
+        window.addEventListener("load", sendHeight);
+        window.addEventListener("resize", sendHeight);
     </script>
 </body>
 

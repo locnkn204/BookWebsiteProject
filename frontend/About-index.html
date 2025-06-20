@@ -15,18 +15,12 @@
             background-color: #F0F0F0;
         }
 
-
-
         nav {
             position: sticky;
             top: 0;
             z-index: 1020;
-            /* Đảm bảo nằm trên các phần tử khác */
-            /* background: linear-gradient(135deg, #2c3e50, #4b4b6b, #5a3e89); */
             background: rgba(0, 0, 0, 0.92);
         }
-        
-
 
         .hr_DanhMuc {
             width: 90%;
@@ -63,22 +57,167 @@
             color: white;
         }
 
-        .nav-item.dropdown:hover .dropdown-menu {
-            display: block;
-            margin-top: 0;
+        /* Desktop hover effect */
+        @media (min-width: 992px) {
+            .nav-item.dropdown:hover .dropdown-menu {
+                display: block;
+                margin-top: 0;
+            }
         }
 
         iframe {
             margin-bottom: 0 !important;
             padding-bottom: 0 !important;
             display: block;
-            /* Đảm bảo iframe không có khoảng cách inline */
         }
 
         footer {
             margin-top: 0 !important;
             padding-top: 0 !important;
-            
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 992px) {
+            .navbar-brand img {
+                width: 250px !important;
+            }
+
+            .navbar-nav {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                gap: 0 !important;
+            }
+
+            .navbar-nav .nav-link {
+                padding: 0.8rem 1rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .dropdown-menu {
+                min-width: 100% !important;
+                position: static !important;
+            }
+
+            .d-flex.align-items-center {
+                flex-direction: column;
+                gap: 10px !important;
+                width: 100%;
+                margin-top: 15px;
+            }
+
+            .d-flex.align-items-center input {
+                width: 100% !important;
+                margin-bottom: 10px;
+            }
+
+            .d-flex.align-items-center button {
+                margin: 0 !important;
+                width: 100%;
+            }
+
+            .d-flex.align-items-center .btn {
+                margin-bottom: 5px;
+            }
+
+            #btnFavorites {
+                margin: 0 !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar-brand {
+                margin-left: 1rem !important;
+            }
+
+            .navbar-brand img {
+                width: 200px !important;
+            }
+
+            .dropdown-menu .row {
+                flex-direction: column;
+            }
+
+            .dropdown-menu .col-4 {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .modal-dialog {
+                margin: 1rem;
+            }
+
+            .modal-content {
+                font-size: 0.9rem;
+            }
+
+            .modal-title {
+                font-size: 1.5rem !important;
+            }
+
+            footer .row {
+                text-align: center !important;
+            }
+
+            footer .col-6 {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            footer .ms-5 {
+                margin-left: 0 !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-brand img {
+                width: 180px !important;
+            }
+
+            .navbar-toggler {
+                padding: 0.3rem 0.5rem;
+                font-size: 1rem;
+            }
+
+            .modal-title {
+                font-size: 1.3rem !important;
+            }
+
+            .btn {
+                font-size: 0.9rem;
+                padding: 0.5rem 0.8rem;
+            }
+
+            .dropdown-menu {
+                padding: 1rem !important;
+                font-size: 0.9rem;
+            }
+
+            .navbar-nav .nav-link {
+                font-size: 0.95rem;
+                padding: 0.7rem 0.8rem;
+            }
+
+            footer {
+                padding: 2rem 0 1.5rem !important;
+            }
+
+            footer h5,
+            footer h6 {
+                font-size: 1.1rem;
+            }
+
+            footer p,
+            footer .small {
+                font-size: 0.85rem !important;
+            }
+        }
+
+        /* Ensure proper spacing on mobile */
+        @media (max-width: 768px) {
+            .container-fluid {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
         }
     </style>
 </head>
@@ -86,10 +225,10 @@
 <body>
     <div class="container-fluid p-0">
         <!--Phần HEADER -->
-        <nav class="navbar navbar-expand-lg  navbar-dark sticky-top  "> <!--Hoặc sài sticky -->
+        <nav class="navbar navbar-expand-lg navbar-dark sticky-top"> <!--Hoặc sài sticky -->
             <div class="container-fluid">
                 <a href="index.html" class="navbar-brand ms-5">
-                     <img src="https://bookwebsitedata.blob.core.windows.net/media/data/Hinh/image-Photoroom.png" width="300" alt="">
+                    <img src="https://bookwebsitedata.blob.core.windows.net/media/data/Hinh/image-Photoroom.png" width="300" alt="">
                 </a>
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-content">
                     <span class="navbar-toggler-icon"></span>
@@ -100,10 +239,10 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i
                                     class="fa-solid fa-list-ul"></i> Danh Mục</a>
-                            <ul class="dropdown-menu p-3 " style="min-width: 700px;">
+                            <ul class="dropdown-menu p-3" style="min-width: 700px;">
                                 <div class="row">
                                     <div class="col-4">
-                                        <li><a class="dropdown-item " href="#">Mới cập nhật</a>
+                                        <li><a class="dropdown-item" href="#">Mới cập nhật</a>
                                             <hr class="mx-auto hr_DanhMuc">
                                         </li>
                                         <li><a class="dropdown-item" href="#">Được đề xuất</a>
@@ -114,7 +253,7 @@
                                         </li>
                                     </div>
                                     <div class="col-4">
-                                        <li><a class="dropdown-item " href="#">Sách đã hoàn thành</a>
+                                        <li><a class="dropdown-item" href="#">Sách đã hoàn thành</a>
                                             <hr class="mx-auto hr_DanhMuc">
                                         </li>
                                         <li><a class="dropdown-item" href="#">Bảng Xếp Hạng</a>
@@ -125,7 +264,7 @@
                                         </li>
                                     </div>
                                     <div class="col-4">
-                                        <li><a class="dropdown-item " href="#">Sách Full</a>
+                                        <li><a class="dropdown-item" href="#">Sách Full</a>
                                             <hr class="mx-auto hr_DanhMuc">
                                         </li>
                                         <li><a class="dropdown-item" href="#">Sách Ngẫu Nhiên</a>
@@ -135,12 +274,11 @@
                                             <hr class="mx-auto hr_DanhMuc">
                                         </li>
                                     </div>
-
                                 </div>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle " href="#" data-bs-toggle="dropdown"><i
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i
                                     class="fa-solid fa-layer-group"></i> Thể Loại</a>
                             <ul class="dropdown-menu" id="listtheloai">
                                 <li><a class="dropdown-item" href="#">Đội nhóm</a></li>
@@ -148,15 +286,19 @@
                                 <li><a class="dropdown-item" href="#">Địa chỉ</a></li>
                             </ul>
                         </li>
+
+                        <li class="nav-item"><a class="nav-link" role="button" id="giongdoc" onclick="giongdoc()">Giọng
+                                đọc</a></li>
                         <li class="nav-item"><a class="nav-link" href="About-index.html">About</a></li>
                     </ul>
                     <!-- Bên phải navbar: Search + Yêu thích + Đăng ký + Đăng nhập -->
                     <div class="d-flex align-items-center gap-2 ms-auto">
-                        <input type="search" placeholder="Search" class="form-control" style="width: 500px;" id="nhaptimkiem">
+                        <input type="search" placeholder="Search" class="form-control" style="width: 400px;"
+                            id="nhaptimkiem">
                         <button type="button" class="btn btn-outline-light me-5" onclick="timkiem()">Search</button>
-                            <!--Phần cần chỉnh sửa-->
+                        <!--Phần cần chỉnh sửa-->
                         <!-- List sách đã Yêu thích -->
-                            <button type="button" id="btnFavorites"
+                        <button type="button" id="btnFavorites"
                             class="btn btn-outline-light position-relative ms-5 me-2" data-bs-target="#loginModal">
                             <i class="fa-solid fa-bookmark"></i>
                             <span
@@ -170,8 +312,6 @@
                             <i class="fa fa-user-plus"></i> Đăng ký
                         </button>
 
-
-
                         <!-- Đăng nhập -->
                         <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#loginModal">
                             <i class="fa fa-user"></i> Đăng nhập
@@ -183,7 +323,7 @@
         <!-- Modal đăng ký -->
         <div class="modal fade" id="registerModal" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content bg-dark text-white ">
+                <div class="modal-content bg-dark text-white">
                     <div class="modal-header border-0 justify-content-center position-relative">
                         <h5 class="modal-title fs-2 fw-bold text-uppercase w-100 text-center">Đăng ký tài khoản</h5>
                         <button type="button" class="btn-close btn-close-white position-absolute end-0 me-3"
@@ -196,10 +336,12 @@
                                 <input type="text" class="form-control" placeholder="Tên đăng nhập" id="nhaptaikhoan">
                             </div>
                             <div class="mb-3 position-relative">
-                                <input type="password" class="form-control" placeholder="Mật khẩu (ít nhất 6 ký tự)" id="nhapmatkhau">
+                                <input type="password" class="form-control" placeholder="Mật khẩu (ít nhất 6 ký tự)"
+                                    id="nhapmatkhau">
                             </div>
                             <div class="mb-3 position-relative">
-                                <input type="password" class="form-control" placeholder="Nhập lại mật khẩu" id="nhaplaimatkhau">
+                                <input type="password" class="form-control" placeholder="Nhập lại mật khẩu"
+                                    id="nhaplaimatkhau">
                             </div>
                             <button type="submit" class="btn btn-success w-100" onclick="dangki()">Đăng ký</button>
                         </form>
@@ -207,7 +349,7 @@
                         <hr class="text-secondary">
 
                         <div class="text-center mt-3 small">
-                            Bằng việc nhấn “Đăng ký”, bạn đã đồng ý với điều khoản của chúng tôi.
+                            Bằng việc nhấn "Đăng ký", bạn đã đồng ý với điều khoản của chúng tôi.
                         </div>
                         <div class="text-center mt-2">
                             Bạn đã có tài khoản? <a href="#" class="text-info" id="goToLogin">Đăng nhập ngay</a>
@@ -216,10 +358,11 @@
                 </div>
             </div>
         </div>
+
         <!-- Modal đăng nhập -->
         <div class="modal fade" id="loginModal" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content bg-dark text-white ">
+                <div class="modal-content bg-dark text-white">
                     <div class="modal-header border-0 justify-content-center position-relative">
                         <h5 class="modal-title fs-2 fw-bold text-uppercase w-100 text-center">Đăng Nhập tài khoản</h5>
                         <button type="button" class="btn-close btn-close-white position-absolute end-0 me-3"
@@ -240,7 +383,7 @@
                         <hr class="text-secondary">
 
                         <div class="text-center mt-3 small">
-                            Bằng việc nhấn “Đăng nhập”, bạn đã đồng ý với điều khoản của chúng tôi.
+                            Bằng việc nhấn "Đăng nhập", bạn đã đồng ý với điều khoản của chúng tôi.
                         </div>
                         <div class="text-center mt-2">
                             Bạn đã có tài khoản chưa? <a href="#" class="text-info" id="goToRegister">Đăng ký ngay</a>
@@ -249,7 +392,6 @@
                 </div>
             </div>
         </div>
-        
 
         <!-- Phần BODY -->
         <iframe name="Chitietsach" id="Chitietsach" src="About-body.html" width="100%"
@@ -264,14 +406,14 @@
                     <div class="col-6">
                         <h5 class="text-warning fw-bold">AUDIO <span class="text-white">BOOK</span></h5>
                         <p class="small fs-6 fw-semibold text-secondary">
-                            Đây là sản phẩm đầu tay của nhóm chúng em, nhằm tạo ra một thư viện sách nói và truyện audio
+                            Đây là sản phẩm đầu tay của nhóm Delta, nhằm tạo ra một thư viện sách nói và truyện audio
                             miễn phí cho mọi người. Ứng dụng công nghệ AI hiện đại giúp tăng trải nghiệm học tập và giải
                             trí dễ tiếp cận hơn.
                         </p>
                         <p class="small fw-semibold fs-6 text-secondary mb-0">
                             Khiếu nại bản quyền:
-                            <a href="mailto:dainguyenjkl@gmail.com"
-                                class="text-secondary fw-bold">dainguyenjkl@gmail.com</a>
+                            <a href="mailto:contact.deltacrew@gmail.com"
+                                class="text-secondary fw-bold">contact.deltacrew@gmail.com</a>
                         </p>
                     </div>
 
@@ -279,12 +421,16 @@
                     <div class="col-6">
                         <h6 class="text-uppercase fw-bold text-warning mb-3 ms-5">Thông tin Liên hệ</h6>
                         <ul class="list-unstyled fs-6 small ms-5">
-                            <li class="mb-2"><a href="#" class="text-decoration-none text-secondary "><i class="fa-solid fa-location-dot me-1"></i> <b>Địa Chỉ: </b>140 -  Lê Trọng Tấn</a></li>
-                            <li class="mb-2"><a href="#" class="text-decoration-none text-secondary "><i class="fa-solid fa-phone-volume me-1"></i> <b>Điện thoại: </b>0359699177</a></li>
-                            <li><a href="#" class="text-decoration-none text-secondary "><i class="fa-solid fa-envelope me-1"></i> <b>Email: </b>dainguyenjkl@gmail.com</a></li>
+                            <li class="mb-2"><a href="#" class="text-decoration-none text-secondary"><i
+                                        class="fa-solid fa-location-dot me-1"></i> <b>Địa Chỉ: </b>HCMC, VietNam</a></li>
+                            <li class="mb-2"><a href="#" class="text-decoration-none text-secondary"><i
+                                        class="fa-solid fa-phone-volume me-1"></i> <b>Điện thoại: </b>0777888xxx</a>
+                            </li>
+                            <li><a href="#" class="text-decoration-none text-secondary"><i
+                                        class="fa-solid fa-envelope me-1"></i> <b>Email: </b>contact.deltacrew@gmail.com</a>
+                            </li>
                         </ul>
                     </div>
-
 
                 </div>
 
@@ -301,6 +447,13 @@
 
 
     <script>
+        function giongdoc() {
+            document.getElementById('Chitietsach').src = 'Listgiong.html';
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
 
         document.addEventListener("DOMContentLoaded", function () {
             const loginModalEl = document.getElementById('loginModal');
@@ -376,13 +529,11 @@
                 alert('Vui lòng nhập thong tin dang ki');
                 return;
             }
-            else if(matkhau.length <6 || matkhau1.length<6)
-            {
+            else if (matkhau.length < 6 || matkhau1.length < 6) {
                 alert("Mật khẩu không đủ độ dài");
                 return;
             }
-            if(!(matkhau === matkhau1))
-            {
+            if (!(matkhau === matkhau1)) {
                 alert("Mật khâu xác nhận không giống nhau");
                 return;
             }
@@ -390,8 +541,8 @@
             try {
                 const response = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/dangki', {
                     method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ taikhoan,matkhau,trangthaidangnhap })
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ taikhoan, matkhau, trangthaidangnhap })
                 });
                 if (response.ok) {
                     alert('đăng kí thành công');
@@ -401,168 +552,166 @@
                             matkhaudn: matkhau,
                         }
                     ];
-                    localStorage.setItem('dangnhap',JSON.stringify(taikhoandangnhap));
-                    document.getElementById('nhaptaikhoan').value = ''; 
+                    localStorage.setItem('dangnhap', JSON.stringify(taikhoandangnhap));
+                    document.getElementById('nhaptaikhoan').value = '';
                     document.getElementById('nhapmatkhau').value = '';
-                    document.getElementById('nhaplaimatkhau').value='';
+                    document.getElementById('nhaplaimatkhau').value = '';
                     window.location.href = '/index_dangnhap.html';
                 } else {
                     alert('Tài khoản đã tồn tại');
                 }
-                } catch (err) {
-                    console.error('Lỗi:', err);
-                }  
+            } catch (err) {
+                console.error('Lỗi:', err);
             }
-    
-// Hàm đăng nhập
+        }
+
+        // Hàm đăng nhập
         async function dangnhap() {
             const taikhoan = document.getElementById("nhaptaikhoan1").value.trim();
             const matkhau = document.getElementById("nhapmatkhau1").value.trim();
-      if(!taikhoan || !matkhau){
-        alert("Vui lòng nhập thông tin đăng nhập");
-        return;
-      }
+            if (!taikhoan || !matkhau) {
+                alert("Vui lòng nhập thông tin đăng nhập");
+                return;
+            }
 
-      try{
-        const response  = await fetch ('https://donateabookdeltacrew.azurewebsites.net/api/dangnhap',{
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json'},
-          body: JSON.stringify({ taikhoan,matkhau })
-        });
-        if(response.status === 201)
-        {
-            alert("đăng nhập thành công");
-            let taikhoandangnhap = [
-                {
-                    tentaikhoan: taikhoan,
-                    matkhaudn: matkhau,
+            try {
+                const response = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/dangnhap', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ taikhoan, matkhau })
+                });
+                if (response.status === 201) {
+                    alert("đăng nhập thành công");
+                    let taikhoandangnhap = [
+                        {
+                            tentaikhoan: taikhoan,
+                            matkhaudn: matkhau,
+                        }
+                    ];
+                    localStorage.setItem('dangnhap', JSON.stringify(taikhoandangnhap));
+                    document.getElementById("nhaptaikhoan1").value = "";
+                    document.getElementById("nhapmatkhau1").value = "";
+                    window.location.href = '/index_dangnhap.html';
+                } else if (response.status === 200) {
+                    alert("đăng nhập quyền admin");
+                    let taikhoandangnhap = [
+                        {
+                            tentaikhoan: taikhoan,
+                            matkhaudn: matkhau,
+                        }
+                    ];
+                    localStorage.setItem('dangnhap', JSON.stringify(taikhoandangnhap));
+                    document.getElementById("nhaptaikhoan1").value = "";
+                    document.getElementById("nhapmatkhau1").value = "";
+                    window.location.href = '/index_Admin.html';
                 }
-            ];
-            localStorage.setItem('dangnhap',JSON.stringify(taikhoandangnhap));
-            document.getElementById("nhaptaikhoan1").value = "";
-            document.getElementById("nhapmatkhau1").value = "";
-            window.location.href = '/index_dangnhap.html';
-        }else if(response.status === 200)
-        {
-            alert("đăng nhập quyền admin");
-            let taikhoandangnhap = [
-                {
-                    tentaikhoan: taikhoan,
-                    matkhaudn: matkhau,
+                else {
+                    alert("tài khoản không tồn tại");
+                    return;
                 }
-            ];
-            localStorage.setItem('dangnhap',JSON.stringify(taikhoandangnhap));
-            document.getElementById("nhaptaikhoan1").value = "";
-            document.getElementById("nhapmatkhau1").value = "";
-            window.location.href = '/index_Admin.html';
+            } catch (err) {
+                console.error('Lỗi:', err);
+            }
         }
-        else{
-          alert("tài khoản không tồn tại");
-          return;
-        }
-      }catch (err) {
-        console.error('Lỗi:', err);
-      }
-    }
-    
-// Tìm kiếm theo thể loại
-        document.getElementById("listtheloai").addEventListener("click",function(e){
+
+        // Tìm kiếm theo thể loại
+        document.getElementById("listtheloai").addEventListener("click", function (e) {
             const data = e.target.closest('.dropdown-item');
             timkiemtheloai(data.textContent);
         })
 
         async function timkiemtheloai(theloaitimkiem) {
             const data = theloaitimkiem;
-            if(!data){
+            if (!data) {
                 alert("Vui long nhap thong tin tim kiem");
-            return;
+                return;
             }
 
-            try{
-                const response = await fetch(`https://donateabookdeltacrew.azurewebsites.net/api/timkiemtheloai?query=${encodeURIComponent(data)}`,{
-                     method: 'GET'
-            });
-                if(!response.ok){
+            try {
+                const response = await fetch(`https://donateabookdeltacrew.azurewebsites.net/api/timkiemtheloai?query=${encodeURIComponent(data)}`, {
+                    method: 'GET'
+                });
+                if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                     return;
                 }
-                const ketqua = await response.json(); 
+                const ketqua = await response.json();
                 const ketquatimkiemData = ketqua.ketquatimkiem || [];
-                if(ketquatimkiemData.length > 0){
-                    localStorage.setItem('ketquatimkiem', JSON.stringify(ketquatimkiemData));    
+                if (ketquatimkiemData.length > 0) {
+                    localStorage.setItem('ketquatimkiem', JSON.stringify(ketquatimkiemData));
                     localStorage.setItem('isSearch', 'true');
                     const iframe = document.getElementById("Chitietsach");
                     window.location.href = 'index.html';
-                }else{
+                } else {
                     alert("Không tìm thấy kết quả nào");
                     return;
                 }
-            }catch(err){
+            } catch (err) {
                 console.error('Lỗi:', err);
             }
         }
         // Hàm lấy danh sách thể loại từ database qua api '/api/theloai'
         async function laydanhsachtheloai() {
             try {
-                const response = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/theloai',{
-                method: 'GET'
-            });
-            const theloais = await response.json();
-            const listtheloai = document.getElementById('listtheloai');
-            listtheloai.innerHTML = ''; 
-            theloais.forEach(theloai => {
-            const li = document.createElement('li');
-            li.innerHTML = '<a class="dropdown-item" href="#">' + theloai.TENTHELOAI + '</a>';
-            listtheloai.appendChild(li);
-            });
+                const response = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/theloai', {
+                    method: 'GET'
+                });
+                const theloais = await response.json();
+                const listtheloai = document.getElementById('listtheloai');
+                listtheloai.innerHTML = '';
+                theloais.forEach(theloai => {
+                    const li = document.createElement('li');
+                    li.innerHTML = '<a class="dropdown-item" href="#">' + theloai.TENTHELOAI + '</a>';
+                    listtheloai.appendChild(li);
+                });
             } catch (err) {
                 console.error('Lỗi:', err);
             }
         }
 
 
-// Hàm tìm kiếm
+        // Hàm tìm kiếm
         async function timkiem() {
             const data1 = document.getElementById("nhaptimkiem").value.trim();
-            if(!data1){
+            if (!data1) {
                 alert("Vui long nhap thong tin tim kiem");
                 return;
             }
 
-            try{
-                const response = await fetch(`https://donateabookdeltacrew.azurewebsites.net/api/timkiem?query=${encodeURIComponent(data1)}`,{
-                     method: 'GET'
-            });
-                if(!response.ok){
+            try {
+                const response = await fetch(`https://donateabookdeltacrew.azurewebsites.net/api/timkiem?query=${encodeURIComponent(data1)}`, {
+                    method: 'GET'
+                });
+                if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                     return;
                 }
-                const ketqua = await response.json(); 
+                const ketqua = await response.json();
 
-                if(ketqua.ketquatimkiem.length > 0){ 
+                if (ketqua.ketquatimkiem.length > 0) {
                     const ketquatimkiemData = ketqua.ketquatimkiem || [];
-                    localStorage.setItem('ketquatimkiem', JSON.stringify(ketquatimkiemData));    
+                    localStorage.setItem('ketquatimkiem', JSON.stringify(ketquatimkiemData));
                     localStorage.setItem('isSearch', 'true');
                     const iframe = document.getElementById("Chitietsach");
-                     window.location.href = 'index.html';
-                }else{
+                    window.location.href = 'index.html';
+                } else {
                     alert("khong tim thay ket qua nao");
                     return;
                 }
-            }catch(err){
+            } catch (err) {
                 console.error('Lỗi:', err);
             }
         }
-        document.getElementById("nhaptimkiem").addEventListener("keypress",function(e){
-            if(e.key == 'Enter'){
+        document.getElementById("nhaptimkiem").addEventListener("keypress", function (e) {
+            if (e.key == 'Enter') {
                 timkiem();
             }
         })
 
-        window.addEventListener("DOMContentLoaded",function(){
+        window.addEventListener("DOMContentLoaded", function () {
             laydanhsachtheloai();
         })
-        (function () { if (!window.chatbase || window.chatbase("getState") !== "initialized") { window.chatbase = (...arguments) => { if (!window.chatbase.q) { window.chatbase.q = [] } window.chatbase.q.push(arguments) }; window.chatbase = new Proxy(window.chatbase, { get(target, prop) { if (prop === "q") { return target.q } return (...args) => target(prop, ...args) } }) } const onLoad = function () { const script = document.createElement("script"); script.src = "https://www.chatbase.co/embed.min.js"; script.id = "pZmBRIKTwTgRS_esCfk_p"; script.domain = "www.chatbase.co"; document.body.appendChild(script) }; if (document.readyState === "complete") { onLoad() } else { window.addEventListener("load", onLoad) } })();
+            (function () { if (!window.chatbase || window.chatbase("getState") !== "initialized") { window.chatbase = (...arguments) => { if (!window.chatbase.q) { window.chatbase.q = [] } window.chatbase.q.push(arguments) }; window.chatbase = new Proxy(window.chatbase, { get(target, prop) { if (prop === "q") { return target.q } return (...args) => target(prop, ...args) } }) } const onLoad = function () { const script = document.createElement("script"); script.src = "https://www.chatbase.co/embed.min.js"; script.id = "pZmBRIKTwTgRS_esCfk_p"; script.domain = "www.chatbase.co"; document.body.appendChild(script) }; if (document.readyState === "complete") { onLoad() } else { window.addEventListener("load", onLoad) } })();
     </script>
 
     <script src="bootstrap-5.3.5-dist/js/bootstrap.bundle.min.js"></script>

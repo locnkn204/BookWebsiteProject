@@ -14,65 +14,129 @@
     <style>
         body {
             background: linear-gradient(135deg, #a4cef8, #c0c0c0, #8144e9);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
         }
 
         #sidebar_left {
             border: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+        }
 
+        #sidebar_left:hover {
+            transform: translateY(-5px);
+        }
+
+        #anhbia {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+            display: block;
+        }
+
+        #anhbia:hover {
+            transform: scale(1.02);
+        }
+
+        #sidebar_content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 0;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         ul .nav-link {
-            background-color: #f0f0f0;
-            color: black;
-
+            background-color: #f8f9fa;
+            color: #495057;
+            border-radius: 10px;
+            margin: 2px 0;
+            transition: all 0.3s ease;
         }
 
-        .nav-pills .nav-link {
-            border-radius: 0;
+        ul .nav-link:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: translateX(5px);
         }
 
         .nav-pills .nav-link.active {
-            background: linear-gradient(135deg, #2c3e50, #4b4b6b, #5a3e89);
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            border-radius: 5px;
+            border-radius: 10px;
         }
 
         .btn-docsach {
-            background: linear-gradient(135deg, #2c3e50, #4b4b6b, #5a3e89);
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             font-weight: bold;
-            width: 200px;
-            border-radius: 50px;
-            padding: 10px 0px;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-docsach:hover {
+            background: #00b686;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+            color: white;
         }
 
         .btn-danhgia {
-            background: linear-gradient(135deg, #2c3e50, #4b4b6b, #5a3e89);
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
             color: white;
             font-weight: bold;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 15px;
+            font-size: 14px;
+            transition: all 0.3s ease;
         }
 
-        .btn-tim {
-            background: #5e5e5e;
-            color: white;
-            font-weight: bold;
-            width: 50px;
-            border-radius: 50%;
-            padding: 10px 0px;
+        .btn-danhgia:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
         }
 
+        .btn-tim,
         .btn-share {
-            background: #5e5e5e;
+            background: black;
             color: white;
             font-weight: bold;
             width: 50px;
+            height: 50px;
             border-radius: 50%;
-            padding: 10px 0px;
+            border: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .btn:hover {
-            background: #00b686;
-            color: #fff;
+        .btn-tim:hover,
+        .btn-share:hover {
+            background: linear-gradient(135deg, #d30000, #e40d0dc0);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 210, 211, 0.4);
+            color: white;
         }
 
         .text-truncate-custom {
@@ -80,41 +144,653 @@
             overflow: hidden;
             line-height: 1.5em;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
 
         #vanbantomtat .btn {
-            color: #00b686;
+            color: #667eea;
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
 
         #vanbantomtat .btn:hover {
             background: none;
-            color: brown
-        }
-
-        #storyText {
-            cursor: pointer;
+            color: #ff6b6b;
+            transform: scale(1.05);
         }
 
         .audio-item {
             display: flex;
             align-items: center;
-            padding: 10px;
-            border-bottom: 1px solid #646464;
+            padding: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            margin: 5px 0;
+        }
+
+        .audio-item:hover {
+            background: rgba(102, 126, 234, 0.05);
+            transform: translateX(5px);
         }
 
         .audio-text {
-            color: black;
-            margin-left: 10px;
+            color: #2c3e50;
+            margin-left: 15px;
+            flex: 1;
         }
 
         .audio-title {
             font-size: 1rem;
             font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
         }
 
         .audio-author {
             font-size: 0.875rem;
-            color: #646464;
+            color: #7f8c8d;
+        }
+
+        .top-books-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 0;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .top-books-img {
+            transition: transform 0.3s ease;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .top-books-img:hover {
+            transform: scale(1.05);
+        }
+
+        .comment-section {
+            background: #2c3e50;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 10px 0;
+            box-shadow: 0 4px 15px rgba(44, 62, 80, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .comment-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(44, 62, 80, 0.3);
+        }
+
+        .star-rating i {
+            font-size: 1.2em;
+            margin-right: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .star-rating i:hover {
+            transform: scale(1.2);
+        }
+
+        /* Tối ưu cho hình ảnh placeholder */
+        .image-placeholder {
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            border: 2px dashed #dee2e6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 14px;
+            text-align: center;
+            height: 300px;
+            border-radius: 15px;
+            width: 100%;
+        }
+
+        /* Cải thiện xử lý hình ảnh lỗi */
+        .img-fallback {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            max-width: auto;
+            /* Giữ giới hạn tối đa mặc định */
+            margin: 0 auto;
+            /* Canh giữa div */
+        }
+
+        .img-fallback img {
+            transition: opacity 0.3s ease;
+            width: 100%;
+            /* Đảm bảo hình ảnh chiếm toàn bộ chiều rộng của div cha */
+            height: auto;
+            /* Giữ tỷ lệ gốc */
+        }
+
+        .img-fallback .fallback-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            border: 2px dashed #dee2e6;
+            color: #6c757d;
+            font-size: 14px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            width: 100%;
+            /* Đảm bảo fallback chiếm toàn bộ div */
+            height: 100%;
+            /* Đảm bảo fallback chiếm toàn bộ chiều cao */
+            padding: 10px;
+            /* Thêm padding để nội dung không bị chật */
+        }
+
+        .img-fallback img.error+.fallback-content {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .img-fallback {
+                max-width: 100%;
+                /* Cho phép div co giãn theo màn hình mobile */
+            }
+
+            .img-fallback .fallback-content {
+                font-size: 12px;
+                /* Giảm kích thước chữ trên mobile */
+                padding: 5px;
+                /* Giảm padding trên mobile */
+            }
+
+            .img-fallback .fa-trophy {
+                font-size: 1.5em;
+                /* Điều chỉnh kích thước biểu tượng trên mobile */
+            }
+        }
+
+        /* Media query cho màn hình rất nhỏ */
+        @media (max-width: 576px) {
+            .img-fallback .fallback-content {
+                font-size: 10px;
+                /* Giảm thêm kích thước chữ */
+            }
+        }
+
+        /* Đảm bảo sticky sidebar không bị overflow */
+        .sticky-container {
+            max-height: 100vh;
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .sticky-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* RESPONSIVE STYLES */
+        @media (max-width: 992px) {
+            .container-fluid {
+                padding: 0 15px;
+            }
+
+            #sidebar_left {
+                margin-bottom: 20px;
+                position: relative !important;
+                top: auto !important;
+            }
+
+            .btn-docsach {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+
+            .action-buttons {
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .sticky-top {
+                position: relative !important;
+                top: auto !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                padding: 10px;
+            }
+
+            .container-fluid {
+                padding: 0;
+            }
+
+            /* Stack all columns vertically */
+            .row>div {
+                margin-bottom: 20px;
+            }
+
+            /* Book cover section */
+            #sidebar_left {
+                max-width: 300px;
+                margin: 0 auto 20px;
+                position: relative !important;
+                top: auto !important;
+            }
+
+            #anhbia {
+                height: 250px;
+            }
+
+            /* Main content adjustments */
+            .card-title.fs-1 {
+                font-size: 2rem !important;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            /* Rating section responsive */
+            .star-rating {
+                text-align: center;
+                margin: 20px 0;
+                font-size: 1.1rem;
+            }
+
+            .star-rating span {
+                display: block;
+                margin-top: 10px;
+                font-size: 1.2rem;
+            }
+
+            /* Info grid responsive */
+            .info-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+                margin: 20px 0;
+            }
+
+            .info-item {
+                text-align: center;
+                padding: 15px;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 10px;
+                backdrop-filter: blur(5px);
+            }
+
+            .info-label {
+                font-size: 0.9rem;
+                color: #7f8c8d;
+                margin-bottom: 5px;
+                font-weight: 600;
+            }
+
+            .info-value {
+                font-size: 1rem;
+                color: #2c3e50;
+                font-weight: 700;
+            }
+
+            /* Last update section */
+            .row.text-muted.fs-6 {
+                text-align: center;
+                margin: 25px 0;
+                font-size: 1rem !important;
+            }
+
+            /* Button adjustments */
+            .btn-docsach {
+                width: 100%;
+                padding: 15px;
+                font-size: 18px;
+                margin-bottom: 20px;
+            }
+
+            .action-buttons {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+                margin-bottom: 30px;
+            }
+
+            .btn-tim,
+            .btn-share {
+                width: 60px;
+                height: 60px;
+                font-size: 20px;
+            }
+
+            /* Summary section */
+            #vanbantomtat {
+                margin: 30px 0;
+            }
+
+            #vanbantomtat p {
+                text-align: justify;
+                line-height: 1.6;
+                font-size: 1rem;
+                margin-bottom: 15px;
+            }
+
+            #vanbantomtat .btn {
+                display: block;
+                text-align: center;
+                width: 100%;
+                padding: 10px;
+                margin-top: 15px;
+                background: rgba(102, 126, 234, 0.1);
+                border-radius: 10px;
+                font-size: 1rem;
+            }
+
+            /* Comment section title */
+            .card-text.mt-5.mb-3.fw-bold.fs-3 {
+                text-align: center;
+                font-size: 1.5rem !important;
+                margin: 30px 0 20px 0 !important;
+                padding: 0 15px;
+            }
+
+            /* Comment count */
+            .mb-4.text-success.fw-bold.fs-5 {
+                text-align: center;
+                font-size: 1.2rem !important;
+                margin-bottom: 25px !important;
+            }
+
+            /* Top books section */
+            .top-books-card {
+                margin-top: 20px;
+                position: relative !important;
+                top: auto !important;
+            }
+
+            .top-books-card .card-title {
+                font-size: 1.3rem !important;
+                text-align: center;
+                margin: 20px 0;
+            }
+
+            .top-books-img {
+                width: 200px !important;
+                max-width: 90%;
+                margin: 0 auto;
+                display: block;
+            }
+
+            /* Audio items stack better */
+            .audio-item {
+                flex-direction: row;
+                align-items: center;
+                padding: 15px;
+                margin: 10px 0;
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 12px;
+            }
+
+            .audio-text {
+                margin-left: 15px;
+                flex: 1;
+            }
+
+            .audio-title {
+                font-size: 1rem;
+                line-height: 1.4;
+            }
+
+            .audio-author {
+                font-size: 0.9rem;
+                margin-top: 5px;
+            }
+
+            .btn-danhgia {
+                min-width: 50px;
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
+            
+
+            /* Comment section */
+            .comment-section {
+                margin: 15px 0;
+                padding: 20px;
+                border-radius: 12px;
+            }
+
+            .comment-section .d-flex {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .comment-section .mb-2 {
+                margin-bottom: 15px !important;
+            }
+
+            /* Form elements */
+            #userComment {
+                margin-bottom: 15px;
+                border-radius: 10px;
+                border: 2px solid rgba(102, 126, 234, 0.3);
+                padding: 15px;
+                font-size: 16px;
+                min-height: 100px;
+            }
+
+            #userComment:focus {
+                border-color: #667eea;
+                box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+            }
+
+            #submitComment {
+                width: 100%;
+                padding: 15px;
+                font-size: 16px;
+                border-radius: 10px;
+                background: linear-gradient(135deg, #00d2d3, #54a0ff);
+                border: none;
+                font-weight: 600;
+                position: sticky;
+                bottom: 10px;
+                z-index: 100;
+                box-shadow: 0 4px 15px rgba(0, 210, 211, 0.4);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .card-title.fs-1 {
+                font-size: 1.5rem !important;
+            }
+
+            .fs-3 {
+                font-size: 1.3rem !important;
+            }
+
+            .fs-4 {
+                font-size: 1.2rem !important;
+            }
+
+            /* Single column info grid on very small screens */
+            .info-row {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .info-item {
+                padding: 12px;
+            }
+
+            /* Smaller buttons on very small screens */
+            .btn-tim,
+            .btn-share {
+                width: 50px;
+                height: 50px;
+                font-size: 18px;
+            }
+
+            /* Rating responsive */
+            .star-rating {
+                font-size: 1rem;
+            }
+
+            .star-rating span {
+                font-size: 1.1rem;
+            }
+
+            /* Top books adjustments */
+            .top-books-card .card-title {
+                font-size: 1.1rem !important;
+            }
+
+            .top-books-img {
+                width: 150px !important;
+            }
+
+            /* Audio items more compact */
+            .audio-item {
+                padding: 12px;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .audio-text {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+
+            .audio-title {
+                font-size: 0.95rem;
+            }
+
+            .audio-author {
+                font-size: 0.85rem;
+            }
+
+            .btn-danhgia {
+                margin-bottom: 10px;
+                min-width: 45px;
+                padding: 6px 10px;
+                font-size: 0.85rem;
+            }
+
+            /* Comment section adjustments */
+            .card-text.mt-5.mb-3.fw-bold.fs-3 {
+                font-size: 1.3rem !important;
+            }
+
+            .mb-4.text-success.fw-bold.fs-5 {
+                font-size: 1.1rem !important;
+            }
+
+            .comment-section {
+                padding: 15px;
+            }
+
+            /* Summary section */
+            #vanbantomtat p {
+                font-size: 0.95rem;
+            }
+
+            #vanbantomtat .btn {
+                font-size: 0.95rem;
+                padding: 8px;
+            }
+        }
+
+        /* Utility classes for better mobile experience */
+        .mobile-center {
+            text-align: center;
+        }
+
+        .mobile-full-width {
+            width: 100%;
+        }
+
+        @media (min-width: 769px) {
+            .mobile-center {
+                text-align: left;
+            }
+
+            .mobile-full-width {
+                width: auto;
+            }
+        }
+
+        /* Enhanced animations */
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            animation: fadeIn 0.6s ease-in;
+            animation-fill-mode: both;
+        }
+
+        .card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .card:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        /* Đảm bảo layout ổn định khi load */
+        .container-fluid {
+            opacity: 0;
+            animation: fadeIn 0.5s ease-in 0.1s forwards;
+        }
+
+        /* Sửa lỗi sticky cho desktop */
+        @media (min-width: 993px) {
+            .sticky-top {
+                position: sticky !important;
+                top: 20px !important;
+            }
+        }
+
+        #anhbia1 {
+            width: 100%;
+            height: auto;
+            max-width: 300px;
+            max-height: 400px;
+        }
+
+        @media (max-width: 768px) {
+            #anhbia1 {
+                max-width: 100%;
+            }
+        }
+
+        body {
+            margin: 0;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #startbody {
+            flex: 1 0 auto;
         }
     </style>
 </head>
@@ -122,179 +798,222 @@
 <body>
     <div class="container-fluid mt-2" id="startbody">
         <div class="row">
-            <div class="col-3">
-                <div id="sidebar_left" class="card p-2 mt-2 sticky-top">
-                    <img src="" class="rounded-4 " id="anhbia">
+            <div class="col-12 col-lg-3">
+                <div id="sidebar_left" class="card p-3 mt-2 sticky-top">
+                    <div class="img-fallback h-75" style="height: 100%;">
+                        <img class="rounded-4" id="anhbia" alt="Book Cover" style="height: 100%;"
+                            onerror="this.classList.add('error'); this.style.display='none';"
+                            onload="this.style.display='block';">
+                        <div class="fallback-content">
+                            <div>
+                                <i class="fa-solid fa-book fa-3x mb-3"></i><br>
+                                Ảnh bìa sách
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-6">
+
+            <div class="col-12 col-lg-6">
                 <div id="sidebar_content" class="card mt-3">
-                    <div class="card-body">
-                        <div class="card-title text-capitalize fw-bold fs-1" id="tensach"></div>
-                        <div class="card-text">
+                    <div class="card-body p-4">
+                        <div class="card-title text-capitalize fw-bold fs-1 mobile-center" id="tensach">Mật Biếc</div>
+
+                        <div class="card-text mobile-center star-rating">
                             <i class="fa-solid fa-star text-warning"></i>
                             <i class="fa-solid fa-star text-warning"></i>
                             <i class="fa-solid fa-star text-warning"></i>
                             <i class="fa-solid fa-star-half-stroke text-warning"></i>
                             <i class="fa-regular fa-star text-warning"></i>
-
-                            <span class="mx-4" style="color: orange;" id="danhgia"></span>
+                            <span class="mx-3" style="color: #ff6b6b; font-weight: 600;" id="danhgia">8.5 - Rất
+                                tốt</span>
                         </div>
-                        <div class="card-text">
-                            <div class="row text-muted fs-5">
+
+                        <div class="card-text mt-4">
+                            <!-- Desktop view -->
+                            <div class="row text-muted fs-5 d-none d-md-flex">
                                 <div class="col-3">Tác giả</div>
                                 <div class="col-3">Thể loại</div>
                                 <div class="col-3">Nhà xuất bản</div>
                                 <div class="col-3">Tình trạng</div>
                             </div>
-                            <div class="row">
-                                <div class="col-3" id="tacgia"></div>
-                                <div class="col-3" id="theloai"></div>
-                                <div class="col-3" id="nxb"></div>
-                                <div class="col-3" id="trangthai"></div>
-
+                            <div class="row d-none d-md-flex">
+                                <div class="col-3 fw-semibold" id="tacgia">Ngô Tất Tố</div>
+                                <div class="col-3 fw-semibold" id="theloai">Tiểu thuyết</div>
+                                <div class="col-3 fw-semibold" id="nxb">NXB Văn Học</div>
+                                <div class="col-3 fw-semibold" id="trangthai">Hoàn thành</div>
                             </div>
-                            <div class="row text-muted fs-5 mt-4">
-                                <div class="col-6">Lần cập nhật gần nhất: <span id="capnhat"></span></div>
+
+                            <!-- Mobile responsive info grid -->
+                            <div class="info-row d-md-none">
+                                <div class="info-item">
+                                    <div class="info-label">Tác giả</div>
+                                    <div class="info-value" id="tacgia-mobile">Ngô Tất Tố</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Thể loại</div>
+                                    <div class="info-value" id="theloai-mobile">Tiểu thuyết</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Nhà xuất bản</div>
+                                    <div class="info-value" id="nxb-mobile">NXB Văn Học</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Tình trạng</div>
+                                    <div class="info-value" id="trangthai-mobile">Hoàn thành</div>
+                                </div>
+                            </div>
+
+                            <div class="row text-muted fs-6 mt-4">
+                                <div class="col-12 mobile-center">Giọng đọc: <span class="fw-semibold text-dark" id="giongdoc">18/06/2025</span></div>
+                            </div>
+
+                            <div class="row text-muted fs-6 mt-4">
+                                <div class="col-12 mobile-center">Lần cập nhật gần nhất: <span
+                                        class="fw-semibold text-dark" id="capnhat">18/06/2025</span></div>
                             </div>
                         </div>
-                        <hr>
 
+                        <hr class="my-4">
 
-                        <div class="card-text mt-4">
-                            <a id="docsach" onclick="docsach()">
-                                <button class="btn btn-docsach">
-                                    <i class="fa-solid fa-book-open"></i>
-                                    <label class="mx-2">Đọc sách</label>
-                                </button>
-                            </a>
-                            <button class="btn btn-tim ms-2" onclick="yeuthich()" id="themyeuthich1">
-                                <i class="fa-solid fa-heart"></i>
-                            </button>
-                            <button class="btn btn-share ms-2">
-                                <i class="fa-solid fa-share-nodes"></i>
-                            </button>
+                        <div class="card-text">
+                            <div class="mobile-center">
+                                <a id="docsach" onclick="docsach()">
+                                    <button class="btn btn-docsach mobile-full-width">
+                                        <i class="fa-solid fa-book-open me-2"></i>
+                                        <span>Đọc sách</span>
+                                    </button>
+                                </a>
+                                <div class="action-buttons d-flex d-md-inline-flex mt-3 mt-md-0 ms-md-3">
+                                    <button class="btn btn-tim" onclick="yeuthich()" id="themyeuthich1">
+                                        <i class="fa-solid fa-heart"></i>
+                                    </button>
+                                    <button class="btn btn-share ms-2">
+                                        <i class="fa-solid fa-share-nodes"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
 
                         <div id="vanbantomtat" class="card-text mt-5">
                             <p id="storyText" class="text-truncate-custom">
-
+                                "Mật biếc" kể về mối tình đơn phương đầy day dứt của Ngan với Hà Lan, người con gái có
+                                đôi mắt biếc mê hồn. Tác phẩm khắc họa tâm lý tinh tế của tuổi mới lớn, những xao xuyến
+                                đầu đời và nỗi niềm thầm kín của tình yêu tuổi học trò. Qua ngòi bút tài hoa của Nguyễn
+                                Nhật Ánh, "Mật biếc" đã trở thành một trong những tác phẩm văn học thiếu nhi được yêu
+                                thích nhất, để lại dấu ấn sâu đậm trong lòng độc giả về một thời thanh xuân tươi đẹp và
+                                những kỷ niệm không thể nào quên.
                             </p>
-                            <button id="toggleBtn" class="btn px-0">Xem thêm</button>
+                            <button id="toggleBtn" class="btn px-0 fw-semibold">Xem thêm</button>
                         </div>
 
-                        <div class="card-text mt-4 mb-2 fw-bold fs-3">
-                            Độc giả nói gì về <span id="tensach1"></span>
+                        <div class="card-text mt-5 mb-3 fw-bold fs-3 mobile-center">
+                            Độc giả nói gì về <span id="tensach1">Mật Biếc</span>
                         </div>
 
                         <div class="card-text" id="commentSection">
-                            <div class="mb-3 text-success fw-bold">Bình luận (<span id="commentCount"></span>)</div>
+                            <div class="mb-4 text-success fw-bold fs-5">Bình luận (<span id="commentCount">1</span>)
+                            </div>
+
+                            <!-- Sample comment -->
+                            <div class="comment-section text-white">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <div class="fw-bold"></div>
+                                    <div class="text-muted"></div>
+                                </div>
+                                <div class="mb-2">
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                </div>
+                                <p class="mb-0"></p>
+                            </div>
                         </div>
 
                         <!-- Form thêm bình luận -->
-                        <div class="mt-3">
-                            <textarea id="userComment" class="form-control mb-2" placeholder="Nhập bình luận..."
-                                rows="3"></textarea>
-                            <button id="submitComment" class="btn btn-success" onclick="binhluan()"><i
-                                    class="fa-regular fa-comment"></i> Gửi bình luận</button>
+                        <div class="mt-4">
+                            <textarea id="userComment" class="form-control mb-3" placeholder="Nhập bình luận của bạn..."
+                                rows="4"></textarea>
+                            <button id="submitComment" class="btn btn-success mobile-full-width" onclick="binhluan()">
+                                <i class="fa-regular fa-comment me-2"></i>Gửi bình luận
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-3">
 
-                <div class="card mt-3 sticky-top">
-                    <div class="card-title fw-bold fs-4 text-center mt-3">TOP SÁCH TUẦN </div>
-                    <img src="https://bookwebsitedata.blob.core.windows.net/media/data/Hinh/Thiết kế chưa có tên.png" width="300px"
-                        class="rounded-pill mx-auto" style="border: 5px solid purple; ">
+            <div class="col-12 col-lg-3">
+                <div class="card mt-3 sticky-top top-books-card sticky-container">
+                    <div class="card-title fw-bold fs-4 text-center mt-4 mb-3">TOP SÁCH TUẦN</div>
+                    <div class="img-fallback mx-auto" style="max-width: 200px;">
+                        <img src="https://bookwebsitedata.blob.core.windows.net/media/data/Hinh/best.png" id="anhbia1"
+                            class="rounded-pill mx-auto top-books-img" style="border: 5px solid #667eea;"
+                            alt="Top Books" onerror="this.classList.add('error'); this.style.display='none';"
+                            onload="this.style.display='block';">
+                        <div class="fallback-content rounded-pill" style="border: 5px solid #667eea;">
+                            <div>
+                                <i class="fa-solid fa-trophy fa-2x mb-2"></i><br>
+                                Top Sách Tuần
+                            </div>
+                        </div>
+                    </div>
                     <div class="card-body">
-                        <div class="card-title fs-5 fw-bold">Nghe nhiều nhất</div>
+                        <div class="card-title fs-5 fw-bold mb-4">Nghe nhiều nhất</div>
                         <div class="card-text">
                             <div class="audio-item">
-                                <button class="btn btn-danhgia"><i class="fa-solid fa-star text-warning"></i>
-                                    9.2</button>
+                                <button class="btn btn-danhgia"><i
+                                        class="fa-solid fa-star text-warning me-1"></i>9.2</button>
                                 <div class="audio-text">
                                     <div class="audio-title">Thiếu Soái, Chào Anh!</div>
                                     <div class="audio-author">Ngỗng Trời Xù Lông</div>
                                 </div>
                             </div>
                             <div class="audio-item">
-                                <button class="btn btn-danhgia"><i class="fa-solid fa-star text-warning"></i>
-                                    9.2</button>
+                                <button class="btn btn-danhgia"><i
+                                        class="fa-solid fa-star text-warning me-1"></i>9.0</button>
                                 <div class="audio-text">
-                                    <div class="audio-title">Thiếu Soái, Chào Anh!</div>
-                                    <div class="audio-author">Ngỗng Trời Xù Lông</div>
+                                    <div class="audio-title">Tôi Thấy Hoa Vàng Trên Cỏ Xanh</div>
+                                    <div class="audio-author">Nguyễn Nhật Ánh</div>
                                 </div>
                             </div>
                             <div class="audio-item">
-                                <button class="btn btn-danhgia"><i class="fa-solid fa-star text-warning"></i>
-                                    9.2</button>
+                                <button class="btn btn-danhgia"><i
+                                        class="fa-solid fa-star text-warning me-1"></i>8.8</button>
                                 <div class="audio-text">
-                                    <div class="audio-title">Thiếu Soái, Chào Anh!</div>
-                                    <div class="audio-author">Ngỗng Trời Xù Lông</div>
+                                    <div class="audio-title">Nhà Giả Kim</div>
+                                    <div class="audio-author">Paulo Coelho</div>
                                 </div>
                             </div>
                             <div class="audio-item">
-                                <button class="btn btn-danhgia"><i class="fa-solid fa-star text-warning"></i>
-                                    9.2</button>
+                                <button class="btn btn-danhgia"><i
+                                        class="fa-solid fa-star text-warning me-1"></i>8.5</button>
                                 <div class="audio-text">
-                                    <div class="audio-title">Thiếu Soái, Chào Anh!</div>
-                                    <div class="audio-author">Ngỗng Trời Xù Lông</div>
-                                </div>
-                            </div>
-                            <div class="audio-item">
-                                <button class="btn btn-danhgia"><i class="fa-solid fa-star text-warning"></i>
-                                    9.2</button>
-                                <div class="audio-text">
-                                    <div class="audio-title">Thiếu Soái, Chào Anh!</div>
-                                    <div class="audio-author">Ngỗng Trời Xù Lông</div>
-                                </div>
-                            </div>
-                            <div class="audio-item">
-                                <button class="btn btn-danhgia"><i class="fa-solid fa-star text-warning"></i>
-                                    9.2</button>
-                                <div class="audio-text">
-                                    <div class="audio-title">Thiếu Soái, Chào Anh!</div>
-                                    <div class="audio-author">Ngỗng Trời Xù Lông</div>
-                                </div>
-                            </div>
-                            <div class="audio-item">
-                                <button class="btn btn-danhgia"><i class="fa-solid fa-star text-warning"></i>
-                                    9.2</button>
-                                <div class="audio-text">
-                                    <div class="audio-title">Thiếu Soái, Chào Anh!</div>
-                                    <div class="audio-author">Ngỗng Trời Xù Lông</div>
-                                </div>
-                            </div>
-                            <div class="audio-item">
-                                <button class="btn btn-danhgia"><i class="fa-solid fa-star text-warning"></i>
-                                    9.2</button>
-                                <div class="audio-text">
-                                    <div class="audio-title">Thiếu Soái, Chào Anh!</div>
-                                    <div class="audio-author">Ngỗng Trời Xù Lông</div>
+                                    <div class="audio-title">Đắc Nhân Tâm</div>
+                                    <div class="audio-author">Dale Carnegie</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 
-    <!-- Thu gọn - phóng to Tóm tắt nội dung -->
+    <!-- Giữ nguyên JavaScript gốc của bạn -->
     <script>
         function safeParseJSON(jsonString, defaultValue = []) {
             try {
                 const value = jsonString ? JSON.parse(jsonString) : defaultValue;
-                return Array.isArray(value) ? value : defaultValue; // Đảm bảo trả về mảng
+                return Array.isArray(value) ? value : defaultValue;
             } catch (err) {
                 console.error('Lỗi parse JSON:', err);
-                return defaultValue; // Trả về giá trị mặc định nếu lỗi
+                return defaultValue;
             }
         }
-        const book = JSON.parse(localStorage.getItem('book') || []);
-        const danhgias = JSON.parse(localStorage.getItem('danhgia') || []);
+        const book = JSON.parse(localStorage.getItem('book') || '[]');
+        const danhgias = JSON.parse(localStorage.getItem('danhgia') || '[]');
         let tkyeuthich = safeParseJSON(localStorage.getItem('ketquatimkiemyeuthich'));
         const taikhoan = safeParseJSON(localStorage.getItem('dangnhap'));
         const storyText = document.getElementById("storyText");
@@ -311,16 +1030,14 @@
                 toggleBtn.textContent = "Xem thêm";
             }
         });
-        // đọc sáchs
-        async function docsach() {
 
+        async function docsach() {
             try {
                 const response = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/trangthai', {
                     method: 'GET'
                 });
                 if (response.ok) {
                     window.location.href = "Doc-Nghe-Sach.html";
-
                 } else {
                     alert("Vui lòng đăng nhập để thực hiện");
                 }
@@ -329,17 +1046,12 @@
             }
         }
 
-        
-
-        // Phần nhập Bình Luận
         const commentSection = document.getElementById("commentSection");
         const commentCount = document.getElementById("commentCount");
         const submitBtn = document.getElementById("submitComment");
-
         const userCommentInput = document.getElementById("userComment");
 
         function renderComments() {
-            // Xóa comment cũ trừ tiêu đề
             commentSection.innerHTML = `<div class="mb-3 text-success fw-bold">Bình luận (<span id="commentCount"></span>)</div>`;
             try {
                 if (danhgias.length === 0) {
@@ -348,7 +1060,7 @@
                 commentSection.innerHTML = '';
                 for (let i = 0; i < danhgias.length; i++) {
                     const commentDiv = document.createElement("div");
-                    commentDiv.className = "bg-dark text-white rounded-3 p-3 mb-2 d-flex justify-content-between align-items-center";
+                    commentDiv.className = "comment-section text-white d-flex justify-content-between align-items-center";
 
                     commentDiv.innerHTML = `    
                     <div>
@@ -356,12 +1068,11 @@
                         <div>${danhgias[i].NHANXET}</div>   
                         <p style="display: none">${danhgias[i].MADANHGIA}</p>
                     </div>
-                    <button class="btn btn-outline-light btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;"><i class="fas fa-ellipsis-v"></i></button>  `;
+                    <button class="btn btn-outline-light btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;"><i class="fas fa-ellipsis-v"></i></button>`;
+
                     const deleteButton = commentDiv.querySelector('button');
                     if (deleteButton) {
                         deleteButton.addEventListener('click', () => handleDeleteComment(commentDiv, taikhoan[0].tentaikhoan));
-                    } else {
-                        console.error('Không tìm thấy nút xóa trong commentDiv!');
                     }
                     commentSection.appendChild(commentDiv);
                 }
@@ -370,7 +1081,6 @@
             }
         }
 
-        // xây dựng hàm cho bình luận
         async function binhluan() {
             try {
                 const response = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/trangthai', {
@@ -397,24 +1107,25 @@
                 danhgias.unshift(newComment);
 
                 renderComments();
-                // Reset input
                 const tentaikhoan = taikhoan[0].tentaikhoan;
                 luubinhluan(tentaikhoan, text);
                 userCommentInput.value = "";
+            
             } else {
                 alert("Vui lòng nhập tên và bình luận.");
             }
-        };
+            sendHeight();
+        }
 
         async function luubinhluan(tentaikhoan, nhanxet) {
-            const masach = book[0].IDSACH; // Cập nhật từ MASACH sang IDSACH
+            const masach = book[0].IDSACH;
             const saodanhgia = 4;
-            // ngày đánh giá
             const ngaydanhgia = new Date();
             const year = ngaydanhgia.getFullYear();
-            const month = String(ngaydanhgia.getMonth() + 1).padStart(2, '0'); // Tháng từ 0-11, cần +1
-            const day = String(ngaydanhgia.getDate()).padStart(2, '0'); // Ngày từ 1-31
-            const formattedDate = `${year}-${month}-${day}`; // Định dạng năm-tháng-ngày
+            const month = String(ngaydanhgia.getMonth() + 1).padStart(2, '0');
+            const day = String(ngaydanhgia.getDate()).padStart(2, '0');
+            const formattedDate = `${year}-${month}-${day}`;
+
             try {
                 const response = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/danhgia', {
                     method: 'POST',
@@ -525,12 +1236,18 @@
         let img1 = document.getElementById("anhbia");
         let tensach = document.getElementById("tensach");
         let tacgia = document.getElementById("tacgia");
+        let tacgia_mobile = document.getElementById("tacgia-mobile");
         let theloai = document.getElementById("theloai");
+        let theloai_mobile = document.getElementById("theloai-mobile");
         let nxb = document.getElementById("nxb");
+        let nxb_mobile = document.getElementById("nxb-mobile");
         let trangthai = document.getElementById("trangthai");
+        let trangthai_mobile = document.getElementById("trangthai-mobile");
         let tomtat = document.getElementById("storyText");
         let tensach1 = document.getElementById("tensach1");
-        let capnhat = document.getElementById('capnhat')
+        let capnhat = document.getElementById('capnhat');
+        let capnhat_mobile = document.getElementById('capnhat-mobile');
+        let giongdoc = document.getElementById('giongdoc');
         function chitiet() {
             try {
                 const formatDate = (dateStr) => {
@@ -544,12 +1261,17 @@
                 var data = book[0];
                 if (data.TENSACH && data) {
                     const ngay = formatDate(data.NGAYCAPNHAT)
+                    giongdoc.textContent = data.NGUOIDOC.trim();
                     img1.src = data.ANHBIA.trim();
                     tensach.textContent = data.TENSACH.trim();
                     tacgia.textContent = data.TACGIA.trim();
+                    tacgia_mobile.textContent = data.TACGIA.trim();
                     theloai.textContent = data.TENTHELOAI.trim();
+                    theloai_mobile.textContent = data.TENTHELOAI.trim();
                     nxb.textContent = data.NHAXUATBAN.trim();
+                    nxb_mobile.textContent = data.NHAXUATBAN.trim();
                     trangthai.textContent = data.TRANGTHAIHOANTHANH.trim(); // Cập nhật từ TRANGTHAI sang TRANGTHAIHOANTHANH
+                    trangthai_mobile.textContent = data.TRANGTHAIHOANTHANH.trim();
                     tomtat.textContent = data.TOMTAT.trim();
                     tensach1.textContent = data.TENSACH.trim();
                     capnhat.textContent = ngay;
@@ -602,7 +1324,48 @@
                 alert('Lỗi khi xóa bình luận: ' + (error.message || 'Không thể kết nối đến server'));
             }
         }
+        // phần thêm
+        function sendHeight() {
+        if (window.innerWidth > 993) {
+        const height = document.body.scrollHeight;
+        window.parent.postMessage({ height: height }, "*");
+        return;
+        }
+        // Use clientHeight to get the rendered height, or fallback to scrollHeight
+        const height = Math.max(document.documentElement.clientHeight, document.body.clientHeight, document.body.scrollHeight);
+        window.parent.postMessage({ height: height }, "*");
+        console.log("Sent new height: ", height); // Debug log
+    }
 
+    // Send height on DOM content load
+    document.addEventListener("DOMContentLoaded", function() {
+        sendHeight();
+    });
+
+    // Send height on load (after all resources are loaded)
+    window.addEventListener("load", sendHeight);
+
+    // Send height on resize to handle dynamic changes
+    window.addEventListener("resize", sendHeight);
+
+    // Optional: Detect content changes (e.g., if content is dynamically loaded)
+    let lastHeight = 0;
+    setInterval(() => {
+        const currentHeight = Math.max(document.documentElement.clientHeight, document.body.clientHeight, document.body.scrollHeight);
+        if (currentHeight !== lastHeight) {
+            sendHeight();
+            lastHeight = currentHeight;
+        }
+    }, 500); // Check every 500ms, adjust as needed
+
+        // Gọi khi hình ảnh tải xong (nếu có)
+        document.addEventListener("DOMContentLoaded", function () {
+            const img = document.getElementById("anhbia1");
+            if (img) {
+                img.onload = sendHeight;
+                img.onerror = sendHeight; // Cập nhật khi lỗi tải
+            }
+        });
     </script>
 
 </body>

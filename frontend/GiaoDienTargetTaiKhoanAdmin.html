@@ -11,22 +11,16 @@
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        body {
+       body {
             background-color: #F0F0F0;
         }
-
-
 
         nav {
             position: sticky;
             top: 0;
             z-index: 1020;
-            /* Đảm bảo nằm trên các phần tử khác */
-            /* background: linear-gradient(135deg, #2c3e50, #4b4b6b, #5a3e89); */
             background: rgba(0, 0, 0, 0.92);
         }
-
-
 
         .hr_DanhMuc {
             width: 90%;
@@ -63,9 +57,185 @@
             color: white;
         }
 
-        .nav-item.dropdown:hover .dropdown-menu {
+        /* Desktop hover effect */
+        @media (min-width: 992px) {
+            .nav-item.dropdown:hover .dropdown-menu {
+                display: block;
+                margin-top: 0;
+            }
+        }
+
+        iframe {
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
             display: block;
-            margin-top: 0;
+        }
+
+        footer {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 992px) {
+            .navbar-brand img {
+                width: 250px !important;
+            }
+
+            .navbar-nav {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                gap: 0 !important;
+            }
+
+            .navbar-nav .nav-link {
+                padding: 0.8rem 1rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .dropdown-menu {
+                min-width: 100% !important;
+                position: static !important;
+            }
+
+            .d-flex.align-items-center {
+                flex-direction: column;
+                gap: 10px !important;
+                width: 100%;
+                margin-top: 15px;
+            }
+
+            .d-flex.align-items-center input {
+                width: 100% !important;
+
+            }
+
+            .d-flex.align-items-center button {
+                margin: 0 !important;
+                width: 100%;
+            }
+
+            .d-flex.align-items-center .btn {
+                margin-bottom: 5px;
+            }
+
+            /* Mobile: Ẩn dropdown admin và hiện button */
+            .admin-dropdown {
+                display: none !important;
+            }
+
+            .admin-button-mobile {
+                display: block !important;
+                width: 100%;
+                margin-bottom: 5px;
+            }
+        }
+
+        /* Desktop: Hiện dropdown admin và ẩn button */
+        @media (min-width: 993px) {
+            .admin-dropdown {
+                display: block !important;
+            }
+
+            .admin-button-mobile {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar-brand {
+                margin-left: 1rem !important;
+            }
+
+            .navbar-brand img {
+                width: 200px !important;
+            }
+
+            .dropdown-menu .row {
+                flex-direction: column;
+            }
+
+            .dropdown-menu .col-4 {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .modal-dialog {
+                margin: 1rem;
+            }
+
+            .modal-content {
+                font-size: 0.9rem;
+            }
+
+            .modal-title {
+                font-size: 1.5rem !important;
+            }
+
+            footer .row {
+                text-align: center !important;
+            }
+
+            footer .col-6 {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            footer .ms-5 {
+                margin-left: 0 !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-brand img {
+                width: 180px !important;
+            }
+
+            .navbar-toggler {
+                padding: 0.3rem 0.5rem;
+                font-size: 1rem;
+            }
+
+            .modal-title {
+                font-size: 1.3rem !important;
+            }
+
+            .btn {
+                font-size: 0.9rem;
+                padding: 0.5rem 0.8rem;
+            }
+
+            .dropdown-menu {
+                padding: 1rem !important;
+                font-size: 0.9rem;
+            }
+
+            .navbar-nav .nav-link {
+                font-size: 0.95rem;
+                padding: 0.7rem 0.8rem;
+            }
+
+            footer {
+                padding: 2rem 0 1.5rem !important;
+            }
+
+            footer h5,
+            footer h6 {
+                font-size: 1.1rem;
+            }
+
+            footer p,
+            footer .small {
+                font-size: 0.85rem !important;
+            }
+        }
+
+        /* Ensure proper spacing on mobile */
+        @media (max-width: 768px) {
+            .container-fluid {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
         }
     </style>
 </head>
@@ -141,20 +311,27 @@
                         <input type="search" placeholder="Search" class="form-control" style="width: 500px;" id="nhaptimkiem">
                         <button type="button" class="btn btn-outline-light me-5" onclick="timkiem()">Search</button>
 
-                        <!-- Account (Tài khoản user) -->
-                        <li class="nav-item dropdown ms-5 me-2">
+                        <!-- Admin Dropdown (Desktop) -->
+                        <li class="nav-item dropdown ms-5 me-2 admin-dropdown" style="list-style: none;">
                             <a href="#" class="btn btn-outline-light  rounded-circle" data-bs-toggle="dropdown">
                                 <i class="fa-solid fa-user-tie position-relative"></i>
-                                <span
-                                class="position-absolute  translate-middle badge rounded-pill " style="top: -5%; left: 43px;">
-                                <i class="fa-solid fa-crown text-warning fs-5"></i>
-                            </span>
+                                <span class="position-absolute  translate-middle badge rounded-pill "
+                                    style="top: -5%; left: 20px;">
+                                    <i class="fa-solid fa-crown text-warning fs-5"></i>
+                                </span>
                             </a>
-                            <ul class="dropdown-menu ">                               
-                                
-                                <li><a class="dropdown-item " href="GiaoDienTargetTaiKhoanAdmin.html"> <i class="fa-solid fa-user-tie me-2"></i>Quyền Admin</a></li>
+                            <ul class="dropdown-menu ">
+                                <li><a class="dropdown-item " href="GiaoDienTargetTaiKhoanAdmin.html"> <i
+                                            class="fa-solid fa-user-tie me-2"></i>Quyền Admin</a></li>
                             </ul>
                         </li>
+
+                        <!-- Admin Button (Mobile) -->
+                        <button class="btn btn-outline-light admin-button-mobile">
+                            <a class="a_click" href="GiaoDienTargetTaiKhoanAdmin.html">
+                                <i class="fa-solid fa-user-tie me-1"></i>Admin
+                            </a>
+                        </button>
 
 
                         <!-- Đăng xuất -->
@@ -168,8 +345,8 @@
 
 
         <!-- Phần BODY -->
-        <iframe src="BodyBook-Account-Admin.html" width="100%" height="1200px"
-            frameborder="0"></iframe>
+        <iframe src="BodyBook-Account-Admin.html" width="100%" height="1200px" scrolling="no"
+            frameborder="0" ></iframe>
 
 
 
@@ -272,8 +449,7 @@
             }
         }
             laydanhsachtheloai();
-        (function () { if (!window.chatbase || window.chatbase("getState") !== "initialized") { window.chatbase = (...arguments) => { if (!window.chatbase.q) { window.chatbase.q = [] } window.chatbase.q.push(arguments) }; window.chatbase = new Proxy(window.chatbase, { get(target, prop) { if (prop === "q") { return target.q } return (...args) => target(prop, ...args) } }) } const onLoad = function () { const script = document.createElement("script"); script.src = "https://www.chatbase.co/embed.min.js"; script.id = "pZmBRIKTwTgRS_esCfk_p"; script.domain = "www.chatbase.co"; document.body.appendChild(script) }; if (document.readyState === "complete") { onLoad() } else { window.addEventListener("load", onLoad) } })();
-
+       
     </script>
 
     <script src="bootstrap-5.3.5-dist/js/bootstrap.bundle.min.js"></script>

@@ -114,6 +114,187 @@
             justify-content: center;
             margin-bottom: 1em;
         }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .container-fluid {
+                padding: 0.5rem;
+            }
+
+            h3 {
+                font-size: 1.5rem !important;
+                margin-top: 1rem !important;
+            }
+
+            .control-buttons {
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5em;
+            }
+
+            .btn-add, .btn-edit, .btn-delete {
+                width: 100%;
+                
+                height: 2.5rem;
+                font-size: 14px;
+            }
+
+            /* Form responsive */
+            #addBookForm, #editBookForm {
+                width: 100% !important;
+                margin: 0 !important;
+                padding: 0.5rem;
+            }
+
+            #addBookForm h3, #editBookForm h3 {
+                font-size: 1.2rem !important;
+                padding: 0.5rem !important;
+            }
+
+            .row.fw-semibold {
+                margin-bottom: 0.5rem;
+            }
+
+            .row.fw-semibold .col-3 {
+                font-size: 0.9rem !important;
+                margin-bottom: 0.25rem;
+            }
+
+            .row.fw-semibold .col-9 {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+
+            .form-control.fs-5 {
+                font-size: 0.9rem !important;
+            }
+
+            /* Table responsive */
+            .table-responsive {
+                border: none;
+            }
+
+            #bookTable {
+                font-size: 0.7rem;
+            }
+
+            #bookTable th, #bookTable td {
+                padding: 0.25rem;
+                max-width: 80px;
+                font-size: 0.65rem;
+            }
+
+            #bookTable th:first-child,
+            #bookTable td:first-child {
+                position: sticky;
+                left: 0;
+                background: #343a40;
+                color: white;
+                z-index: 10;
+                min-width: 60px;
+            }
+
+            #bookTable td:first-child {
+                background: #f8f9fa;
+                color: #212529;
+                font-weight: bold;
+            }
+
+            #bookTable img {
+                max-width: 40px !important;
+                height: auto;
+            }
+
+            .tom-tat {
+                max-width: 100px;
+                font-size: 0.6rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                gap: 0.2em;
+            }
+
+            .action-buttons .btn {
+                width: 1.8em;
+                height: 1.8em;
+                font-size: 0.7rem;
+                margin: 0.1em;
+            }
+
+            /* Search bar responsive */
+            .form-control.fs-4 {
+                font-size: 1rem !important;
+            }
+
+            /* Modal responsive */
+            .modal-dialog {
+                margin: 0.5rem;
+            }
+
+            .modal-body {
+                padding: 1rem;
+            }
+
+            .form-select.fs-5 {
+                font-size: 0.9rem !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container-fluid {
+                padding: 0.25rem;
+            }
+
+            h3 {
+                font-size: 1.2rem !important;
+            }
+
+            #addBookForm, #editBookForm {
+                padding: 0.25rem;
+            }
+
+            .row.fw-semibold {
+                flex-direction: column;
+            }
+
+            .row.fw-semibold .col-3,
+            .row.fw-semibold .col-9 {
+                width: 100%;
+                padding: 0.25rem;
+            }
+
+            .row.fw-semibold .col-3 {
+                text-align: left !important;
+                margin-bottom: 0.25rem;
+            }
+
+            #bookTable {
+                font-size: 0.6rem;
+            }
+
+            #bookTable th, #bookTable td {
+                padding: 0.15rem;
+                font-size: 0.55rem;
+            }
+
+            .action-buttons .btn {
+                width: 1.5em;
+                height: 1.5em;
+                font-size: 0.6rem;
+            }
+
+            #bookTable img {
+                max-width: 30px !important;
+            }
+        }
+
+        /* Ensure table scrolls horizontally on mobile */
+        .table-container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
         
     </style>
 </head>
@@ -310,28 +491,30 @@
             </div>
 
             <!-- Book List Table -->
-            <table class="table table-bordered table-hover table-striped text-center mt-3" style="border: 1px solid black;" id="bookTable">
-                <thead class="table-dark text-center">
-                    <tr>
-                        <th>MASACH</th>
-                        <th>TENSACH</th>
-                        <th>MATHELOAI</th>
-                        <th>TACGIA</th>
-                        <th>NHAXUATBAN</th>
-                        <th>NAMPHATHANH</th>
-                        <th>TRANGTHAI</th>
-                        <th>ANHBIA</th>
-                        <th>TOMTAT</th>
-                        <th>TRANGTHAIHOATDONG</th>
-                        <th>PDF</th>
-                        <th>AUDIO</th>
-                        <th >HÀNH ĐỘNG</th>
-                    </tr>
-                </thead>
-                <tbody id="bookTableBody">
-                    <!-- Book data will be populated by JavaScript -->
-                </tbody>
-            </table>
+            <div class="table-container">
+                <table class="table table-bordered table-hover table-striped text-center mt-3" style="border: 1px solid black;" id="bookTable">
+                    <thead class="table-dark text-center">
+                        <tr>
+                            <th>MASACH</th>
+                            <th>TENSACH</th>
+                            <th>MATHELOAI</th>
+                            <th>TACGIA</th>
+                            <th>NHAXUATBAN</th>
+                            <th>NAMPHATHANH</th>
+                            <th>TRANGTHAI</th>
+                            <th>ANHBIA</th>
+                            <th>TOMTAT</th>
+                            <th>TRANGTHAIHOATDONG</th>
+                            <th>PDF</th>
+                            <th>AUDIO</th>
+                            <th >HÀNH ĐỘNG</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookTableBody">
+                        <!-- Book data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 

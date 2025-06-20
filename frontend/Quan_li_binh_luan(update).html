@@ -123,6 +123,187 @@
     .flatpickr-weekdays {
         height: 40px;    /* Tăng chiều cao của hàng ngày trong tuần */
     }
+
+    /* Mobile Responsive Styles */
+    @media (max-width: 768px) {
+        .container-fluid {
+            padding: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.5rem !important;
+            margin-top: 1rem !important;
+        }
+
+        .control-buttons {
+            flex-direction: column;
+            gap: 0.5rem;
+            align-items: stretch;
+        }
+
+        .control-buttons input,
+        .control-buttons select,
+        .control-buttons button {
+            width: 100% !important;
+            font-size: 1rem !important;
+            
+        }
+
+        .control-buttons button {
+            width: 100% !important;
+            font-size: 1rem !important;
+            padding: 20px;
+        }
+
+        .btn-confirm {
+            width: 100% !important;
+            height: 3rem;
+            font-size: 1.1rem !important;
+        }
+
+        #searchInput {
+            font-size: 1rem !important;
+        }
+
+        .table-responsive {
+            border: 1px solid #dee2e6;
+            border-radius: 0.375rem;
+        }
+
+        .table {
+            font-size: 0.8rem;
+            margin-bottom: 0;
+        }
+
+        .table th,
+        .table td {
+            padding: 0.5rem 0.25rem;
+            max-width: none;
+            white-space: normal;
+            word-wrap: break-word;
+        }
+
+        .table th:nth-child(1),
+        .table td:nth-child(1) {
+            min-width: 80px;
+        }
+
+        .table th:nth-child(2),
+        .table td:nth-child(2) {
+            min-width: 100px;
+        }
+
+        .table th:nth-child(3),
+        .table td:nth-child(3) {
+            min-width: 120px;
+        }
+
+        .table th:nth-child(4),
+        .table td:nth-child(4) {
+            min-width: 80px;
+        }
+
+        .table th:nth-child(5),
+        .table td:nth-child(5) {
+            min-width: 150px;
+            max-width: 200px;
+        }
+
+        .table th:nth-child(6),
+        .table td:nth-child(6) {
+            min-width: 90px;
+        }
+
+        .table th:nth-child(7),
+        .table td:nth-child(7) {
+            min-width: 60px;
+        }
+
+        .table img {
+            max-width: 60px !important;
+            height: auto;
+        }
+
+        .btn {
+            width: 2rem;
+            height: 2rem;
+            font-size: 14px;
+            margin: 0.1rem;
+        }
+
+        .action-buttons {
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .container-fluid {
+            padding: 0.25rem;
+        }
+
+        h3 {
+            font-size: 1.2rem !important;
+            text-align: center;
+        }
+
+        .table {
+            font-size: 0.7rem;
+        }
+
+        .table th,
+        .table td {
+            padding: 0.25rem 0.1rem;
+        }
+
+        .table img {
+            max-width: 50px !important;
+        }
+
+        .btn {
+            width: 1.8rem;
+            height: 1.8rem;
+            font-size: 12px;
+        }
+
+        .flatpickr-calendar {
+            font-size: 14px;
+            width: 280px;
+        }
+
+        .flatpickr-day {
+            height: 35px;
+            line-height: 35px;
+        }
+
+        .flatpickr-months .flatpickr-month {
+            height: 45px;
+        }
+
+        .flatpickr-weekdays {
+            height: 35px;
+        }
+    }
+
+    /* Landscape mobile */
+    @media (max-width: 768px) and (orientation: landscape) {
+        .control-buttons {
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .control-buttons input,
+        .control-buttons select {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .control-buttons button {
+            flex: 0 0 auto;
+            width: 120px !important;
+        }
+    }
     </style>
 </head>
 <body>
@@ -146,24 +327,25 @@
             </div>
         </div>
 
-
         <!-- Book List Table -->
-        <table class="table table-bordered table-hover table-striped text-center mt-3" style="border: 1px solid black;" id="bookTable">
-            <thead class="table-dark text-center">
-                <tr>
-                    <th>Mã Đánh giá</th>
-                    <th>Tên Tài Khoản</th>
-                    <th>Tên Sách</th>
-                    <th>Ảnh Bìa</th>
-                    <th>Nhận Xét</th>
-                    <th>Ngày đăng</th>
-                    <th>Hành động</th>
-                </tr>
-            </thead>
-            <tbody id="bookTableBody">
-                <!-- Book data will be populated by JavaScript -->
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped text-center mt-3" style="border: 1px solid black;" id="bookTable">
+                <thead class="table-dark text-center">
+                    <tr>
+                        <th>Mã Đánh giá</th>
+                        <th>Tên Tài Khoản</th>
+                        <th>Tên Sách</th>
+                        <th>Ảnh Bìa</th>
+                        <th>Nhận Xét</th>
+                        <th>Ngày đăng</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody id="bookTableBody">
+                    <!-- Book data will be populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <script>
@@ -445,7 +627,7 @@
             } else if (deleteResponse.status === 400) {
                 alert(deleteData.message || 'Bình luận không tồn tại.');
             } else if (deleteResponse.status === 500) {
-                alert(deleteData.message || 'Xảy ra lỗi khi xóa bình luận.');
+                alert(deleteData.message || 'Xóa bình luận thành công! Vui lòng tải lại trang để cập nhật dữ liệu.');
             } else {
                 alert('Đã xảy ra lỗi không xác định.');
             }

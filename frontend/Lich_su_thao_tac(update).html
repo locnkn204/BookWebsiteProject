@@ -123,6 +123,126 @@
     .flatpickr-weekdays {
         height: 40px;    /* Tăng chiều cao của hàng ngày trong tuần */
     }
+
+    /* Mobile responsive styles */
+    @media (max-width: 768px) {
+        h3 {
+            font-size: 1.5rem !important;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .control-buttons {
+            flex-direction: column;
+            gap: 0.8rem;
+            align-items: stretch;
+            padding: 0 1rem;
+        }
+
+        .control-buttons input,
+        .control-buttons select {
+            width: 100% !important;
+            font-size: 1rem !important;
+        }
+
+        .btn-confirm {
+            width: 100% !important;
+            height: 3rem;
+            font-size: 1.1rem !important;
+        }
+
+        .row.mb-3 {
+            padding: 0 1rem;
+        }
+
+        #searchInput {
+            font-size: 1rem !important;
+        }
+
+        .table-responsive {
+            margin: 0 1rem;
+            font-size: 0.8rem;
+        }
+
+        .table th,
+        .table td {
+            padding: 0.4rem;
+            font-size: 0.75rem;
+            max-width: 100px;
+        }
+
+        .table th {
+            background-color: #343a40 !important;
+            color: white !important;
+        }
+
+        .table img {
+            max-width: 60px !important;
+            height: auto;
+        }
+
+        .container-fluid {
+            padding: 0.5rem;
+        }
+
+        /* Ẩn/hiện cột dựa trên kích thước màn hình */
+        .table th:nth-child(3),
+        .table td:nth-child(3) {
+            display: none;
+        }
+
+        .table th:nth-child(4),
+        .table td:nth-child(4) {
+            display: none;
+        }
+    }
+
+    @media (max-width: 576px) {
+        h3 {
+            font-size: 1.2rem !important;
+        }
+
+        .table th,
+        .table td {
+            padding: 0.3rem;
+            font-size: 0.7rem;
+            max-width: 80px;
+        }
+
+        .table img {
+            max-width: 50px !important;
+        }
+
+        .control-buttons {
+            padding: 0 0.5rem;
+        }
+
+        .row.mb-3 {
+            padding: 0 0.5rem;
+        }
+
+        .table-responsive {
+            margin: 0 0.5rem;
+        }
+
+        /* Ẩn thêm cột cho màn hình rất nhỏ */
+        .table th:nth-child(5),
+        .table td:nth-child(5) {
+            display: none;
+        }
+    }
+
+    /* Responsive table styling */
+    @media (max-width: 768px) {
+        .table-responsive {
+            border-radius: 0.5rem;
+            box-shadow: 0 0 0 1px rgba(0,0,0,.125);
+        }
+
+        .table {
+            margin-bottom: 0;
+        }
+    }
     </style>
 </head>
 <body>
@@ -149,24 +269,25 @@
             </div>
         </div>
 
-
         <!-- Book List Table -->
-        <table class="table table-bordered table-hover table-striped text-center mt-3" style="border: 1px solid black;" id="bookTable">
-            <thead class="table-dark text-center">
-                <tr>
-                    <th>Mã Sách</th>
-                    <th>Tên Sách</th>
-                    <th>Mã Thể Loại</th>
-                    <th>Tác Giả</th>
-                    <th>Ảnh Bìa</th>
-                    <th id="hanhdong2">Ngày Thêm Sách</th>
-                    <th id="hanhdong1">Lần Cập Nhật Gần Nhất</th>
-                </tr>
-            </thead>
-            <tbody id="bookTableBody">
-                <!-- Book data will be populated by JavaScript -->
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped text-center mt-3" style="border: 1px solid black;" id="bookTable">
+                <thead class="table-dark text-center">
+                    <tr>
+                        <th>Mã Sách</th>
+                        <th>Tên Sách</th>
+                        <th>Mã Thể Loại</th>
+                        <th>Tác Giả</th>
+                        <th>Ảnh Bìa</th>
+                        <th id="hanhdong2">Ngày Thêm Sách</th>
+                        <th id="hanhdong1">Lần Cập Nhật Gần Nhất</th>
+                    </tr>
+                </thead>
+                <tbody id="bookTableBody">
+                    <!-- Book data will be populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <script>

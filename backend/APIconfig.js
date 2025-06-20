@@ -92,7 +92,7 @@ app.get('/api/timkiem', async (req, res) => {
     let result = await pool.request()
       .input("TENSACH", sql.NVarChar, `%${searchquery}%`)
       .input("TRANGTHAISACH", sql.NVarChar, a)
-      .query('SELECT SACH.IDSACH, SACH.TENSACH, SACH.ANHBIA,SACH.TRANGTHAISACH FROM SACH WHERE SACH.TRANGTHAISACH = @TRANGTHAISACH AND TENSACH LIKE @TENSACH OR SACH.TACGIA LIKE @TENSACH')
+      .query('SELECT SACH.IDSACH, SACH.TENSACH, SACH.ANHBIA,SACH.TRANGTHAISACH FROM SACH WHERE SACH.TRANGTHAISACH = @TRANGTHAISACH AND TENSACH LIKE @TENSACH OR SACH.TACGIA LIKE @TENSACH OR SACH.NGUOIDOC LIKE @TENSACH') 
     if (result.recordset.length > 0) {
       res.status(200).json({
         ketquatimkiem: result.recordset,
@@ -131,7 +131,7 @@ app.post('/api/chitietsach', async (req, res) => {
   let result = await pool.request()
     .input("TENSACH", sql.Int, tensach)
     .input('TRANGTHAISACH',sql.NVarChar,a)
-    .query('SELECT SACH.IDSACH,SACH.TENSACH ,SACH.ANHBIA, SACH.TACGIA, THE_LOAI.TENTHELOAI, SACH.NHAXUATBAN,SACH.TRANGTHAIHOANTHANH,SACH.TOMTAT,SACH.NGAYCAPNHAT FROM SACH,THE_LOAI WHERE SACH.MATHELOAI = THE_LOAI.MATHELOAI AND SACH.IDSACH = @TENSACH AND SACH.TRANGTHAISACH = @TRANGTHAISACH' )
+    .query('SELECT SACH.NGUOIDOC, SACH.IDSACH,SACH.TENSACH ,SACH.ANHBIA, SACH.TACGIA, THE_LOAI.TENTHELOAI, SACH.NHAXUATBAN,SACH.TRANGTHAIHOANTHANH,SACH.TOMTAT,SACH.NGAYCAPNHAT FROM SACH,THE_LOAI WHERE SACH.MATHELOAI = THE_LOAI.MATHELOAI AND SACH.IDSACH = @TENSACH AND SACH.TRANGTHAISACH = @TRANGTHAISACH' )
   if (result.recordset.length > 0) {
     res.status(200).json({
       book: result.recordset[0],
@@ -861,9 +861,17 @@ app.get('/api/listngaythembinhluan', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+// xây dựng API cho lấy danh sách giọng đọc
+app.get('/api/giongdoc', async (req, res) => {
+  try {
+    let pool = await sql.connect(dbConfig);
+    let result = await pool.request().query('select DISTINCT SACH.NGUOIDOC FROM SACH ORDER BY SACH.NGUOIDOC ASC');
+    res.json(result.recordset);
+    pool.close();
+  } catch (err) {
+    res.status(500).send('Lỗi server: ' + err.message);
+  }
 });
+
+app.listen(3000, () => console.log('Server chạy tại http://localhost:3000'));
 

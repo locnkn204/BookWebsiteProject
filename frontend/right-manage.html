@@ -15,6 +15,8 @@
         
         body {
             background: #1b1e21;
+            margin: 0;
+            padding: 0;
         }
 
         .btn {
@@ -69,6 +71,222 @@
             -webkit-transition: all 0.5s;
             transition: all 0.5s;
         }
+
+        .container-fluid {
+            padding: 0 15px;
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .container-fluid {
+                padding: 0 10px;
+            }
+
+            h3 {
+                font-size: 1.5rem !important;
+                margin-top: 1rem !important;
+                margin-left: 0.5rem !important;
+                text-align: center;
+            }
+
+            .row {
+                flex-direction: column !important;
+                margin: 0 !important;
+            }
+
+            .col-6 {
+                width: 100% !important;
+                flex: none !important;
+                max-width: 100% !important;
+            }
+
+            .col-6:first-child {
+                margin-bottom: 1rem;
+            }
+
+            .d-flex.justify-content-end {
+                justify-content: center !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                gap: 0.5rem;
+            }
+
+            .btn {
+                width: 100% !important;
+                max-width: 100% !important;
+                height: 2.5em !important;
+                font-size: 16px !important;
+                margin: 0.25em 0 !important;
+                min-width: auto !important;
+            }
+
+            /* Table responsive */
+            .table-responsive {
+                border: none;
+            }
+
+            .table {
+                font-size: 0.8rem !important;
+                margin-bottom: 1rem !important;
+            }
+
+            .table th,
+            .table td {
+                padding: 0.5rem 0.25rem !important;
+                vertical-align: middle;
+            }
+
+            .table th {
+                font-size: 0.75rem !important;
+                font-weight: 600;
+            }
+
+            /* Input containers */
+            #inputContainer,
+            #inputContainer1 {
+                width: 100% !important;
+                margin-top: 0.5rem !important;
+                flex-direction: column !important;
+                gap: 0.5rem;
+            }
+
+            #inputContainer .form-control,
+            #inputContainer1 .form-control {
+                margin-right: 0 !important;
+                margin-bottom: 0.5rem;
+                font-size: 0.9rem;
+                width: 100% !important;
+            }
+
+            #inputContainer .btn,
+            #inputContainer1 .btn {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0.25rem 0 !important;
+            }
+
+            .input-container {
+                align-items: stretch !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h3 {
+                font-size: 1.25rem !important;
+                margin-top: 0.5rem !important;
+                margin-left: 0 !important;
+            }
+
+            .container-fluid {
+                padding: 0 8px;
+            }
+
+            .btn {
+                width: 100% !important;
+                height: 2.5em !important;
+                font-size: 14px !important;
+                min-width: auto !important;
+            }
+
+            .table {
+                font-size: 0.7rem !important;
+            }
+
+            .table th,
+            .table td {
+                padding: 0.4rem 0.2rem !important;
+            }
+
+            .table th {
+                font-size: 0.65rem !important;
+            }
+
+            #inputContainer .form-control,
+            #inputContainer1 .form-control {
+                font-size: 0.8rem;
+                padding: 0.5rem;
+            }
+
+            #inputContainer .btn,
+            #inputContainer1 .btn {
+                font-size: 14px !important;
+                max-width: 100% !important;
+            }
+        }
+
+        @media (max-width: 360px) {
+            h3 {
+                font-size: 1.1rem !important;
+            }
+
+            .btn {
+                width: 100% !important;
+                height: 2.3em !important;
+                font-size: 12px !important;
+                min-width: auto !important;
+            }
+
+            .table {
+                font-size: 0.65rem !important;
+            }
+
+            .table th,
+            .table td {
+                padding: 0.3rem 0.15rem !important;
+            }
+
+            .table th {
+                font-size: 0.6rem !important;
+            }
+        }
+
+        /* Tablet Responsive */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .container-fluid {
+                padding: 0 20px;
+            }
+
+            .btn {
+                width: 6em;
+                font-size: 18px;
+            }
+
+            h3 {
+                text-align: left;
+            }
+        }
+
+        /* Large screens */
+        @media (min-width: 1200px) {
+            .container-fluid > div {
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+        }
+
+        /* Ensure table is always scrollable on small screens */
+        @media (max-width: 768px) {
+            .table-container {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .table {
+                min-width: 500px;
+            }
+        }
+
+        /* Fix button group alignment on mobile */
+        @media (max-width: 768px) {
+            .d-flex.justify-content-end {
+                align-items: stretch !important;
+                min-height: auto;
+            }
+
+            .d-flex.justify-content-end > * {
+                flex-shrink: 0;
+            }
+        }
     </style>
 </head>
 
@@ -88,21 +306,24 @@
                  <hr class="mt-1">
             </div>
            
-            <table class="table table-bordered table-hover table-striped  table-hover table-dark text-center">
-                <thead class="table-light text-center">
-                    <tr>
-                        <th>STT</th>
-                        <th>Tên Đăng Nhập</th>
-                        <th>PassWord</th>
-                        <th>Trạng thái</th>
-                    </tr>
-                </thead>
-                <tbody id="listtaikhoan">
-                   
-                </tbody>
-            </table>
+            <div class="table-container">
+                <table class="table table-bordered table-hover table-striped  table-hover table-dark text-center">
+                    <thead class="table-light text-center">
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên Đăng Nhập</th>
+                            <th>PassWord</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listtaikhoan">
+                       
+                    </tbody>
+                </table>
+            </div>
 
         </div>
+    </div>
         <script>
             // hàm load dnah sách tài khoản
             async function laydanhsachtaikhoan() {

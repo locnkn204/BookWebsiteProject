@@ -15,18 +15,12 @@
             background-color: #F0F0F0;
         }
 
-
-
         nav {
             position: sticky;
             top: 0;
             z-index: 1020;
-            /* Đảm bảo nằm trên các phần tử khác */
-            /* background: linear-gradient(135deg, #2c3e50, #4b4b6b, #5a3e89); */
             background: rgba(0, 0, 0, 0.92);
         }
-
-
 
         .hr_DanhMuc {
             width: 90%;
@@ -63,22 +57,185 @@
             color: white;
         }
 
-        .nav-item.dropdown:hover .dropdown-menu {
-            display: block;
-            margin-top: 0;
+        /* Desktop hover effect */
+        @media (min-width: 992px) {
+            .nav-item.dropdown:hover .dropdown-menu {
+                display: block;
+                margin-top: 0;
+            }
         }
 
         iframe {
             margin-bottom: 0 !important;
             padding-bottom: 0 !important;
             display: block;
-            /* Đảm bảo iframe không có khoảng cách inline */
         }
 
         footer {
             margin-top: 0 !important;
             padding-top: 0 !important;
+        }
 
+        /* Mobile Responsive Styles */
+        @media (max-width: 992px) {
+            .navbar-brand img {
+                width: 250px !important;
+            }
+
+            .navbar-nav {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                gap: 0 !important;
+            }
+
+            .navbar-nav .nav-link {
+                padding: 0.8rem 1rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .dropdown-menu {
+                min-width: 100% !important;
+                position: static !important;
+            }
+
+            .d-flex.align-items-center {
+                flex-direction: column;
+                gap: 10px !important;
+                width: 100%;
+                margin-top: 15px;
+            }
+
+            .d-flex.align-items-center input {
+                width: 100% !important;
+
+            }
+
+            .d-flex.align-items-center button {
+                margin: 0 !important;
+                width: 100%;
+            }
+
+            .d-flex.align-items-center .btn {
+                margin-bottom: 5px;
+            }
+
+            /* Mobile: Ẩn dropdown admin và hiện button */
+            .admin-dropdown {
+                display: none !important;
+            }
+
+            .admin-button-mobile {
+                display: block !important;
+                width: 100%;
+                margin-bottom: 5px;
+            }
+        }
+
+        /* Desktop: Hiện dropdown admin và ẩn button */
+        @media (min-width: 993px) {
+            .admin-dropdown {
+                display: block !important;
+            }
+
+            .admin-button-mobile {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar-brand {
+                margin-left: 1rem !important;
+            }
+
+            .navbar-brand img {
+                width: 200px !important;
+            }
+
+            .dropdown-menu .row {
+                flex-direction: column;
+            }
+
+            .dropdown-menu .col-4 {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .modal-dialog {
+                margin: 1rem;
+            }
+
+            .modal-content {
+                font-size: 0.9rem;
+            }
+
+            .modal-title {
+                font-size: 1.5rem !important;
+            }
+
+            footer .row {
+                text-align: center !important;
+            }
+
+            footer .col-6 {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            footer .ms-5 {
+                margin-left: 0 !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-brand img {
+                width: 180px !important;
+            }
+
+            .navbar-toggler {
+                padding: 0.3rem 0.5rem;
+                font-size: 1rem;
+            }
+
+            .modal-title {
+                font-size: 1.3rem !important;
+            }
+
+            .btn {
+                font-size: 0.9rem;
+                padding: 0.5rem 0.8rem;
+            }
+
+            .dropdown-menu {
+                padding: 1rem !important;
+                font-size: 0.9rem;
+            }
+
+            .navbar-nav .nav-link {
+                font-size: 0.95rem;
+                padding: 0.7rem 0.8rem;
+            }
+
+            footer {
+                padding: 2rem 0 1.5rem !important;
+            }
+
+            footer h5,
+            footer h6 {
+                font-size: 1.1rem;
+            }
+
+            footer p,
+            footer .small {
+                font-size: 0.85rem !important;
+            }
+        }
+
+        /* Ensure proper spacing on mobile */
+        @media (max-width: 768px) {
+            .container-fluid {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
         }
     </style>
 </head>
@@ -147,32 +304,39 @@
                                 <li><a class="dropdown-item" href="#">Địa chỉ</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item"><a class="nav-link" role="button" id="giongdoc" onclick="giongdoc()">Giọng
+                                đọc</a></li>
                         <li class="nav-item"><a class="nav-link" href="About-Admin.html">About</a></li>
                     </ul>
 
-                    <!-- Bên phải navbar: Search + Yêu thích + Đăng ký + Đăng nhập -->
+                    <!-- Bên phải navbar: Search + Admin + Đăng xuất -->
                     <div class="d-flex align-items-center gap-2 ms-auto">
                         <input type="search" placeholder="Search" class="form-control" style="width: 500px;"
                             id="nhaptimkiem">
                         <button type="button" class="btn btn-outline-light me-5" id="timkiem"
                             onclick="timkiem()">Search</button>
 
-                        <!-- Account (Tài khoản user) -->
-                        <li class="nav-item dropdown ms-5 me-2">
+                        <!-- Admin Dropdown (Desktop) -->
+                        <li class="nav-item dropdown ms-5 me-2 admin-dropdown" style="list-style: none;">
                             <a href="#" class="btn btn-outline-light  rounded-circle" data-bs-toggle="dropdown">
                                 <i class="fa-solid fa-user-tie position-relative"></i>
                                 <span class="position-absolute  translate-middle badge rounded-pill "
-                                    style="top: -5%; left: 43px;">
+                                    style="top: -5%; left: 20px;">
                                     <i class="fa-solid fa-crown text-warning fs-5"></i>
                                 </span>
                             </a>
                             <ul class="dropdown-menu ">
-
                                 <li><a class="dropdown-item " href="GiaoDienTargetTaiKhoanAdmin.html"> <i
                                             class="fa-solid fa-user-tie me-2"></i>Quyền Admin</a></li>
                             </ul>
                         </li>
 
+                        <!-- Admin Button (Mobile) -->
+                        <button class="btn btn-outline-light admin-button-mobile">
+                            <a class="a_click" href="GiaoDienTargetTaiKhoanAdmin.html">
+                                <i class="fa-solid fa-user-tie me-1"></i>Admin
+                            </a>
+                        </button>
 
                         <!-- Đăng xuất -->
                         <button class="btn btn-outline-light">
@@ -197,14 +361,14 @@
                     <div class="col-6">
                         <h5 class="text-warning fw-bold">BOOK <span class="text-white">WEBSITE</span></h5>
                         <p class="small fs-6 fw-semibold text-secondary">
-                            Đây là sản phẩm đầu tay của nhóm chúng em, nhằm tạo ra một thư viện sách nói và truyện audio
+                            Đây là sản phẩm đầu tay của nhóm Delta, nhằm tạo ra một thư viện sách nói và truyện audio
                             miễn phí cho mọi người. Ứng dụng công nghệ AI hiện đại giúp tăng trải nghiệm học tập và giải
                             trí dễ tiếp cận hơn.
                         </p>
                         <p class="small fw-semibold fs-6 text-secondary mb-0">
                             Mọi thắc mắc về Website:
-                            <a href="mailto:dainguyenjkl@gmail.com"
-                                class="text-secondary fw-bold">dainguyenjkl@gmail.com</a>
+                            <a href="mailto:contact.deltacrew@gmail.com"
+                                class="text-secondary fw-bold">contact.deltacrew@gmail.com</a>
                         </p>
                     </div>
 
@@ -213,13 +377,12 @@
                         <h6 class="text-uppercase fw-bold text-warning mb-3 ms-5">Thông tin Liên hệ</h6>
                         <ul class="list-unstyled fs-6 small ms-5">
                             <li class="mb-2"><a href="#" class="text-decoration-none text-secondary "><i
-                                        class="fa-solid fa-location-dot me-1"></i> <b>Địa Chỉ: </b>140 - Lê Trọng
-                                    Tấn</a></li>
+                                        class="fa-solid fa-location-dot me-1"></i> <b>Địa Chỉ: </b>HCMC, VietNam</a></li>
                             <li class="mb-2"><a href="#" class="text-decoration-none text-secondary "><i
-                                        class="fa-solid fa-phone-volume me-1"></i> <b>Điện thoại: </b>0359699177</a>
+                                        class="fa-solid fa-phone-volume me-1"></i> <b>Điện thoại: </b>0777888xxx</a>
                             </li>
                             <li><a href="#" class="text-decoration-none text-secondary "><i
-                                        class="fa-solid fa-envelope me-1"></i> <b>Email: </b>dainguyenjkl@gmail.com</a>
+                                        class="fa-solid fa-envelope me-1"></i> <b>Email: </b>contact.deltacrew@gmail.com</a>
                             </li>
                         </ul>
                     </div>
@@ -240,6 +403,13 @@
 
 
     <script>
+        function giongdoc() {
+            document.getElementById('Chitietsach').src = 'Listgiong.html';
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
         // xoá đi thanh scroll bên phải (do html chính nhúng iframe )
         window.addEventListener("DOMContentLoaded", function () {
             const iframe = document.getElementById("Chitietsach");
@@ -345,7 +515,7 @@
         window.addEventListener("DOMContentLoaded", function () {
             laydanhsachtheloai();
         })
-                            (function () { if (!window.chatbase || window.chatbase("getState") !== "initialized") { window.chatbase = (...arguments) => { if (!window.chatbase.q) { window.chatbase.q = [] } window.chatbase.q.push(arguments) }; window.chatbase = new Proxy(window.chatbase, { get(target, prop) { if (prop === "q") { return target.q } return (...args) => target(prop, ...args) } }) } const onLoad = function () { const script = document.createElement("script"); script.src = "https://www.chatbase.co/embed.min.js"; script.id = "pZmBRIKTwTgRS_esCfk_p"; script.domain = "www.chatbase.co"; document.body.appendChild(script) }; if (document.readyState === "complete") { onLoad() } else { window.addEventListener("load", onLoad) } })();
+            (function () { if (!window.chatbase || window.chatbase("getState") !== "initialized") { window.chatbase = (...arguments) => { if (!window.chatbase.q) { window.chatbase.q = [] } window.chatbase.q.push(arguments) }; window.chatbase = new Proxy(window.chatbase, { get(target, prop) { if (prop === "q") { return target.q } return (...args) => target(prop, ...args) } }) } const onLoad = function () { const script = document.createElement("script"); script.src = "https://www.chatbase.co/embed.min.js"; script.id = "pZmBRIKTwTgRS_esCfk_p"; script.domain = "www.chatbase.co"; document.body.appendChild(script) }; if (document.readyState === "complete") { onLoad() } else { window.addEventListener("load", onLoad) } })();
 
     </script>
 

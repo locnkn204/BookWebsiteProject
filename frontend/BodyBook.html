@@ -7,11 +7,10 @@
     <title>BODYBOOK - DETAIL</title>
     <link href="bootstrap-5.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
+         body {
             background: linear-gradient(135deg, #a4cef8, #c0c0c0, #8144e9);
             margin: 0;
             padding: 0 0 60px;
-            /* Tăng padding-bottom lên 100px để khớp với margin-bottom */
         }
 
         .card {
@@ -19,11 +18,9 @@
             color: dark;
             width: 100%;
             height: 450px;
-            /* Chiều cao cố định cho card */
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            /* Phân bố không gian giữa hình và chữ */
         }
 
         .ctn-carousel {
@@ -34,7 +31,6 @@
         .carousel-inner img {
             max-height: 100%;
             object-fit: contain;
-            /* Giữ nguyên toàn bộ hình ảnh */
         }
 
         .carousel {
@@ -56,31 +52,31 @@
         }
 
         .img-sachbody {
-            width: 100%;/* Điền đầy card */    
-            height: 300px;/* Chiều cao cố định cho hình */     
-            object-fit: cover; /* Cắt bớt nếu cần để giữ tỷ lệ */        
-            flex-shrink: 0;/* Ngăn hình co lại */         
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            flex-shrink: 0;
         }
 
         .card-body {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-end;/* Đẩy chữ xuống dưới */           
+            justify-content: flex-end;
             padding: 10px;
-            flex-grow: 1; /* Điền không gian còn lại */        
+            flex-grow: 1;
         }
 
         .card-body p {
             text-align: center;
-            font-size: 1rem; /* Kích thước chữ nhất quán */          
-            margin: 10px 0 0; /* Điều chỉnh margin */         
-            flex-shrink: 0;/* Ngăn chữ co lại */        
-            overflow: hidden; /* Ngăn tràn nếu chữ quá dài */         
-            text-overflow: ellipsis; /* Cắt chữ thừa với dấu ... */          
-            white-space: nowrap;/* Ngăn xuống dòng */           
-            max-width: 100%;/* Giới hạn chiều rộng */          
-            min-height: 60px;/* Đảm bảo chiều cao tối thiểu cho chữ */          
+            font-size: 1rem;
+            margin: 10px 0 0;
+            flex-shrink: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 100%;
+            min-height: 60px;
         }
 
         .carousel-control-prev,
@@ -107,7 +103,6 @@
             text-decoration: none;
             cursor: pointer;
             height: 100%;
-            /* Đảm bảo a_click chiếm toàn bộ card */
         }
 
         .card-body:hover img {
@@ -129,33 +124,250 @@
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
+            position: relative;
+        }
+
+        .banner-books {
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: 100%;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .banner-book {
+            width: 209px;
+            height: 278px;
+            box-shadow: 0 18px 16px rgba(0, 0, 0, 0.6);
+            filter: brightness(1.3);
+            cursor: pointer;
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            /* Banner responsive */
+            .banner {
+                height: 250px;
+            }
+
+            .banner-books {
+                top: 20px;
+                gap: 10px;
+                padding: 0 15px;
+            }
+
+            .banner-book {
+                width: 120px;
+                height: 160px;
+            }
+
+            /* Card responsive */
+            .card {
+                height: 350px;
+            }
+
+            .img-sachbody {
+                height: 220px;
+            }
+
+            .card-body p {
+                font-size: 0.9rem;
+                white-space: normal !important;
+                text-overflow: initial !important;
+                min-height: 50px;
+                max-height: 60px;
+                line-height: 1.4;
+                word-wrap: break-word;
+                hyphens: auto;
+                padding: 0 5px;
+            }
+
+            /* Carousel responsive */
+            .ctn-carousel {
+                height: 200px;
+            }
+
+            .card-carousel {
+                height: 180px;
+                padding: 20px;
+            }
+
+            .card-carousel img {
+                max-height: 120px;
+            }
+
+            /* Container padding */
+            .container {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            /* Title responsive */
+            .fw-semibold.fs-5 {
+                font-size: 1.1rem !important;
+            }
+
+            /* Carousel controls */
+            .carousel-control-prev,
+            .carousel-control-next {
+                width: 8%;
+            }
+
+            .carousel-control-prev-icon,
+            .carousel-control-next-icon {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            /* Extra small devices */
+            .banner {
+                height: 200px;
+            }
+
+            .banner-books {
+                top: 15px;
+                gap: 8px;
+                flex-direction: row;
+                justify-content: space-around;
+            }
+
+            .banner-book {
+                width: 90px;
+                height: 120px;
+            }
+
+            .card {
+                height: 300px;
+            }
+
+            .img-sachbody {
+                height: 180px;
+            }
+
+            .card-body {
+                padding: 8px;
+            }
+
+            .card-body p {
+                font-size: 0.85rem;
+                white-space: normal !important;
+                text-overflow: initial !important;
+                min-height: 45px;
+                max-height: 50px;
+                line-height: 1.3;
+                margin: 8px 0 0;
+                word-wrap: break-word;
+                hyphens: auto;
+                padding: 0 3px;
+            }
+
+            .ctn-carousel {
+                height: 160px;
+            }
+
+            .card-carousel {
+                height: 140px;
+                padding: 15px;
+            }
+
+            .card-carousel img {
+                max-height: 90px;
+            }
+
+            .fw-semibold.fs-5 {
+                font-size: 1rem !important;
+                padding: 8px !important;
+            }
+
+            /* Grid responsive - 2 columns on mobile */
+            .row-cols-1.row-cols-sm-2.row-cols-md-4.row-cols-lg-6 {
+                --bs-columns: 2;
+            }
+
+            .row-cols-1.row-cols-sm-2.row-cols-md-4.row-cols-lg-6 > .col {
+                flex: 0 0 auto;
+                width: calc(50% - 0.25rem);
+            }
+        }
+
+        @media (max-width: 400px) {
+            /* Very small devices */
+            .banner-book {
+                width: 75px;
+                height: 100px;
+            }
+
+            .card {
+                height: 280px;
+            }
+
+            .img-sachbody {
+                height: 160px;
+            }
+
+            .card-body p {
+                font-size: 0.8rem;
+                white-space: normal !important;
+                text-overflow: initial !important;
+                min-height: 40px;
+                max-height: 45px;
+                line-height: 1.2;
+                word-wrap: break-word;
+                hyphens: auto;
+                padding: 0 2px;
+            }
+
+            .container.mt-4.mb-4.banner{
+                display: none;
+            }
+
+            .container.ctn-carousel.p-0{
+                display: none;
+            }
+
+            .container.p-2.mb-3.fw-semibold.fs-5.bg-dark.text-light.rounded-1{
+                display: none;
+            }
         }
     </style>
 </head>
 
 <body>
     <!--Banner-->
-    <div class="container mt-4 mb-4 banner" style="position: relative;">
-        <a role="button" id="bn1"><img src="https://bookwebsitedata.blob.core.windows.net/media/data/Hinh/quyam.png" style="width: 209px; height: 278px; position: absolute; top: 40px; left: 285px; box-shadow: 0 18px 16px rgba(0, 0, 0, 0.6); filter: brightness(1.3); " ><p style="display: none;">15</p></a>
-        <a role="button" id="bn2"><img src="https://bookwebsitedata.blob.core.windows.net/media/data/Hinh/demenphieuluuky.png" style="width: 209px; height: 278px; position: absolute; top: 40px; left: 518px; box-shadow: 0 18px 16px rgba(0, 0, 0, 0.6); filter: brightness(1.3);" ><p style="display: none;">8</p></a>
-        <a role="button" id="bn3"><img src="https://bookwebsitedata.blob.core.windows.net/media/data/Hinh/Datrrungphuongnam.png" style="width: 209px; height: 278px; position: absolute; top: 40px; left: 750px; box-shadow: 0 18px 16px rgba(0, 0, 0, 0.6); filter: brightness(1.3); " ><p style="display: none;">4</p></a>
+    <div class="container mt-4 mb-4 banner">
+        <div class="banner-books">
+            <a role="button" id="bn1">
+                <img src="https://bookwebsitedata.blob.core.windows.net/media/data/Hinh/quyam.png" class="banner-book">
+                <p style="display: none;">15</p>
+            </a>
+            <a role="button" id="bn2">
+                <img src="https://bookwebsitedata.blob.core.windows.net/media/data/Hinh/demenphieuluuky.png" class="banner-book">
+                <p style="display: none;">8</p>
+            </a>
+            <a role="button" id="bn3">
+                <img src="https://bookwebsitedata.blob.core.windows.net/media/data/Hinh/Datrrungphuongnam.png" class="banner-book">
+                <p style="display: none;">4</p>
+            </a>
+        </div>
     </div>
 
-    <!--Tilte-->
+    <!--Title-->
     <div class="container p-2 mb-3 fw-semibold fs-5 bg-dark text-light rounded-1">
-            <span class="ms-3" id="tieude1">SÁCH TIÊU BIỂU</span>
-        </div>
+        <span class="ms-3" id="tieude1">SÁCH TIÊU BIỂU</span>
+    </div>
 
     <!--Carousel-->
-    <div class="container ctn-carousel p-0 ">
+    <div class="container ctn-carousel p-0">
         <div id="demo" class="carousel slide" data-bs-ride="carousel">
-            <!-- <div class="carousel-indicators">
-                    <button class="active" type="button" data-bs-target="#demo" data-bs-slide-to="0"></button>
-                    <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-                    <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-                </div> -->
-            <div class="carousel-inner " id="listcarousel">
-
+            <div class="carousel-inner" id="listcarousel">
             </div>
             <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
                 <span class="carousel-control-next-icon"></span>
@@ -166,237 +378,240 @@
         </div>
     </div>
 
-    <!--Tilte-->
+    <!--Title-->
     <div class="container p-0">
         <div class="container-fluid p-2 mb-3 fw-semibold fs-5 bg-dark text-light rounded-1">
             <span class="ms-3" id="tieude">TỦ SÁCH</span>
         </div>
         
-    <!--Body-Main-->
-        <div class="row row-cols-1  row-cols-sm-2  row-cols-md-4 row-cols-lg-6 g-1" id="menusach">
+        <!--Body-Main-->
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-6 g-1" id="menusach">
         </div>
+    </div>
 
     <!--Script-->
-        <script src="bootstrap-5.3.5-dist/js/bootstrap.bundle.min.js"></script>
-        <script>
-            const carouselElement = document.querySelector('#demo');
-            const carousel = new bootstrap.Carousel(carouselElement, {
-                interval: 7000,
-                ride: 'carousel'
-            });
+    <script src="bootstrap-5.3.5-dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const carouselElement = document.querySelector('#demo');
+        const carousel = new bootstrap.Carousel(carouselElement, {
+            interval: 7000,
+            ride: 'carousel'
+        });
 
-            // Hàm hiển thị sách trên trang chủ
-            async function hienthisachtrangchu() {
-                let count = 0;
-                try {
-                    const response = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/hienthisach', {
-                        method: 'GET'
-                    });
-                    const sachs = await response.json();
-                    const listsach = document.getElementById('menusach');
-                    listsach.innerHTML = '';
-                    sachs.forEach(sach => {
-                        if (sach && sach.TRANGTHAISACH && sach.TRANGTHAISACH.toLowerCase() === 'active') {
-                            const div = document.createElement('div');
-                            div.classList.add("col");
-                            div.innerHTML = `
-                        <a class="a_click" href="javascript:void(0)">
-                            <div class="card h-100">
-                                <div class="card-body d-flex flex-column align-items-center">
-                                    <img class="mx-auto img-sachbody rounded-2" src="${sach.ANHBIA}">
-                                    <p class="card-title text-capitalize fw-semibold fs-5 mt-3 text-center">${sach.TENSACH}</p>
-                                    <span style="display:none;">${sach.IDSACH}</span>
-                                </div>
-                            </div>
-                        </a>`;
-                            listsach.appendChild(div);
-                            count++;
-                        }
-                    });
-                } catch (err) {
-                    console.error('Lỗi:', err);
-                }
-            }
-
-            // Hàm hiển thị carousel
-            async function hienthicarousel() {
-                try {
-                    const response = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/hienthisach', {
-                        method: 'GET'
-                    });
-                    const sachs = await response.json();
-                    const filteredBooks = sachs.filter(book => book.TRANGTHAISACH.toLowerCase() === 'active');
-                    const listsach = document.getElementById('listcarousel');
-                    listsach.innerHTML = '';
-
-                    for (let j = 0; j < 3; j++) {
+        // Hàm hiển thị sách trên trang chủ
+        async function hienthisachtrangchu() {
+            let count = 0;
+            try {
+                const response = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/hienthisach', {
+                    method: 'GET'
+                });
+                const sachs = await response.json();
+                const listsach = document.getElementById('menusach');
+                listsach.innerHTML = '';
+                sachs.forEach(sach => {
+                    if (sach && sach.TRANGTHAISACH && sach.TRANGTHAISACH.toLowerCase() === 'active') {
                         const div = document.createElement('div');
-                        const div1 = document.createElement('div');
-                        div1.classList.add("row", "g-2");
-                        div.classList.add("carousel-item");
-                        if (j === 0) div.classList.add("active"); // SỬA LỖI: Thêm dấu () sau classList.add
-                        div.appendChild(div1);
+                        div.classList.add("col");
+                        div.innerHTML = `
+                    <a class="a_click" href="javascript:void(0)">
+                        <div class="card h-100">
+                            <div class="card-body d-flex flex-column align-items-center">
+                                <img class="mx-auto img-sachbody rounded-2" src="${sach.ANHBIA}">
+                                <p class="card-title text-capitalize fw-semibold fs-5 mt-3 text-center">${sach.TENSACH}</p>
+                                <span style="display:none;">${sach.IDSACH}</span>
+                            </div>
+                        </div>
+                    </a>`;
+                        listsach.appendChild(div);
+                        count++;
+                    }
+                });
+            } catch (err) {
+                console.error('Lỗi:', err);
+            }
+        }
 
-                        for (let i = j * 4; i < (j * 4) + 4 && i < filteredBooks.length; i++) {
-                            const div2 = document.createElement('div');
-                            div2.classList.add("col-3");
-                            div2.innerHTML = `
-                        <a class="card card-carousel" href="javascript:void(0)">
-                            <img src="${filteredBooks[i].ANHBIA}" alt="">
-                            <p style="display: none;">${filteredBooks[i].IDSACH}</p>
-                        </a>`;
-                            div1.appendChild(div2);
-                        }
+        // Hàm hiển thị carousel
+        async function hienthicarousel() {
+            try {
+                const response = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/hienthisach', {
+                    method: 'GET'
+                });
+                const sachs = await response.json();
+                const filteredBooks = sachs.filter(book => book.TRANGTHAISACH.toLowerCase() === 'active');
+                const listsach = document.getElementById('listcarousel');
+                listsach.innerHTML = '';
+
+                for (let j = 0; j < 3; j++) {
+                    const div = document.createElement('div');
+                    const div1 = document.createElement('div');
+                    div1.classList.add("row", "g-2");
+                    div.classList.add("carousel-item");
+                    if (j === 0) div.classList.add("active"); // SỬA LỖI: Thêm dấu () sau classList.add
+                    div.appendChild(div1);
+
+                    for (let i = j * 4; i < (j * 4) + 4 && i < filteredBooks.length; i++) {
+                        const div2 = document.createElement('div');
+                        div2.classList.add("col-3");
+                        div2.innerHTML = `
+                    <a class="card card-carousel" href="javascript:void(0)">
+                        <img src="${filteredBooks[i].ANHBIA}" alt="">
+                        <p style="display: none;">${filteredBooks[i].IDSACH}</p>
+                    </a>`;
+                        div1.appendChild(div2);
+                    }
+                    listsach.appendChild(div);
+                }
+            } catch (err) {
+                console.error('Lỗi:', err);
+            }
+        }
+
+        // Hàm hiển thị kết quả tìm kiếm
+        async function hienthitimkiem() {
+            try {
+                const timkiems = JSON.parse(localStorage.getItem('ketquatimkiem') || '[]');
+                const listsach = document.getElementById('menusach');
+                const tieude = document.getElementById('tieude');
+                tieude.textContent = "KẾT QUẢ TÌM KIẾM";
+                listsach.innerHTML = '';
+
+                if (timkiems.length === 0) {
+                    tieude.textContent = "KHÔNG CÓ KẾT QUẢ TÌM KIẾM";
+                    return;
+                }
+
+                timkiems.forEach(sach => {
+                    if (sach && sach.TRANGTHAISACH && sach.TRANGTHAISACH.toLowerCase() === 'active') {
+                        const div = document.createElement('div');
+                        div.classList.add("col");
+                        div.innerHTML = `
+                    <a class="a_click" href="javascript:void(0)">
+                        <div class="card h-100">
+                            <div class="card-body d-flex flex-column align-items-center">
+                                <img class="mx-auto img-sachbody rounded-2" src="${sach.ANHBIA}">
+                                <p class="card-title text-capitalize fw-semibold fs-5 mt-3 text-center">${sach.TENSACH}</p>
+                                <span style="display:none;">${sach.IDSACH}</span>
+                            </div>
+                        </div>
+                    </a>`;
                         listsach.appendChild(div);
                     }
-                } catch (err) {
-                    console.error('Lỗi:', err);
-                }
-            }
-
-            // Hàm hiển thị kết quả tìm kiếm
-            async function hienthitimkiem() {
-                try {
-                    const timkiems = JSON.parse(localStorage.getItem('ketquatimkiem') || '[]');
-                    const listsach = document.getElementById('menusach');
-                    const tieude = document.getElementById('tieude');
-                    tieude.textContent = "KẾT QUẢ TÌM KIẾM";
-                    listsach.innerHTML = '';
-
-                    if (timkiems.length === 0) {
-                        tieude.textContent = "KHÔNG CÓ KẾT QUẢ TÌM KIẾM";
-                        return;
-                    }
-
-                    timkiems.forEach(sach => {
-                        if (sach && sach.TRANGTHAISACH && sach.TRANGTHAISACH.toLowerCase() === 'active') {
-                            const div = document.createElement('div');
-                            div.classList.add("col");
-                            div.innerHTML = `
-                        <a class="a_click" href="javascript:void(0)">
-                            <div class="card h-100">
-                                <div class="card-body d-flex flex-column align-items-center">
-                                    <img class="mx-auto img-sachbody rounded-2" src="${sach.ANHBIA}">
-                                    <p class="card-title text-capitalize fw-semibold fs-5 mt-3 text-center">${sach.TENSACH}</p>
-                                    <span style="display:none;">${sach.IDSACH}</span>
-                                </div>
-                            </div>
-                        </a>`;
-                            listsach.appendChild(div);
-                        }
-                    });
-                    localStorage.removeItem('ketquatimkiem');
-                    localStorage.removeItem('isSearch');
-                } catch (err) {
-                    console.error('Lỗi:', err);
-                    document.getElementById('tieude').textContent = "KHÔNG CÓ KẾT QUẢ TÌM KIẾM";
-                }
-            }
-
-            // Hàm lấy chi tiết sách từ server và lưu vào localStorage
-            async function laydulieuchitietsach(tensach) {
-                try {
-                    const response = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/chitietsach', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ tensach })
-                    });
-                    const response1 = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/binhluan', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ tensach })
-                    });
-                    const data = await response.json();
-                    const data1 = await response1.json();
-                    const binhluan = data1.danhgia || [];
-
-                    if (!data.book) {
-                        alert('Không tìm thấy sách nào!');
-                        return;
-                    }
-                    localStorage.setItem('book', JSON.stringify([data.book]));
-                    localStorage.setItem('danhgia', JSON.stringify(binhluan));
-                    window.location.href = 'GiaoDienTargetChitiet.html';
-                } catch (err) {
-                    console.error('Lỗi:', err);
-                    alert("Có lỗi xảy ra");
-                }
-            }
-
-            // Hàm cập nhật chiều cao iframe
-            function updateIframeHeight() {
-                const height = document.body.scrollHeight;
-                window.parent.postMessage({ height: height }, "*");
-            }
-
-            // Gộp sự kiện DOMContentLoaded
-            window.addEventListener("DOMContentLoaded", async function () {
-                try {
-                    // Khởi tạo carousel
-                    await hienthicarousel();
-
-                    // Kiểm tra trạng thái tìm kiếm
-                    const kiemtra = localStorage.getItem('isSearch');
-                    if (kiemtra) {
-                        await hienthitimkiem();
-                    } else {
-                        await hienthisachtrangchu();
-                    }
-
-                    // Cập nhật chiều cao iframe sau khi nội dung được render
-                    await new Promise(resolve => setTimeout(resolve, 100)); // Đợi render hoàn tất
-                    updateIframeHeight();
-                    setTimeout(updateIframeHeight, 500); // Cập nhật lại sau 500ms để đảm bảo
-                } catch (err) {
-                    console.error('Lỗi:', err);
-                }
-
-                // Gắn sự kiện click cho danh sách sách
-                const menusach = document.getElementById("menusach");
-                menusach.addEventListener("click", function (e) {
-                    const sach = e.target.closest('.card-body');
-                    if (sach) {
-                        const tensach = parseInt(sach.querySelector('span').textContent);
-                        laydulieuchitietsach(tensach);
-                    }
                 });
+                localStorage.removeItem('ketquatimkiem');
+                localStorage.removeItem('isSearch');
+            } catch (err) {
+                console.error('Lỗi:', err);
+                document.getElementById('tieude').textContent = "KHÔNG CÓ KẾT QUẢ TÌM KIẾM";
+            }
+        }
 
-                // Gắn sự kiện click cho carousel
-                const listcarousel = document.getElementById("listcarousel");
-                listcarousel.addEventListener("click", function (e) {
-                    const sachcarousel = e.target.closest('.card-carousel');
-                    if (sachcarousel) {
-                        const tensach = parseInt(sachcarousel.querySelector('p').textContent);
-                        laydulieuchitietsach(tensach);
-                    }
+        // Hàm lấy chi tiết sách từ server và lưu vào localStorage
+        async function laydulieuchitietsach(tensach) {
+            try {
+                const response = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/chitietsach', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tensach })
                 });
+                const response1 = await fetch('https://donateabookdeltacrew.azurewebsites.net/api/binhluan', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tensach })
+                });
+                const data = await response.json();
+                const data1 = await response1.json();
+                const binhluan = data1.danhgia || [];
+
+                if (!data.book) {
+                    alert('Không tìm thấy sách nào!');
+                    return;
+                }
+                localStorage.setItem('book', JSON.stringify([data.book]));
+                localStorage.setItem('danhgia', JSON.stringify(binhluan));
+                window.location.href = 'GiaoDienTargetChitiet.html';
+            } catch (err) {
+                console.error('Lỗi:', err);
+                alert("Có lỗi xảy ra");
+            }
+        }
+
+        // Hàm cập nhật chiều cao iframe
+        function updateIframeHeight() {
+            const height = document.body.scrollHeight;
+            window.parent.postMessage({ height: height }, "*");
+        }
+
+        // Gộp sự kiện DOMContentLoaded
+        window.addEventListener("DOMContentLoaded", async function () {
+            try {
+                // Khởi tạo carousel
+                await hienthicarousel();
+
+                // Kiểm tra trạng thái tìm kiếm
+                const kiemtra = localStorage.getItem('isSearch');
+                if (kiemtra) {
+                    await hienthitimkiem();
+                } else {
+                    await hienthisachtrangchu();
+                }
+
+                // Cập nhật chiều cao iframe sau khi nội dung được render
+                await new Promise(resolve => setTimeout(resolve, 100)); // Đợi render hoàn tất
+                updateIframeHeight();
+                setTimeout(updateIframeHeight, 500); // Cập nhật lại sau 500ms để đảm bảo
+            } catch (err) {
+                console.error('Lỗi:', err);
+            }
+
+            // Gắn sự kiện click cho danh sách sách
+            const menusach = document.getElementById("menusach");
+            menusach.addEventListener("click", function (e) {
+                const sach = e.target.closest('.card-body');
+                if (sach) {
+                    const tensach = parseInt(sach.querySelector('span').textContent);
+                    laydulieuchitietsach(tensach);
+                }
             });
 
-                 // 
-                const bn1 = document.getElementById("bn1");
-                bn1.addEventListener("click", function (e) {
+            // Gắn sự kiện click cho carousel
+            const listcarousel = document.getElementById("listcarousel");
+            listcarousel.addEventListener("click", function (e) {
+                const sachcarousel = e.target.closest('.card-carousel');
+                if (sachcarousel) {
+                    const tensach = parseInt(sachcarousel.querySelector('p').textContent);
+                    laydulieuchitietsach(tensach);
+                }
+            });
+        });
 
-                        const tensach = parseInt(bn1.querySelector('p').textContent);
-                        laydulieuchitietsach(tensach);
-                   
-                });
+        // 
+        const bn1 = document.getElementById("bn1");
+        bn1.addEventListener("click", function (e) {
 
-                const bn2 = document.getElementById("bn2");
-                bn2.addEventListener("click", function (e) {
+            const tensach = parseInt(bn1.querySelector('p').textContent);
+            laydulieuchitietsach(tensach);
 
-                        const tensach = parseInt(bn2.querySelector('p').textContent);
-                        laydulieuchitietsach(tensach);
-                   
-                });
+        });
 
-                const bn3 = document.getElementById("bn3");
-                bn3.addEventListener("click", function (e) {
+        const bn2 = document.getElementById("bn2");
+        bn2.addEventListener("click", function (e) {
 
-                        const tensach = parseInt(bn3.querySelector('p').textContent);
-                        laydulieuchitietsach(tensach);
-                   
-                });
-        </script>
+            const tensach = parseInt(bn2.querySelector('p').textContent);
+            laydulieuchitietsach(tensach);
+
+        });
+
+        const bn3 = document.getElementById("bn3");
+        bn3.addEventListener("click", function (e) {
+
+            const tensach = parseInt(bn3.querySelector('p').textContent);
+            laydulieuchitietsach(tensach);
+
+        });
+
+
+    </script>
 </body>
 
 </html>
